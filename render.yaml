@@ -10,7 +10,9 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.12.0"
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_7XxRJmUIM3ZT@ep-fancy-shape-adn1qz4b-pooler.c-2.us-east-1.aws.neon.tech/sigma-pli?sslmode=require
+      - key: ENABLE_POSTGRES
+        value: "true"
       - key: ENABLE_NEO4J
         value: "false"
-      - key: ENABLE_POSTGRES
-        sync: false
