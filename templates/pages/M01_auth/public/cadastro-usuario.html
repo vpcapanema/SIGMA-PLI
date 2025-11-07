@@ -1,0 +1,257 @@
+{% extends 'pages/M01_auth/template_base_auth.html' %}
+
+{% block title %}Cadastro de Usuário | SIGMA-PLI{% endblock %}
+
+{% block extra_head %}
+<link href="/static/css/M01_auth/style_cadastro_usuario.css" rel="stylesheet">
+<link href="/static/css/shared/form-sections.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow-1 py-5">
+  <div class="container pli-main-content">
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <h1 class="mb-0 pli-title"><i class="fas fa-user-plus me-2 text-pli-primary"></i> Cadastro de Usuário</h1>
+        <p class="text-muted">Solicite seu acesso ao sistema PLI</p>
+      </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+      <div class="col-12">
+        <div class="alert alert-info"><i class="fas fa-info-circle me-2"></i><strong>Importante:</strong> Preencha todos
+          os campos obrigatórios para criar sua conta de usuário no sistema SIGMA-PLI.</div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <form id="usuarioPublicForm" novalidate>
+          <!-- Dados Pessoais -->
+          <div class="form-section">
+            <div class="form-section-header"><i class="fas fa-id-card me-2"></i> Dados Pessoais</div>
+            <div class="form-section-body">
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label cadastro-usuario__required-field--label" for="nome">Nome Completo</label>
+                  <input class="form-control" id="nome" name="nome" required type="text"
+                    placeholder="Digite seu nome completo">
+                  <div class="invalid-feedback">Por favor, informe seu nome completo.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label cadastro-usuario__required-field--label" for="email">E-mail Pessoal</label>
+                  <input autocomplete="email" class="form-control" id="email" name="email" required type="email"
+                    placeholder="seu.email@exemplo.com">
+                  <div class="invalid-feedback">Por favor, informe um e-mail válido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label cadastro-usuario__required-field--label" for="documento">CPF</label>
+                  <input class="form-control" id="documento" name="documento" required type="text"
+                    placeholder="000.000.000-00">
+                  <div class="invalid-feedback">Por favor, informe um CPF válido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label cadastro-usuario__required-field--label" for="telefone">Telefone</label>
+                  <input class="form-control" id="telefone" name="telefone" required type="text"
+                    placeholder="(00) 00000-0000">
+                  <div class="invalid-feedback">Por favor, informe um telefone válido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="data_nascimento">Data de Nascimento</label>
+                  <input class="form-control" id="data_nascimento" name="data_nascimento" type="date">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Dados Profissionais -->
+          <div class="form-section">
+            <div class="form-section-header"><i class="fas fa-briefcase me-2"></i> Dados Profissionais (Opcional)</div>
+            <div class="form-section-body">
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label" for="instituicao_nome">Instituição</label>
+                  <input class="form-control" id="instituicao_nome" name="instituicao_nome" type="text"
+                    placeholder="Nome da instituição (opcional)">
+                  <div class="form-text">Informe o nome da instituição onde trabalha, se aplicável.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="departamento">Departamento</label>
+                  <input class="form-control" id="departamento" name="departamento" type="text"
+                    placeholder="Ex: TI, RH, Financeiro">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="cargo">Cargo</label>
+                  <input class="form-control" id="cargo" name="cargo" type="text" placeholder="Ex: Analista, Gerente">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="email_institucional">E-mail Institucional</label>
+                  <input class="form-control" id="email_institucional" name="email_institucional" type="email"
+                    placeholder="seu.email@instituicao.gov.br">
+                  <div class="form-text">Se informado, será usado como e-mail principal de contato.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="telefone_institucional">Telefone Institucional</label>
+                  <input class="form-control" id="telefone_institucional" name="telefone_institucional" type="text"
+                    placeholder="(00) 0000-0000">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="ramal_institucional">Ramal Institucional</label>
+                  <input class="form-control" id="ramal_institucional" name="ramal_institucional" type="text"
+                    placeholder="0000">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Dados de Acesso -->
+          <div class="form-section">
+            <div class="form-section-header"><i class="fas fa-lock me-2"></i> Dados de Acesso</div>
+            <div class="form-section-body">
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label cadastro-usuario__required-field--label" for="tipo_usuario">Tipo de
+                    Usuário</label>
+                  <select aria-describedby="tipo-usuario-help" class="form-select" id="tipo_usuario" name="tipo_usuario"
+                    required>
+                    <option value="">Selecione</option>
+                    <option value="ADMIN">Administrador</option>
+                    <option value="GESTOR">Gestor</option>
+                    <option value="ANALISTA">Analista</option>
+                    <option value="OPERADOR">Operador</option>
+                    <option value="VISUALIZADOR">Visualizador</option>
+                  </select>
+                  <div class="invalid-feedback">Por favor, selecione um tipo de usuário.</div>
+                  <div class="form-text" id="tipo-usuario-help">Você pode ter até cinco usuários diferentes (um de cada
+                    tipo) com o mesmo CPF.</div>
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label cadastro-usuario__required-field--label" for="username">Nome de
+                    Usuário</label>
+                  <input class="form-control" id="username" name="username" required type="text"
+                    placeholder="Escolha um nome de usuário único">
+                  <div class="invalid-feedback">Nome de usuário é obrigatório.</div>
+                  <div class="form-text">Será usado para fazer login no sistema. Use apenas letras, números e underscore
+                    (_).</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label cadastro-usuario__required-field--label" for="senha">Senha</label>
+                  <div class="input-group">
+                    <input aria-describedby="toggleSenha" autocomplete="new-password" class="form-control" id="senha"
+                      name="senha" required type="password">
+                    <button aria-label="Mostrar/ocultar senha" class="btn btn-outline-secondary" id="toggleSenha"
+                      tabindex="-1" type="button"><i class="fa fa-eye"></i></button>
+                  </div>
+                  <div class="password-strength" id="passwordStrength"></div>
+                  <div class="password-strength-text" id="passwordStrengthText"></div>
+                  <div class="invalid-feedback" id="senhaFeedback">Por favor, crie uma senha forte.</div>
+                  <div class="form-text">A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas,
+                    minúsculas, números e caracteres especiais.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label cadastro-usuario__required-field--label" for="confirmarSenha">Confirmar
+                    Senha</label>
+                  <div class="input-group"><input aria-describedby="toggleConfirmarSenha" autocomplete="new-password"
+                      class="form-control" id="confirmarSenha" name="confirmarSenha" required type="password"><button
+                      aria-label="Mostrar/ocultar senha" class="btn btn-outline-secondary" id="toggleConfirmarSenha"
+                      tabindex="-1" type="button"><i class="fa fa-eye"></i></button></div>
+                  <div class="invalid-feedback" id="confirmarSenhaFeedback">As senhas não coincidem.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Termos e Condições -->
+          <div class="form-section">
+            <div class="form-section-header"><i class="fas fa-file-signature me-2"></i> Termos e Condições</div>
+            <div class="form-section-body">
+              <div class="form-check mb-3">
+                <input class="form-check-input" id="termoPrivacidade" name="termo_privacidade" required type="checkbox">
+                <label class="form-check-label" for="termoPrivacidade">Li e concordo com a <a
+                    data-bs-target="#privacidadeModal" data-bs-toggle="modal" href="#">Política de Privacidade</a>
+                  *</label>
+                <div class="invalid-feedback">Você deve concordar com a política de privacidade.</div>
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" id="termoUso" name="termo_uso" required type="checkbox">
+                <label class="form-check-label" for="termoUso">Li e concordo com os <a data-bs-target="#termosModal"
+                    data-bs-toggle="modal" href="#">Termos de Uso</a> *</label>
+                <div class="invalid-feedback">Você deve concordar com os termos de uso.</div>
+              </div>
+              <div class="alert alert-warning"><i class="fas fa-exclamation-triangle me-2"></i><small>Ao solicitar
+                  acesso, você declara que as informações fornecidas são verdadeiras e está ciente de que o uso indevido
+                  do sistema pode resultar em sanções administrativas e legais.</small></div>
+            </div>
+          </div>
+          <!-- Verificação de Segurança -->
+          <div class="form-section">
+            <div class="form-section-header"><i class="fas fa-shield-alt me-2"></i> Verificação de Segurança</div>
+            <div class="form-section-body text-center">
+              <div id="protection-container"><!-- AntiBotProtection placeholder --></div>
+            </div>
+          </div>
+          <!-- Finalização do Cadastro -->
+          <div class="form-section">
+            <div class="form-section-header"><i class="fas fa-user-plus me-2"></i> Solicitar Acesso</div>
+            <div class="form-section-body">
+              <div class="d-flex gap-3">
+                <button class="btn btn-light btn-lg flex-fill border-2" id="auto_evt_898c1af1" type="button"><i
+                    class="fas fa-home me-2"></i> Voltar ao Início</button>
+                <button class="btn btn-primary btn-lg flex-fill" type="submit"><i class="fas fa-user-plus me-2"></i>
+                  Solicitar Acesso</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<div aria-hidden="true" class="modal fade" id="successModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success"><i class="fas fa-check-circle me-2"></i> Solicitação Enviada com Sucesso
+        </h5>
+        <button aria-label="Fechar" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4"><i class="fas fa-check-circle text-success pli-icon-4rem"></i></div>
+        <div class="alert alert-success">
+          <h4 class="alert-heading">Solicitação Recebida!</h4>
+          <p>Sua solicitação de acesso foi recebida com sucesso!</p>
+          <hr>
+          <p class="mb-0"><strong>Protocolo:</strong> <span id="protocoloSolicitacao">PLI-XXXXXXXX</span></p>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h5 class="card-title mb-0"><i class="fas fa-envelope me-2"></i> Notificações</h5>
+          </div>
+          <div class="card-body">
+            <p><i class="fas fa-paper-plane me-2 text-primary"></i> Um email de confirmação foi <span
+                id="emailStatus">enviado</span> para os endereços informados.</p>
+            <p><i class="fas fa-file-alt me-2 text-primary"></i> O comprovante da solicitação foi anexado ao email.</p>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h5 class="card-title mb-0"><i class="fas fa-tasks me-2"></i> Próximos Passos</h5>
+          </div>
+          <div class="card-body">
+            <ol class="mb-0">
+              <li><strong>Etapa Atual:</strong> <span class="badge bg-success">Solicitação Recebida</span></li>
+              <li><strong>Próxima Etapa:</strong> <span class="badge bg-warning text-dark">Em Análise</span> - Sua
+                solicitação será analisada pelos administradores ou gestores do sistema.</li>
+              <li><strong>Etapa Final:</strong> <span class="badge bg-info">Aprovação/Rejeição</span> - Você receberá um
+                email com o resultado da análise.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="alert alert-info"><i class="fas fa-info-circle me-2"></i> O prazo médio para análise é de 2 dias
+          úteis. Em caso de dúvidas, entre em contato pelo email <strong>pli.semil.sp@gmail.com</strong>.</div>
+      </div>
+      <div class="modal-footer"><a class="btn btn-primary btn-lg px-4" href="/index"><i class="fas fa-home me-2"></i> Ir
+          para Página Inicial</a></div>
+    </div>
+  </div>
+</div>
+
+{% block extra_js %}
+<script src="/static/js/M01_auth/script_cadastro_usuario.js"></script>
+{% endblock %}

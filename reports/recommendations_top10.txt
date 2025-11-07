@@ -1,0 +1,35 @@
+Top 10 Recomendações (prioritizadas)
+
+1) Criar índices GIN em colunas JSONB/ARRAY críticas
+   - Arquivos exemplo: `dicionario.versao_arquivo(dados_estrutura, dados_conteudo)`
+   - Justificativa: melhora consultas sobre campos JSON/ARRAY grandes; alto benefício para filtros/pesquisas textuais.
+   - Risco: pode aumentar I/O durante criação; pouco impacto em leituras após criado.
+
+2) Criar índice GIN em `dicionario.auditoria_evento(dados_depois)`
+   - Justificativa: facilita buscas e análises forenses em histórico de mudanças.
+
+3) Criar índice GIN em colunas de `conteudo__geodatabase` e `geoespacial_vetor`
+   - Justificativa: acelera queries de catálogo/metadata que usam arrays de atributos ou palavras-chave.
+
+4) Criar índices GIN em colunas que armazenam snapshots/versões
+   - Justificativa: filtros por versão e comparação de diffs se tornam mais rápidos.
+
+5) Revisar índices redundantes já existentes antes de aplicar todas as recomendações
+   - Justificativa: evitar índices duplicados que desperdiçam espaço e degradam escrita.
+
+6) Avaliar criação de constraints FK inferidas manualmente
+   - Justificativa: melhora integridade referencial; exige revisão manual para evitar FKs incorretas.
+
+7) Priorizar índices em tabelas com maior cardinalidade (ex.: `versao_arquivo`, `workflow_aprovacao`)
+   - Justificativa: maior ganho de performance.
+
+8) Planejar janela de manutenção para criação de índices em produção
+   - Justificativa: evitar impacto em picos de carga.
+
+9) Gerar script de rollback (DROP INDEX/DROP CONSTRAINT) antes de aplicar
+   - Justificativa: possibilita reverter em caso de regressão.
+
+10) Rodar análise de uso (pg_stat_user_indexes) após aplicação para validar efetividade
+   - Justificativa: confirmar que índices são utilizados e não são lixo.
+
+Observação: o arquivo completo com 126 recomendações está em `reports/schema_recommendations.sql`.

@@ -1,0 +1,4916 @@
+{
+  "dicionario": {
+    "arquivo": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "nome_arquivo",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "tipo_mime",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "extensao",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "tamanho_bytes",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "checksum_md5",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "caminho_armazenamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_upload",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "data_criacao_arquivo",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_modificacao_arquivo",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "versao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "autor_arquivo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "codificacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "idioma_conteudo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "palavras_chave",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "padrao_metadados",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_metadado",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "arquivo_pkey",
+          "def": "CREATE UNIQUE INDEX arquivo_pkey ON dicionario.arquivo USING btree (id)"
+        },
+        {
+          "name": "idx_arquivo_extensao",
+          "def": "CREATE INDEX idx_arquivo_extensao ON dicionario.arquivo USING btree (extensao)"
+        },
+        {
+          "name": "idx_arquivo_upload",
+          "def": "CREATE INDEX idx_arquivo_upload ON dicionario.arquivo USING btree (data_upload)"
+        },
+        {
+          "name": "idx_arquivo_mime",
+          "def": "CREATE INDEX idx_arquivo_mime ON dicionario.arquivo USING btree (tipo_mime)"
+        },
+        {
+          "name": "gin_arquivo_palavras",
+          "def": "CREATE INDEX gin_arquivo_palavras ON dicionario.arquivo USING gin (palavras_chave)"
+        }
+      ]
+    },
+    "auditoria_evento": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "timestamp_evento",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "tipo_evento",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "operacao",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "tabela_afetada",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "registro_id",
+          "data_type": "uuid",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "schema_name",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "'dicionario'::text"
+        },
+        {
+          "column_name": "usuario_sistema",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "CURRENT_USER"
+        },
+        {
+          "column_name": "usuario_aplicacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sessao_id",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "ip_origem",
+          "data_type": "inet",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "user_agent",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dados_antes",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dados_depois",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "campos_alterados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "motivo_alteracao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "observacoes",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_criticidade",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "'INFO'::text"
+        },
+        {
+          "column_name": "correlation_id",
+          "data_type": "uuid",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "parent_event_id",
+          "data_type": "uuid",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "duracao_ms",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sucesso",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "true"
+        },
+        {
+          "column_name": "codigo_erro",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "mensagem_erro",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "versao_schema",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "'1.0'::text"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "parent_event_id",
+          "ref_schema": "dicionario",
+          "ref_table": "auditoria_evento",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "auditoria_evento_pkey",
+          "def": "CREATE UNIQUE INDEX auditoria_evento_pkey ON dicionario.auditoria_evento USING btree (id)"
+        }
+      ]
+    },
+    "conteudo__database": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dominio_negocio",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sistema_origem",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "finalidade_banco",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "entidades_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "processos_suportados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "regras_negocio_identificadas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "fluxos_dados_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "completude_dados",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consistencia_geral",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "integridade_referencial",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "qualidade_denominacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tabelas_mais_utilizadas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consultas_tipicas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "padroes_acesso",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "performance_estimada",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_documentacao",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "dicionario_dados",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "politicas_acesso",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "historico_versoes",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "apis_disponiveis",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "formatos_exportacao",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "compatibilidade_sistemas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__database",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__database_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__database_pkey ON dicionario.conteudo__database USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_db_estrutura",
+          "def": "CREATE INDEX idx_conteudo_db_estrutura ON dicionario.conteudo__database USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_db_entidades",
+          "def": "CREATE INDEX gin_conteudo_db_entidades ON dicionario.conteudo__database USING gin (entidades_principais)"
+        }
+      ]
+    },
+    "conteudo__desenho_2d3d": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tipo_projeto",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "disciplina_tecnica",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "fase_projeto",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "objetos_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sistemas_representados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "detalhes_tecnicos",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "especificacoes_materiais",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "normas_aplicadas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "codigos_referencia",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "criterios_projeto",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "restricoes_construtivas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "completude_projeto",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_detalhamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consistencia_tecnica",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_dimensionamento",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_especificacoes",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "area_aplicacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "responsavel_tecnico",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "numero_art_rrt",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "aprovacoes_obtidas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__desenho_2d3d",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__desenho_2d3d_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__desenho_2d3d_pkey ON dicionario.conteudo__desenho_2d3d USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_desenho_estrutura",
+          "def": "CREATE INDEX idx_conteudo_desenho_estrutura ON dicionario.conteudo__desenho_2d3d USING btree (estrutura_id)"
+        }
+      ]
+    },
+    "conteudo__documentos_texto": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "resumo_automatico",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "palavras_chave_extraidas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "entidades_nomeadas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tipo_documento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "area_conhecimento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_tecnico",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "publico_alvo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sentimento_geral",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "topicos_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "conceitos_chave",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_sumario",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_bibliografia",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_glossario",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "secoes_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "completude_info",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "qualidade_redacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_atualizacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__documentos_texto",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__documentos_texto_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__documentos_texto_pkey ON dicionario.conteudo__documentos_texto USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_doc_estrutura",
+          "def": "CREATE INDEX idx_conteudo_doc_estrutura ON dicionario.conteudo__documentos_texto USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_doc_palavras",
+          "def": "CREATE INDEX gin_conteudo_doc_palavras ON dicionario.conteudo__documentos_texto USING gin (palavras_chave_extraidas)"
+        },
+        {
+          "name": "gin_conteudo_doc_entidades",
+          "def": "CREATE INDEX gin_conteudo_doc_entidades ON dicionario.conteudo__documentos_texto USING gin (entidades_nomeadas)"
+        }
+      ]
+    },
+    "conteudo__geodatabase": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dominio_espacial",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "escala_trabalho",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "abrangencia_geografica",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "temas_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "feature_classes_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atributos_chave",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "relacionamentos_tematicos",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "finalidade_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "aplicacoes_sugeridas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "analises_espaciais_possiveis",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "produtos_cartograficos",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "completude_tematica",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualidade_dados",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consistencia_atributos",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "acuracia_posicional",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "metodologia_coleta",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "fontes_dados_originais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "processamentos_aplicados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "validacoes_realizadas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "padroes_seguidos",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "servicos_disponiveis",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "compatibilidade_software",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__geodatabase",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__geodatabase_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__geodatabase_pkey ON dicionario.conteudo__geodatabase USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_geodb_estrutura",
+          "def": "CREATE INDEX idx_conteudo_geodb_estrutura ON dicionario.conteudo__geodatabase USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_geodb_temas",
+          "def": "CREATE INDEX gin_conteudo_geodb_temas ON dicionario.conteudo__geodatabase USING gin (temas_principais)"
+        }
+      ]
+    },
+    "conteudo__geoespacial_raster": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "intervalo_temporal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "produtos_derivados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "aplicacoes_sugeridas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "bandas_espectrais",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "indices_calculaveis",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "classe_tematica",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "categoria_uso",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_processamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "algoritmos_aplicados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "cobertura_nuvens",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "qualidade_radiometrica",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "calibracao_aplicada",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "correcoes_atmosfericas",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__geoespacial_raster",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__geoespacial_raster_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__geoespacial_raster_pkey ON dicionario.conteudo__geoespacial_raster USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_geor_estrutura",
+          "def": "CREATE INDEX idx_conteudo_geor_estrutura ON dicionario.conteudo__geoespacial_raster USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_geor_produtos",
+          "def": "CREATE INDEX gin_conteudo_geor_produtos ON dicionario.conteudo__geoespacial_raster USING gin (produtos_derivados)"
+        }
+      ]
+    },
+    "conteudo__geoespacial_vetor": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "campos_tematicos",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "periodo_referencia",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "escala_representacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_detalhamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "qualidade_posicional",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "categorias_tematicas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "palavras_chave_espaciais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "toponimos",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "campos_obrigatorios",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "campos_opcionais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tipos_dados_atributos",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dominios_atributos",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "completude_espacial",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consistencia_logica",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "acuracia_tematica",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__geoespacial_vetor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__geoespacial_vetor_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__geoespacial_vetor_pkey ON dicionario.conteudo__geoespacial_vetor USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_geov_estrutura",
+          "def": "CREATE INDEX idx_conteudo_geov_estrutura ON dicionario.conteudo__geoespacial_vetor USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_geov_campos",
+          "def": "CREATE INDEX gin_conteudo_geov_campos ON dicionario.conteudo__geoespacial_vetor USING gin (campos_tematicos)"
+        },
+        {
+          "name": "gin_conteudo_geov_categorias",
+          "def": "CREATE INDEX gin_conteudo_geov_categorias ON dicionario.conteudo__geoespacial_vetor USING gin (categorias_tematicas)"
+        }
+      ]
+    },
+    "conteudo__midia": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "descricao_conteudo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "palavras_chave_visuais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "objetos_identificados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "local_captura",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_captura",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "equipamento_captura",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "condicoes_captura",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_pessoas",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_texto_ocr",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "texto_extraido",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "cores_dominantes",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "composicao_visual",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_fala_humana",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "idioma_audio",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "transcricao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "genero_musical",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "instrumentos_identificados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "categoria_conteudo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_audiencia",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "finalidade_uso",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "direitos_autorais",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "clareza_visual",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "relevancia_tematica",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__midia",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__midia_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__midia_pkey ON dicionario.conteudo__midia USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_midia_estrutura",
+          "def": "CREATE INDEX idx_conteudo_midia_estrutura ON dicionario.conteudo__midia USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_midia_objetos",
+          "def": "CREATE INDEX gin_conteudo_midia_objetos ON dicionario.conteudo__midia USING gin (objetos_identificados)"
+        }
+      ]
+    },
+    "conteudo__nuvem_pontos": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "metodo_coleta",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "intervalo_temporal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "finalidade_levantamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tipo_terreno",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "cobertura_vegetal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "densidade_construcoes",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "condicoes_meteorologicas",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "produtos_derivaveis",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "aplicacoes_recomendadas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_processamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "acuracia_planimetrica",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "acuracia_altimetrica",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "completude",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "classes_pontos",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "distribuicao_classes",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__nuvem_pontos",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__nuvem_pontos_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__nuvem_pontos_pkey ON dicionario.conteudo__nuvem_pontos USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_nuvem_estrutura",
+          "def": "CREATE INDEX idx_conteudo_nuvem_estrutura ON dicionario.conteudo__nuvem_pontos USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_nuvem_produtos",
+          "def": "CREATE INDEX gin_conteudo_nuvem_produtos ON dicionario.conteudo__nuvem_pontos USING gin (produtos_derivaveis)"
+        }
+      ]
+    },
+    "conteudo__pacote": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "finalidade_pacote",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "categoria_conteudo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "origem_dados",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "temas_abordados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "projetos_relacionados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "versoes_software",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "documentacao_incluida",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "estrutura_logica",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "padrao_nomenclatura",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_organizacao_tematica",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_metadados_internos",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "completude_conjunto",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consistencia_interna",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "redundancia_arquivos",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "arquivos_corrompidos",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": "0"
+        },
+        {
+          "column_name": "instrucoes_uso",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dependencias_externas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sistemas_operacionais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "softwares_necessarios",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "relevancia_conteudo",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualidade_geral",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "potencial_reutilizacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__pacote",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__pacote_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__pacote_pkey ON dicionario.conteudo__pacote USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_pacote_estrutura",
+          "def": "CREATE INDEX idx_conteudo_pacote_estrutura ON dicionario.conteudo__pacote USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_pacote_temas",
+          "def": "CREATE INDEX gin_conteudo_pacote_temas ON dicionario.conteudo__pacote USING gin (temas_abordados)"
+        }
+      ]
+    },
+    "conteudo__tabular": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "estrutura_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "assunto_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dominio_aplicacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "finalidade_coleta",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "periodo_referencia",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "variaveis_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "metricas_disponiveis",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dimensoes_analiticas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "granularidade_temporal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "granularidade_espacial",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "completude_semantica",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consistencia_dados",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualidade_informacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "confiabilidade_fonte",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "analises_possiveis",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "visualizacoes_sugeridas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "cruzamentos_recomendados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "metodologia_coleta",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "fonte_original",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "limitacoes_conhecidas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "observacoes_importantes",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "estrutura_id",
+          "ref_schema": "dicionario",
+          "ref_table": "estrutura__tabular",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "conteudo__tabular_pkey",
+          "def": "CREATE UNIQUE INDEX conteudo__tabular_pkey ON dicionario.conteudo__tabular USING btree (id)"
+        },
+        {
+          "name": "idx_conteudo_tab_estrutura",
+          "def": "CREATE INDEX idx_conteudo_tab_estrutura ON dicionario.conteudo__tabular USING btree (estrutura_id)"
+        },
+        {
+          "name": "gin_conteudo_tab_variaveis",
+          "def": "CREATE INDEX gin_conteudo_tab_variaveis ON dicionario.conteudo__tabular USING gin (variaveis_principais)"
+        }
+      ]
+    },
+    "estrutura__database": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "tipo_database",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sgbd",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "versao_sgbd",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "formato_arquivo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_tabelas",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_views",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_procedures",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_functions",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_triggers",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_indices",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tamanho_banco",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_registros_total",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_campos_total",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "densidade_relacionamentos",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "suporte_transacional",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "suporte_gis",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "suporte_fulltext",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_criptografia",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_backup",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_constraints",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_foreign_keys",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "nivel_normalizacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consistencia_referencial",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tabelas_principais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "relacionamentos_mapeados",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "esquemas_identificados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__database_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__database_pkey ON dicionario.estrutura__database USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_db_produtor",
+          "def": "CREATE INDEX idx_estrutura_db_produtor ON dicionario.estrutura__database USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_db_sgbd",
+          "def": "CREATE INDEX idx_estrutura_db_sgbd ON dicionario.estrutura__database USING btree (sgbd)"
+        }
+      ]
+    },
+    "estrutura__desenho_2d3d": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "tipo_desenho",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "formato_arquivo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "versao_formato",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "software_origem",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "unidade_medida",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sistema_coordenadas",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "bbox_2d",
+          "data_type": "USER-DEFINED",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dimensoes_modelo",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_entidades",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_layers",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_blocos",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_materiais",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_texturas",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "complexidade_geometrica",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_elementos_3d",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_animacao",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_iluminacao",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_render",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tamanho_arquivo",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_detalhamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "escala_representacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "precisao_geometrica",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__desenho_2d3d_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__desenho_2d3d_pkey ON dicionario.estrutura__desenho_2d3d USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_desenho_produtor",
+          "def": "CREATE INDEX idx_estrutura_desenho_produtor ON dicionario.estrutura__desenho_2d3d USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_desenho_tipo",
+          "def": "CREATE INDEX idx_estrutura_desenho_tipo ON dicionario.estrutura__desenho_2d3d USING btree (tipo_desenho)"
+        },
+        {
+          "name": "idx_estrutura_desenho_software",
+          "def": "CREATE INDEX idx_estrutura_desenho_software ON dicionario.estrutura__desenho_2d3d USING btree (software_origem)"
+        }
+      ]
+    },
+    "estrutura__documentos_texto": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "formato_documento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "versao_formato",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tamanho_arquivo",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_paginas",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_caracteres",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_palavras",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_paragrafos",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "codificacao_texto",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "idioma_detectado",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_metadados",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_ocr",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_imagens_incorporadas",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "protegido_senha",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_assinatura_digital",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "nivel_compressao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "densidade_texto",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "complexidade_leitura",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_tabelas",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_graficos",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_hyperlinks",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__documentos_texto_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__documentos_texto_pkey ON dicionario.estrutura__documentos_texto USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_doc_produtor",
+          "def": "CREATE INDEX idx_estrutura_doc_produtor ON dicionario.estrutura__documentos_texto USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_doc_formato",
+          "def": "CREATE INDEX idx_estrutura_doc_formato ON dicionario.estrutura__documentos_texto USING btree (formato_documento)"
+        },
+        {
+          "name": "idx_estrutura_doc_idioma",
+          "def": "CREATE INDEX idx_estrutura_doc_idioma ON dicionario.estrutura__documentos_texto USING btree (idioma_detectado)"
+        }
+      ]
+    },
+    "estrutura__geodatabase": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "tipo_geodatabase",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "formato_arquivo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "versao_formato",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "software_origem",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sistema_coordenadas_principal",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "srid_principal",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_feature_classes",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_tabelas",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_rasters",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_relacionamentos",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "bbox_geral",
+          "data_type": "USER-DEFINED",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sistemas_coordenadas",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tipos_geometria",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "topologia_definida",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tamanho_total",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_features_total",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "densidade_espacial",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "complexidade_topologica",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "extensoes_espaciais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "domains_atributos",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "subtypes_definidos",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "regras_validacao",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "validacao_geometrica",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "consistencia_topologica",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "integridade_espacial",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__geodatabase_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__geodatabase_pkey ON dicionario.estrutura__geodatabase USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_geodb_produtor",
+          "def": "CREATE INDEX idx_estrutura_geodb_produtor ON dicionario.estrutura__geodatabase USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_geodb_srid",
+          "def": "CREATE INDEX idx_estrutura_geodb_srid ON dicionario.estrutura__geodatabase USING btree (srid_principal)"
+        },
+        {
+          "name": "idx_estrutura_geodb_bbox",
+          "def": "CREATE INDEX idx_estrutura_geodb_bbox ON dicionario.estrutura__geodatabase USING gist (bbox_geral)"
+        }
+      ]
+    },
+    "estrutura__geoespacial_raster": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "srid",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_bandas",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "largura_pixels",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "altura_pixels",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "pixel_size_x",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "pixel_size_y",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "no_data_value",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "bbox",
+          "data_type": "USER-DEFINED",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sistema_coordenadas",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "datum",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "projecao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "estatisticas",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "histogramas",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "compressao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "formato_pixel",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "ordem_bytes",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "interleaving",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sensor",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "plataforma",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_aquisicao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "angulo_solar",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "angulo_visualizacao",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__geoespacial_raster_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__geoespacial_raster_pkey ON dicionario.estrutura__geoespacial_raster USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_geor_produtor",
+          "def": "CREATE INDEX idx_estrutura_geor_produtor ON dicionario.estrutura__geoespacial_raster USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_geor_srid",
+          "def": "CREATE INDEX idx_estrutura_geor_srid ON dicionario.estrutura__geoespacial_raster USING btree (srid)"
+        },
+        {
+          "name": "idx_estrutura_geor_bandas",
+          "def": "CREATE INDEX idx_estrutura_geor_bandas ON dicionario.estrutura__geoespacial_raster USING btree (n_bandas)"
+        },
+        {
+          "name": "idx_estrutura_geor_bbox",
+          "def": "CREATE INDEX idx_estrutura_geor_bbox ON dicionario.estrutura__geoespacial_raster USING gist (bbox)"
+        },
+        {
+          "name": "idx_estrutura_geor_sensor",
+          "def": "CREATE INDEX idx_estrutura_geor_sensor ON dicionario.estrutura__geoespacial_raster USING btree (sensor)"
+        }
+      ]
+    },
+    "estrutura__geoespacial_vetor": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "srid",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "geom_tipo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_features",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "bbox",
+          "data_type": "USER-DEFINED",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sistema_coordenadas",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "precisao_horizontal",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "precisao_vertical",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "datum",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "projecao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_z_dimension",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_m_dimension",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "geometria_valida",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "self_intersections",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "formato_original",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "codificacao_caracteres",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "separador_decimal",
+          "data_type": "character",
+          "is_nullable": "YES",
+          "default": "'.'::bpchar"
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__geoespacial_vetor_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__geoespacial_vetor_pkey ON dicionario.estrutura__geoespacial_vetor USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_geov_produtor",
+          "def": "CREATE INDEX idx_estrutura_geov_produtor ON dicionario.estrutura__geoespacial_vetor USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_geov_srid",
+          "def": "CREATE INDEX idx_estrutura_geov_srid ON dicionario.estrutura__geoespacial_vetor USING btree (srid)"
+        },
+        {
+          "name": "idx_estrutura_geov_geom_tipo",
+          "def": "CREATE INDEX idx_estrutura_geov_geom_tipo ON dicionario.estrutura__geoespacial_vetor USING btree (geom_tipo)"
+        },
+        {
+          "name": "idx_estrutura_geov_bbox",
+          "def": "CREATE INDEX idx_estrutura_geov_bbox ON dicionario.estrutura__geoespacial_vetor USING gist (bbox)"
+        }
+      ]
+    },
+    "estrutura__midia": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "tipo_midia",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "formato_arquivo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "codec_video",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "codec_audio",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tamanho_arquivo",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "duracao_segundos",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "bitrate",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "taxa_amostragem",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "largura_pixels",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "altura_pixels",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "profundidade_cor",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "taxa_quadros",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "aspecto_ratio",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_canais",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "frequencia_corte_baixa",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "frequencia_corte_alta",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_metadados_exif",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "perfil_cor",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "espaco_cor",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "compressao_aplicada",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "qualidade_estimada",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_ruido",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_marca_dagua",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__midia_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__midia_pkey ON dicionario.estrutura__midia USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_midia_produtor",
+          "def": "CREATE INDEX idx_estrutura_midia_produtor ON dicionario.estrutura__midia USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_midia_tipo",
+          "def": "CREATE INDEX idx_estrutura_midia_tipo ON dicionario.estrutura__midia USING btree (tipo_midia)"
+        },
+        {
+          "name": "idx_estrutura_midia_formato",
+          "def": "CREATE INDEX idx_estrutura_midia_formato ON dicionario.estrutura__midia USING btree (formato_arquivo)"
+        }
+      ]
+    },
+    "estrutura__nuvem_pontos": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "sistema_ref",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "srid",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "densidade_pts",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_pontos",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "has_rgb",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "has_intensity",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "has_classification",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "has_return_info",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "has_gps_time",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "bbox",
+          "data_type": "USER-DEFINED",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "altura_minima",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "altura_maxima",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "datum",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "metodo_aquisicao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "equipamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "configuracao_voo",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "filtros_aplicados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "classificacoes_disponiveis",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "precisao_xyz",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "formato_arquivo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "compressao_laz",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "versao_formato",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__nuvem_pontos_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__nuvem_pontos_pkey ON dicionario.estrutura__nuvem_pontos USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_nuvem_produtor",
+          "def": "CREATE INDEX idx_estrutura_nuvem_produtor ON dicionario.estrutura__nuvem_pontos USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_nuvem_srid",
+          "def": "CREATE INDEX idx_estrutura_nuvem_srid ON dicionario.estrutura__nuvem_pontos USING btree (srid)"
+        },
+        {
+          "name": "idx_estrutura_nuvem_metodo",
+          "def": "CREATE INDEX idx_estrutura_nuvem_metodo ON dicionario.estrutura__nuvem_pontos USING btree (metodo_aquisicao)"
+        },
+        {
+          "name": "idx_estrutura_nuvem_bbox",
+          "def": "CREATE INDEX idx_estrutura_nuvem_bbox ON dicionario.estrutura__nuvem_pontos USING gist (bbox)"
+        }
+      ]
+    },
+    "estrutura__pacote": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "formato_compressao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "algoritmo_compressao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nivel_compressao",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tamanho_comprimido",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tamanho_descomprimido",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "taxa_compressao",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_arquivos_total",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_diretorios",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "profundidade_maxima",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tipos_arquivo_contidos",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "estrutura_diretorios",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "arquivo_maior",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tamanho_arquivo_maior",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "perfis_identificados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_executaveis",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_scripts",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_senha",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_assinatura",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "checksum_md5",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "checksum_sha256",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "virus_scan_resultado",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_criacao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "software_compressao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "comentario_pacote",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_arquivo_readme",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__pacote_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__pacote_pkey ON dicionario.estrutura__pacote USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_pacote_produtor",
+          "def": "CREATE INDEX idx_estrutura_pacote_produtor ON dicionario.estrutura__pacote USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_pacote_formato",
+          "def": "CREATE INDEX idx_estrutura_pacote_formato ON dicionario.estrutura__pacote USING btree (formato_compressao)"
+        }
+      ]
+    },
+    "estrutura__tabular": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "produtor_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "formato_arquivo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "separador_campos",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "delimitador_texto",
+          "data_type": "character",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "codificacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_cabecalho",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "true"
+        },
+        {
+          "column_name": "n_linhas",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_colunas",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_celulas_vazias",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "n_celulas_preenchidas",
+          "data_type": "bigint",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "percentual_preenchimento",
+          "data_type": "numeric",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tipos_colunas",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "colunas_nomes",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "colunas_obrigatorias",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "colunas_chave",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tem_valores_duplicados",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_inconsistencias",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tem_outliers",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "formato_data_detectado",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "formato_numerico_detectado",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "possivel_chave_estrangeira",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "relacionamentos_detectados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "atualizado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "produtor_id",
+          "ref_schema": "dicionario",
+          "ref_table": "produtor",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "estrutura__tabular_pkey",
+          "def": "CREATE UNIQUE INDEX estrutura__tabular_pkey ON dicionario.estrutura__tabular USING btree (id)"
+        },
+        {
+          "name": "idx_estrutura_tab_produtor",
+          "def": "CREATE INDEX idx_estrutura_tab_produtor ON dicionario.estrutura__tabular USING btree (produtor_id)"
+        },
+        {
+          "name": "idx_estrutura_tab_formato",
+          "def": "CREATE INDEX idx_estrutura_tab_formato ON dicionario.estrutura__tabular USING btree (formato_arquivo)"
+        }
+      ]
+    },
+    "extensao": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "codigo",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "perfil_id",
+          "data_type": "uuid",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nome",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "ativo",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "true"
+        },
+        {
+          "column_name": "descricao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "mime_types",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "perfil_id",
+          "ref_schema": "dicionario",
+          "ref_table": "perfil",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "extensao_pkey",
+          "def": "CREATE UNIQUE INDEX extensao_pkey ON dicionario.extensao USING btree (id)"
+        },
+        {
+          "name": "extensao_codigo_key",
+          "def": "CREATE UNIQUE INDEX extensao_codigo_key ON dicionario.extensao USING btree (codigo)"
+        },
+        {
+          "name": "idx_extensao_codigo",
+          "def": "CREATE INDEX idx_extensao_codigo ON dicionario.extensao USING btree (codigo)"
+        },
+        {
+          "name": "idx_extensao_perfil",
+          "def": "CREATE INDEX idx_extensao_perfil ON dicionario.extensao USING btree (perfil_id)"
+        },
+        {
+          "name": "idx_extensao_ativo",
+          "def": "CREATE INDEX idx_extensao_ativo ON dicionario.extensao USING btree (ativo)"
+        }
+      ]
+    },
+    "perfil": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "codigo",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "nome",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "descricao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "ativo",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "true"
+        },
+        {
+          "column_name": "ordem_exibicao",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": "0"
+        },
+        {
+          "column_name": "icone",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "cor_hex",
+          "data_type": "character varying",
+          "is_nullable": "YES",
+          "default": null
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "perfil_pkey",
+          "def": "CREATE UNIQUE INDEX perfil_pkey ON dicionario.perfil USING btree (id)"
+        },
+        {
+          "name": "perfil_codigo_key",
+          "def": "CREATE UNIQUE INDEX perfil_codigo_key ON dicionario.perfil USING btree (codigo)"
+        },
+        {
+          "name": "idx_perfil_codigo",
+          "def": "CREATE INDEX idx_perfil_codigo ON dicionario.perfil USING btree (codigo)"
+        },
+        {
+          "name": "idx_perfil_ativo",
+          "def": "CREATE INDEX idx_perfil_ativo ON dicionario.perfil USING btree (ativo)"
+        },
+        {
+          "name": "idx_perfil_ordem",
+          "def": "CREATE INDEX idx_perfil_ordem ON dicionario.perfil USING btree (ordem_exibicao)"
+        }
+      ]
+    },
+    "produtor": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "arquivo_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "orgao_responsavel",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "departamento",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "nome_contato",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "email_contato",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "telefone_contato",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "direitos_uso",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "licenca",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "declaracao_origem",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "frequencia_atualizacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_recebimento",
+          "data_type": "date",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "link_fonte",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "arquivo_id",
+          "ref_schema": "dicionario",
+          "ref_table": "arquivo",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "produtor_pkey",
+          "def": "CREATE UNIQUE INDEX produtor_pkey ON dicionario.produtor USING btree (id)"
+        },
+        {
+          "name": "idx_produtor_arquivo",
+          "def": "CREATE INDEX idx_produtor_arquivo ON dicionario.produtor USING btree (arquivo_id)"
+        },
+        {
+          "name": "idx_produtor_orgao",
+          "def": "CREATE INDEX idx_produtor_orgao ON dicionario.produtor USING btree (orgao_responsavel)"
+        },
+        {
+          "name": "idx_produtor_recebimento",
+          "def": "CREATE INDEX idx_produtor_recebimento ON dicionario.produtor USING btree (data_recebimento)"
+        }
+      ]
+    },
+    "status_publicacao_geoserver": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "arquivo_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "versao_id",
+          "data_type": "uuid",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "status_publicacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "'NAO_PUBLICADO'::text"
+        },
+        {
+          "column_name": "publicado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "publicado_por",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "despublicado_em",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "despublicado_por",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "workspace_geoserver",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "datastore_geoserver",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "layer_name",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "style_name",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "service_url",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "servicos_habilitados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": "'{}'::text[]"
+        },
+        {
+          "column_name": "nivel_acesso",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "'PUBLICO'::text"
+        },
+        {
+          "column_name": "grupos_acesso",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "titulo_servico",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "resumo_servico",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "palavras_chave_servico",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "contato_responsavel",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "cache_habilitado",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "tempo_cache_segundos",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "acessos_ultimos_30_dias",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": "0"
+        },
+        {
+          "column_name": "ultimo_acesso",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "srs_nativo",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "srs_declarado",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "bbox_nativo",
+          "data_type": "USER-DEFINED",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "bbox_lat_lon",
+          "data_type": "USER-DEFINED",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "validacao_geometrica",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "validacao_metadados",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "validacao_servicos",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "erros_validacao",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "sincronizado_com_fonte",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "true"
+        },
+        {
+          "column_name": "ultima_sincronizacao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "hash_fonte",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "configuracao_avancada",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "arquivo_id",
+          "ref_schema": "dicionario",
+          "ref_table": "arquivo",
+          "ref_column": "id"
+        },
+        {
+          "column": "versao_id",
+          "ref_schema": "dicionario",
+          "ref_table": "versao_arquivo",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "status_publicacao_geoserver_pkey",
+          "def": "CREATE UNIQUE INDEX status_publicacao_geoserver_pkey ON dicionario.status_publicacao_geoserver USING btree (id)"
+        },
+        {
+          "name": "uk_pub_arquivo_versao",
+          "def": "CREATE UNIQUE INDEX uk_pub_arquivo_versao ON dicionario.status_publicacao_geoserver USING btree (arquivo_id, versao_id)"
+        }
+      ]
+    },
+    "versao_arquivo": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "arquivo_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "numero_versao",
+          "data_type": "integer",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "versao_semantica",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "eh_versao_atual",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "eh_versao_publicada",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "data_criacao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "criado_por",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "motivo_versao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "changelog",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tags_versao",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "status_versao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "'DRAFT'::text"
+        },
+        {
+          "column_name": "aprovado_por",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_aprovacao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_publicacao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_deprecacao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dados_estrutura",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "dados_conteudo",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "produtor_snapshot",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "extensoes_snapshot",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "diferenca_versao_anterior",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "campos_adicionados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "campos_removidos",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "campos_modificados",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tamanho_dados_bytes",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "complexidade_alteracao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "impacto_estimado",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "downloads_count",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": "0"
+        },
+        {
+          "column_name": "views_count",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": "0"
+        },
+        {
+          "column_name": "ultima_visualizacao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "checksum_md5",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "checksum_sha256",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "compressao_aplicada",
+          "data_type": "boolean",
+          "is_nullable": "YES",
+          "default": "false"
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "arquivo_id",
+          "ref_schema": "dicionario",
+          "ref_table": "arquivo",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "versao_arquivo_pkey",
+          "def": "CREATE UNIQUE INDEX versao_arquivo_pkey ON dicionario.versao_arquivo USING btree (id)"
+        },
+        {
+          "name": "chk_versao_unica_atual",
+          "def": "CREATE UNIQUE INDEX chk_versao_unica_atual ON dicionario.versao_arquivo USING btree (arquivo_id, eh_versao_atual)"
+        }
+      ]
+    },
+    "workflow_aprovacao": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "arquivo_id",
+          "data_type": "uuid",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "versao_id",
+          "data_type": "uuid",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "tipo_workflow",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "status_workflow",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "'INICIADO'::text"
+        },
+        {
+          "column_name": "etapa_atual",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "etapas_concluidas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": "'{}'::text[]"
+        },
+        {
+          "column_name": "proximas_etapas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": "'{}'::text[]"
+        },
+        {
+          "column_name": "iniciado_por",
+          "data_type": "text",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "data_inicio",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "column_name": "aprovadores_necessarios",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "aprovadores_atuais",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": "'{}'::text[]"
+        },
+        {
+          "column_name": "revisores_atribuidos",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "aprovacoes_obtidas",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": "0"
+        },
+        {
+          "column_name": "aprovacoes_necessarias",
+          "data_type": "integer",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "rejeitado_por",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "data_conclusao",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "descricao_solicitacao",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "justificativa",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "prioridade",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": "'NORMAL'::text"
+        },
+        {
+          "column_name": "prazo_limite",
+          "data_type": "timestamp with time zone",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "historico_acoes",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'[]'::jsonb"
+        },
+        {
+          "column_name": "comentarios_aprovadores",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        },
+        {
+          "column_name": "notificacoes_enviadas",
+          "data_type": "ARRAY",
+          "is_nullable": "YES",
+          "default": "'{}'::text[]"
+        },
+        {
+          "column_name": "lembretes_enviados",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": "0"
+        },
+        {
+          "column_name": "resultado_final",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "motivo_resultado",
+          "data_type": "text",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "configuracao_workflow",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "extras",
+          "data_type": "jsonb",
+          "is_nullable": "YES",
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "column": "arquivo_id",
+          "ref_schema": "dicionario",
+          "ref_table": "arquivo",
+          "ref_column": "id"
+        },
+        {
+          "column": "versao_id",
+          "ref_schema": "dicionario",
+          "ref_table": "versao_arquivo",
+          "ref_column": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "workflow_aprovacao_pkey",
+          "def": "CREATE UNIQUE INDEX workflow_aprovacao_pkey ON dicionario.workflow_aprovacao USING btree (id)"
+        }
+      ]
+    }
+  },
+  "public": {
+    "spatial_ref_sys": {
+      "columns": [
+        {
+          "column_name": "srid",
+          "data_type": "integer",
+          "is_nullable": "NO",
+          "default": null
+        },
+        {
+          "column_name": "auth_name",
+          "data_type": "character varying",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "auth_srid",
+          "data_type": "integer",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "srtext",
+          "data_type": "character varying",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "proj4text",
+          "data_type": "character varying",
+          "is_nullable": "YES",
+          "default": null
+        }
+      ],
+      "primary_key": [
+        "srid"
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "spatial_ref_sys_pkey",
+          "def": "CREATE UNIQUE INDEX spatial_ref_sys_pkey ON public.spatial_ref_sys USING btree (srid)"
+        }
+      ]
+    },
+    "teste_sigma": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "integer",
+          "is_nullable": "NO",
+          "default": "nextval('teste_sigma_id_seq'::regclass)"
+        },
+        {
+          "column_name": "nome",
+          "data_type": "character varying",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "coordenada",
+          "data_type": "USER-DEFINED",
+          "is_nullable": "YES",
+          "default": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp without time zone",
+          "is_nullable": "YES",
+          "default": "now()"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "teste_sigma_pkey",
+          "def": "CREATE UNIQUE INDEX teste_sigma_pkey ON public.teste_sigma USING btree (id)"
+        }
+      ]
+    }
+  }
+}

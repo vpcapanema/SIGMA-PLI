@@ -1,0 +1,321 @@
+/* SIGMA-PLI - M01_auth: Login - Estilos visuais aplicando paleta SIGMA */
+/* Card de login em formato retrato (retangular vertical) */
+
+/* Compensar header fixo */
+body.login__pli-auth-page--body.dashboard-body {
+  padding-top: 88px;
+  background: linear-gradient(135deg, #0b1729 0%, #162a48 100%);
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: var(--dashboard-text, #e9f1ff);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Container - Centralizado verticalmente */
+.login__l-main--main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl, 2rem) var(--spacing-md, 1rem);
+}
+
+/* Wrapper do Card de Login */
+.login__pli-auth-wrapper--div {
+  width: 100%;
+  max-width: 480px; /* Card retrato - largura controlada */
+  margin: 0 auto;
+}
+
+/* Card Principal - Formato Retrato */
+.login__pli-auth-card--div {
+  background: rgba(22, 42, 72, 0.95);
+  border: 1px solid rgba(233, 241, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border-radius: var(--border-radius-lg, 12px);
+  overflow: hidden;
+}
+
+.login__pli-auth-card--div .card-body {
+  padding: var(--spacing-2xl, 3rem) var(--spacing-xl, 2rem);
+  color: var(--dashboard-text, #e9f1ff);
+}
+
+/* Header do Card */
+.login__pli-auth-header--div {
+  text-align: center;
+  margin-bottom: var(--spacing-xl, 2rem);
+}
+
+.login__glass-icon-bg--div {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(
+    135deg,
+    rgba(77, 166, 255, 0.2),
+    rgba(77, 166, 255, 0.05)
+  );
+  border: 2px solid rgba(77, 166, 255, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  margin-bottom: var(--spacing-lg, 1.5rem);
+}
+
+.login__glass-icon-bg--div i {
+  font-size: 2.5rem;
+  color: var(--dashboard-accent, #4da6ff);
+}
+
+.login__pli-auth-title--h1 {
+  color: var(--dashboard-accent, #4da6ff);
+  font-size: var(--font-size-3xl, 2rem);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm, 0.5rem);
+}
+
+.login__pli-auth-subtitle--p {
+  color: var(--dashboard-muted, #b0c4de);
+  font-size: var(--font-size-base, 1rem);
+  margin: 0;
+}
+
+/* Form Fields */
+.login__pli-login-field--div {
+  margin-bottom: var(--spacing-lg, 1.5rem);
+}
+
+.login__pli-login-field--div label.form-label {
+  color: var(--dashboard-text, #e9f1ff);
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs, 0.5rem);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.login__required-asterisk--span {
+  color: var(--sigma-error, #dc3545);
+}
+
+/* Input Groups */
+.login__pli-login-field--div .input-group {
+  background: rgba(11, 23, 41, 0.6);
+  border: 1px solid rgba(233, 241, 255, 0.15);
+  border-radius: var(--border-radius-md, 8px);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.login__pli-login-field--div .input-group:focus-within {
+  border-color: var(--dashboard-accent, #4da6ff);
+  box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.15);
+}
+
+.login__pli-login-field--div .input-group-text {
+  background: transparent;
+  border: none;
+  color: var(--dashboard-accent, #4da6ff);
+  padding: 0.75rem;
+}
+
+.login__pli-login-field--div .form-control,
+.login__pli-login-field--div .form-select {
+  background: transparent;
+  border: none;
+  color: var(--dashboard-text, #e9f1ff);
+  padding: 0.75rem;
+  font-size: var(--font-size-base, 1rem);
+}
+
+.login__pli-login-field--div .form-control:focus,
+.login__pli-login-field--div .form-select:focus {
+  background: transparent;
+  color: var(--dashboard-text, #e9f1ff);
+  box-shadow: none;
+  outline: none;
+}
+
+.login__pli-login-field--div .form-control::placeholder {
+  color: var(--dashboard-muted, #b0c4de);
+  opacity: 0.6;
+}
+
+/* Select Dropdown */
+.login__pli-login-field--div .form-select option {
+  background: #162a48;
+  color: var(--dashboard-text, #e9f1ff);
+}
+
+/* Toggle Password Button */
+.btn-password-toggle {
+  background: transparent;
+  border: none;
+  color: var(--dashboard-accent, #4da6ff);
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-password-toggle:hover {
+  color: var(--sigma-primary-dark, #3d96ef);
+  background: rgba(77, 166, 255, 0.1);
+}
+
+/* Checkbox e Links */
+.login__checkbox-centered--div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login__checkbox-centered--div .form-check-input {
+  background-color: rgba(11, 23, 41, 0.6);
+  border-color: rgba(233, 241, 255, 0.3);
+}
+
+.login__checkbox-centered--div .form-check-input:checked {
+  background-color: var(--dashboard-accent, #4da6ff);
+  border-color: var(--dashboard-accent, #4da6ff);
+}
+
+.login__checkbox-centered--div .form-check-label {
+  color: var(--dashboard-muted, #b0c4de);
+  font-size: var(--font-size-sm, 0.875rem);
+  cursor: pointer;
+}
+
+.login__forgot-password--a {
+  color: var(--dashboard-accent, #4da6ff);
+  text-decoration: none;
+  font-size: var(--font-size-sm, 0.875rem);
+  transition: all 0.2s ease;
+}
+
+.login__forgot-password--a:hover {
+  color: var(--sigma-primary-dark, #3d96ef);
+  text-decoration: underline;
+}
+
+/* Botão Principal */
+.btn-primary {
+  background: var(--dashboard-accent, #4da6ff);
+  border-color: var(--dashboard-accent, #4da6ff);
+  color: white;
+  font-weight: 600;
+  padding: 0.875rem 1.5rem;
+  font-size: var(--font-size-base, 1rem);
+  border-radius: var(--border-radius-md, 8px);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: var(--sigma-primary-dark, #3d96ef);
+  border-color: var(--sigma-primary-dark, #3d96ef);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(77, 166, 255, 0.4);
+}
+
+/* Alert de Feedback */
+.auth-feedback {
+  margin-top: var(--spacing-md, 1rem);
+  border-radius: var(--border-radius-md, 8px);
+  padding: var(--spacing-md, 1rem);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* Divider */
+.login__divider--div {
+  position: relative;
+  text-align: center;
+  margin: var(--spacing-xl, 2rem) 0;
+}
+
+.login__divider--div::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(233, 241, 255, 0.15);
+}
+
+.login__divider--div span {
+  position: relative;
+  background: rgba(22, 42, 72, 0.95);
+  padding: 0 var(--spacing-md, 1rem);
+  color: var(--dashboard-muted, #b0c4de);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* Links Secundários */
+.login__pli-auth-links--div {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg, 1.5rem);
+  margin-bottom: var(--spacing-lg, 1.5rem);
+}
+
+.login__pli-auth-links--div a {
+  color: var(--dashboard-muted, #b0c4de);
+  text-decoration: none;
+  font-size: var(--font-size-sm, 0.875rem);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.login__pli-auth-links--div a:hover {
+  color: var(--dashboard-accent, #4da6ff);
+}
+
+.login__pli-auth-links--div a i {
+  font-size: 1rem;
+}
+
+/* Footer do Card */
+.login__pli-auth-footer--div {
+  text-align: center;
+  margin-top: var(--spacing-lg, 1.5rem);
+  padding-top: var(--spacing-lg, 1.5rem);
+  border-top: 1px solid rgba(233, 241, 255, 0.1);
+}
+
+.login__pli-auth-footer--div p {
+  color: var(--dashboard-muted, #b0c4de);
+  font-size: var(--font-size-xs, 0.75rem);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsivo */
+@media (max-width: 576px) {
+  .login__pli-auth-card--div .card-body {
+    padding: var(--spacing-xl, 2rem) var(--spacing-lg, 1.5rem);
+  }
+
+  .login__pli-auth-wrapper--div {
+    max-width: 100%;
+  }
+
+  .login__pli-auth-links--div {
+    flex-direction: column;
+    gap: var(--spacing-md, 1rem);
+    text-align: center;
+  }
+
+  .login__glass-icon-bg--div {
+    width: 64px;
+    height: 64px;
+  }
+
+  .login__glass-icon-bg--div i {
+    font-size: 2rem;
+  }
+
+  .login__pli-auth-title--h1 {
+    font-size: var(--font-size-2xl, 1.5rem);
+  }
+}

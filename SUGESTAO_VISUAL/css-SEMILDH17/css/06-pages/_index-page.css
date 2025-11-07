@@ -1,0 +1,126 @@
+/* ========================================
+   PLI DESIGN SYSTEM - INDEX PAGE
+   Estilos específicos para a página inicial
+======================================== */
+
+/* Centralização geral da página */
+.p-index {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--pli-spacing-lg);
+}
+
+/* Text Alignment Utilities */
+.text-justify {
+  text-align: justify !important;
+}
+
+.p-index .hero-section {
+  padding: var(--pli-spacing-4xl) 0;
+  background: linear-gradient(135deg, var(--pli-body-bg-color) 0%, var(--pli-branco) 100%);
+}
+
+.p-index .hero-section .card {
+  border: var(--pli-border-width-thick) solid #8a8a8a; /* Cinza médio aplicado */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25); /* Sombra escurecida */
+  border-radius: var(--pli-border-radius-xl);
+  margin: 0 auto; /* Garantir centralização */
+  max-width: 100%;
+}
+
+.p-index .stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: var(--pli-spacing-lg) !important;
+  margin-top: var(--pli-spacing-xl) !important;
+  justify-items: center !important; /* Centralizar cards horizontalmente */
+  max-width: 100% !important;
+}
+
+.p-index .stat-card {
+  background: var(--pli-branco) !important;
+  border-radius: var(--pli-border-radius-md) !important;
+  padding: var(--pli-spacing-xl) !important;
+  text-align: center !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important; /* Sombra escurecida */
+  transition: var(--pli-transition-base) !important;
+  border: 3px solid #8a8a8a !important; /* Cinza médio aplicado com força */
+  color: var(--pli-azul-escuro) !important;
+  width: 100% !important;
+  max-width: 350px !important; /* Limitar largura máxima */
+}
+
+.p-index .stat-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important; /* Sombra hover mais escura */
+}
+
+.p-index .stat-card .stat-icon {
+  color: var(--pli-azul-escuro);
+  font-size: var(--pli-font-size-2xl);
+  margin-bottom: var(--pli-spacing-sm);
+}
+
+.p-index .stat-card .stat-number {
+  color: var(--pli-azul-escuro);
+  font-weight: var(--pli-font-weight-bold);
+  font-size: var(--pli-font-size-2xl);
+}
+
+.p-index .stat-card .stat-label {
+  color: var(--pli-azul-escuro);
+  font-size: var(--pli-font-size-sm);
+  margin-top: var(--pli-spacing-xs);
+}
+
+.p-index .feature-cards {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: var(--pli-spacing-lg) !important;
+  margin-top: var(--pli-spacing-xl) !important;
+  justify-items: center !important; /* Centralizar cards horizontalmente */
+  max-width: 100% !important;
+}
+
+.p-index .feature-card {
+  background: var(--pli-branco) !important;
+  border: 3px solid #8a8a8a !important; /* Cinza médio aplicado com força */
+  border-radius: var(--pli-border-radius-md) !important;
+  padding: var(--pli-spacing-xl) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important; /* Sombra escurecida */
+  transition: var(--pli-transition-base) !important;
+  width: 100% !important;
+  max-width: 400px !important; /* Limitar largura máxima */
+}
+
+.p-index .feature-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important; /* Sombra hover mais escura */
+  border-color: var(--pli-verde-principal) !important;
+}
+
+/* ========================================
+   INDEX PAGE - RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .p-index .stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--pli-spacing-md);
+  }
+
+  .p-index .feature-cards {
+    grid-template-columns: 1fr;
+    gap: var(--pli-spacing-md);
+  }
+}
+
+@media (max-width: 576px) {
+  .p-index .stat-card {
+    padding: var(--pli-spacing-lg);
+  }
+
+  .p-index .stat-card .stat-icon {
+    font-size: var(--pli-font-size-xl);
+  }
+}

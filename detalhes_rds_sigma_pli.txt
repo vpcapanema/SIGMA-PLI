@@ -1,0 +1,238 @@
+===============================================================================
+DETALHES COMPLETOS DO RDS CRIADO - SIGMA-PLI
+===============================================================================
+Data da Verificação: 25 de agosto de 2025
+Conta AWS: 932669655992
+Usuário: sigma-admin
+Perfil AWS: sigma-pli
+===============================================================================
+
+🎯 INSTÂNCIA RDS POSTGRESQL ENCONTRADA E ATIVA!
+
+STATUS: ✅ AVAILABLE (Pronto para uso)
+
+===============================================================================
+🏗️ CONFIGURAÇÕES PRINCIPAIS
+===============================================================================
+
+Campo                    | Valor
+------------------------|--------------------------------------------------
+Identificador           | sigma-pli-postgresql-db
+Engine                  | PostgreSQL 17.2
+Classe                  | db.t3.micro (Free Tier)
+Status                  | AVAILABLE ✅
+Criado em               | 25/08/2025 às 14:12:06 UTC
+Multi-AZ                | Não (Free Tier)
+Armazenamento           | 20 GB (gp2)
+Storage Encrypted       | Não
+Auto Minor Version      | Habilitado
+Publicly Accessible    | Sim
+
+===============================================================================
+🔗 INFORMAÇÕES DE CONEXÃO
+===============================================================================
+
+Endpoint: sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com
+Porta: 5432
+Database: sigma_pli
+Username: sigma_admin
+Região: us-east-1
+
+String de Conexão:
+postgresql://sigma_admin:Malditas131533*@sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com:5432/sigma_pli
+
+Comando psql:
+psql -h sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com -U sigma_admin -d sigma_pli
+
+Variáveis de Ambiente:
+export PGHOST=sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com
+export PGPORT=5432
+export PGDATABASE=sigma_pli
+export PGUSER=sigma_admin
+export PGPASSWORD=Malditas131533*
+
+===============================================================================
+🔒 CONFIGURAÇÕES DE SEGURANÇA
+===============================================================================
+
+Security Group ID       | sg-0409cba0ee50043ae
+Security Group Name     | sigma-pli-rds-sg
+Descrição               | Security Group para RDS Aurora SIGMA-PLI - permite acesso PostgreSQL
+Acesso Público          | ✅ Habilitado
+Porta 5432              | ✅ Aberta para 0.0.0.0/0 (qualquer IP)
+VPC ID                  | vpc-01206280978218c03
+Subnet Group            | sigma-pli-subnet-group
+CA Certificate          | rds-ca-rsa2048-g1
+Certificate Valid Till  | 26/08/2026 14:10:46 UTC
+
+Regras de Entrada:
+- Protocolo: TCP
+- Porta: 5432
+- Fonte: 0.0.0.0/0 (qualquer IP)
+
+Regras de Saída:
+- Protocolo: Todos (-1)
+- Destino: 0.0.0.0/0 (qualquer IP)
+
+===============================================================================
+📈 CONFIGURAÇÕES DE BACKUP E MANUTENÇÃO
+===============================================================================
+
+Backup Retention Period     | 7 dias
+Janela de Backup            | 04:45-05:15 UTC
+Janela de Manutenção        | Sábados 09:26-09:56 UTC
+Última Restauração Possível | 25/08/2025 14:16:18 UTC
+Copy Tags to Snapshot       | Não
+Deletion Protection         | Não
+Performance Insights        | Desabilitado
+Enhanced Monitoring         | Desabilitado
+
+===============================================================================
+🌐 DISPONIBILIDADE E REDE
+===============================================================================
+
+Zona de Disponibilidade Principal: us-east-1f
+
+Subnets Disponíveis (sigma-pli-subnet-group):
+- subnet-0f66320db5ccd67b3 (us-east-1a) - Ativo
+- subnet-0f78213a518a35bf7 (us-east-1b) - Ativo  
+- subnet-0b759b882d0692af5 (us-east-1c) - Ativo
+- subnet-089fbf420949be445 (us-east-1d) - Ativo
+- subnet-08346daffb88e6aa9 (us-east-1e) - Ativo
+- subnet-05c2fe97382e7fc0f (us-east-1f) - Ativo
+
+Network Type                | IPV4
+Hosted Zone ID              | Z2R2ITUGPM61AM
+
+===============================================================================
+💰 CUSTOS (FREE TIER)
+===============================================================================
+
+Tipo de Custo              | Limite Free Tier        | Status
+----------------------------|-------------------------|------------------
+Horas de Execução           | 750 horas/mês          | ✅ Dentro do limite
+Armazenamento SSD           | 20 GB                  | ✅ Dentro do limite  
+Backup Automatizado         | 20 GB                  | ✅ Dentro do limite
+Data Transfer OUT           | 100 GB/mês             | ✅ Dentro do limite
+
+CUSTO ATUAL: $0.00 (Free Tier ativo por 12 meses)
+
+Observações:
+- Free Tier válido por 12 meses a partir da criação da conta
+- Monitorar uso para não exceder limites
+- Após Free Tier: ~$13-15/mês para db.t3.micro + armazenamento
+
+===============================================================================
+🔧 PARÂMETROS TÉCNICOS
+===============================================================================
+
+DB Instance ARN: arn:aws:rds:us-east-1:932669655992:db:sigma-pli-postgresql-db
+DB Resource ID: db-YIKL5NOIYA3EA5LLOES65LGR2I
+Engine Version: 17.2
+License Model: postgresql-license
+Option Group: default:postgres-17
+Parameter Group: default.postgres17
+Storage Type: gp2
+Storage Throughput: 0
+IAM Database Auth: Desabilitado
+Activity Stream: Parado
+Dedicated Log Volume: Desabilitado
+
+===============================================================================
+📋 INFORMAÇÕES ADICIONAIS
+===============================================================================
+
+Data de Criação: 2025-08-25T14:12:06.298000+00:00
+Última Verificação: 2025-08-25T14:16:18+00:00
+Time Zone: UTC
+Engine Lifecycle Support: open-source-rds-extended-support
+
+Read Replicas: Nenhuma
+Associated Roles: Nenhuma
+Domain Memberships: Nenhuma
+Tags: Nenhuma configurada
+
+===============================================================================
+🔧 CONFIGURAÇÃO PARA INTEGRAÇÃO COM VMs OCI
+===============================================================================
+
+Para conectar as VMs OCI ao RDS AWS, use as seguintes configurações:
+
+📋 ARQUIVO DE CONFIGURAÇÃO (.env):
+```bash
+# Configurações PostgreSQL RDS
+export PGHOST=sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com
+export PGPORT=5432
+export PGDATABASE=sigma_pli
+export PGUSER=sigma_admin
+export PGPASSWORD=Malditas131533*
+export PGSSLMODE=require
+```
+
+🐍 CONFIGURAÇÃO PYTHON (FastAPI):
+```python
+# Database URL para aplicação
+DATABASE_URL = "postgresql://sigma_admin:Malditas131533*@sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com:5432/sigma_pli"
+
+# Configurações individuais
+DB_CONFIG = {
+    "host": "sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com",
+    "port": 5432,
+    "database": "sigma_pli", 
+    "user": "sigma_admin",
+    "password": "Malditas131533*",
+    "sslmode": "require"
+}
+```
+
+🔗 COMANDO DE TESTE DE CONEXÃO:
+```bash
+# Teste de conectividade
+pg_isready -h sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com -p 5432 -U sigma_admin
+
+# Conexão direta
+psql -h sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com -U sigma_admin -d sigma_pli
+```
+
+📦 INSTALAÇÃO DE DEPENDÊNCIAS NAS VMs:
+```bash
+# Ubuntu/Debian
+sudo apt-get install postgresql-client-17
+
+# Oracle Linux/RHEL/CentOS
+sudo dnf install postgresql17 postgresql17-contrib
+```
+
+===============================================================================
+📊 STATUS ATUAL DO BANCO DE DADOS
+===============================================================================
+
+Schema 'dicionario': ✅ CRIADO E OPERACIONAL
+- 33 tabelas implementadas (todos os perfis + sistema de auditoria)
+- 5 views analíticas funcionais
+- 3 funções de gestão e auditoria
+- Sistema completo de triggers automáticos
+
+Fases Implementadas:
+✅ FASE 1: Schema base e tabelas principais
+✅ FASE 2: Todos os 10 perfis de dados
+✅ FASE 3: Sistema de auditoria e versionamento completo
+
+Próxima Fase:
+🔄 FASE 4: Módulo de cadastro (aguardando documento)
+
+Extensões PostgreSQL Ativas:
+✅ PostGIS 3.5.0
+✅ uuid-ossp
+✅ pg_stat_statements
+✅ + 10 extensões adicionais
+
+===============================================================================
+✅ VERIFICAÇÃO COMPLETA REALIZADA
+===============================================================================
+Verificado via AWS CLI com perfil: sigma-pli
+Account ID verificado: 932669655992
+Usuário verificado: sigma-admin (arn:aws:iam::932669655992:user/sigma-admin)
+
+Status da Instância: TOTALMENTE OPERACIONAL ✅
+Pronta para integração com VMs OCI SIGMA-PLI

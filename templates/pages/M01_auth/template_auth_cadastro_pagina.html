@@ -1,0 +1,22 @@
+<!--
+OBSOLETO: Este template não está sendo usado.
+A rota /auth/cadastro-usuario aponta diretamente para template_auth_cadastro_usuario_pagina.html
+Este arquivo pode ser removido com segurança.
+-->
+
+{% extends 'pages/M01_auth/template_base_auth.html' %}
+
+{% block title %}Cadastro de Usuário | SIGMA-PLI{% endblock %}
+
+{% block extra_head %}
+  <link href="/static/css/M01_auth/style_auth_cadastro.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <!-- Conteúdo: ver `templates/pages/M01_auth/public/cadastro-usuario.html` -->
+  <div id="content-placeholder"></div>
+{% endblock %}
+
+{% block extra_js %}
+  <script defer src="/static/js/M01_auth/script_cadastro_usuario.js"></script>
+{% endblock %}

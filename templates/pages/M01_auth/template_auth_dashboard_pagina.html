@@ -1,0 +1,36 @@
+<!--
+OBSOLETO: Este template não está sendo usado.
+A rota /dashboard aponta diretamente para pages/M01_auth/app/dashboard.html
+Este arquivo pode ser removido com segurança.
+-->
+
+{% extends 'pages/M01_auth/template_base_auth.html' %}
+
+{% block title %}Dashboard | SIGMA-PLI{% endblock %}
+
+{% block extra_head %}
+  <link href="/static/css/M01_auth/style_auth_dashboard.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <div class="pli-main-content">
+    <main class="container-fluid py-4">
+      <!-- Conteúdo do dashboard (IDs preservados) -->
+      <div class="row mb-2">
+        <div class="col-12">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h1 class="h3 mb-1"><i class="fas fa-chart-line text-primary"></i> Dashboard - SIGMA-PLI | Módulo de Gerenciamento de Cadastros</h1>
+              <p class="text-muted mb-0">Visão geral do <strong>SIGMA-PLI</strong> | <span class="text-pli-primary">Módulo de Gerenciamento de Cadastros</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Métricas e cards seguem o mesmo markup e IDs do original -->
+    </main>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script defer src="/static/js/M01_auth/script_dashboard.js"></script>
+{% endblock %}

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="Central de Ajuda do SIGMA-PLI">
+    <link rel="stylesheet" href="/static/css/style_global_reset_base.css">
+    <link rel="stylesheet" href="/static/css/M02_dashboard/style_dashboard_layout_base.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_layout_base.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_cards.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_navigation.css">
+    <style>
+        .ajuda-hero {
+            background: linear-gradient(135deg, rgba(15, 32, 62, 0.95), rgba(36, 75, 114, 0.85));
+            padding: var(--spacing-2xl);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--spacing-2xl);
+            text-align: center;
+        }
+
+        .ajuda-hero h1 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--dashboard-text);
+        }
+
+        .ajuda-hero p {
+            font-size: var(--font-size-lg);
+            color: var(--dashboard-muted);
+        }
+
+        .faq-section {
+            background: rgba(22, 42, 72, 0.4);
+            border: 1px solid var(--dashboard-border);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .faq-section h2 {
+            color: var(--dashboard-accent);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .faq-item {
+            background: rgba(15, 32, 62, 0.5);
+            border: 2px solid var(--dashboard-border);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--dashboard-accent);
+        }
+
+        .faq-question {
+            padding: var(--spacing-lg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--dashboard-text);
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+        }
+
+        .faq-question:hover {
+            background: rgba(44, 143, 255, 0.1);
+        }
+
+        .faq-icon {
+            font-size: var(--font-size-xl);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 var(--spacing-lg);
+            color: var(--dashboard-muted);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .guide-card {
+            background: rgba(22, 42, 72, 0.6);
+            border: 2px solid var(--dashboard-border);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--dashboard-accent);
+            box-shadow: 0 8px 24px rgba(44, 143, 255, 0.2);
+        }
+
+        .guide-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-md);
+            background: linear-gradient(135deg, var(--dashboard-accent), #1e5fa8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .guide-card h3 {
+            color: var(--dashboard-text);
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .guide-card p {
+            color: var(--dashboard-muted);
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .guide-card .btn {
+            background: var(--dashboard-accent);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .guide-card .btn:hover {
+            background: #1e5fa8;
+            transform: scale(1.05);
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(44, 143, 255, 0.2), rgba(15, 32, 62, 0.4));
+            border: 2px solid var(--dashboard-accent);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            margin-top: var(--spacing-2xl);
+        }
+
+        .contact-box h3 {
+            color: var(--dashboard-accent);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-box p {
+            color: var(--dashboard-muted);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+    </style>
+</head>
+
+<body class="dashboard-body">
+    <!-- Header/Navigation -->
+    <header class="dashboard-header">
+        <nav class="sigma-nav">
+            <div class="header-brand">
+                <span class="brand-title">SIGMA-PLI</span>
+                <span class="brand-subtitle">Sistema Integrado de Gestão, Monitoramento e Apoio técnico ao PLI/SP</span>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/sobre" class="nav-link">Sobre o PLI</a>
+                <a href="/equipe" class="nav-link">Equipe</a>
+                <a href="/auth" class="nav-link">Entrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main style="padding: var(--spacing-2xl) 0;">
+        <section>
+            <div class="card-main">
+                <div class="container">
+                    <!-- Hero Section -->
+                    <div class="ajuda-hero">
+                        <h1>❓ Central de Ajuda</h1>
+                        <p>Encontre respostas para as perguntas mais frequentes e acesse guias de uso do SIGMA-PLI</p>
+                    </div>
+
+                    <!-- Guias Rápidos -->
+                    <div class="faq-section">
+                        <h2>📚 Guias Rápidos</h2>
+                        <div class="guides-grid">
+                            <div class="guide-card">
+                                <div class="guide-icon">🔐</div>
+                                <h3>Como Fazer Login</h3>
+                                <p>Aprenda a acessar o sistema pela primeira vez e recuperar sua senha</p>
+                                <a href="#login-guide" class="btn">Ver Guia</a>
+                            </div>
+
+                            <div class="guide-card">
+                                <div class="guide-icon">📂</div>
+                                <h3>Upload de Arquivos</h3>
+                                <p>Saiba como enviar documentos e dados para o sistema</p>
+                                <a href="#upload-guide" class="btn">Ver Guia</a>
+                            </div>
+
+                            <div class="guide-card">
+                                <div class="guide-icon">🗺️</div>
+                                <h3>Visualizar Mapas</h3>
+                                <p>Entenda como explorar camadas geoespaciais no GeoServer</p>
+                                <a href="#maps-guide" class="btn">Ver Guia</a>
+                            </div>
+
+                            <div class="guide-card">
+                                <div class="guide-icon">📊</div>
+                                <h3>Dashboard Pessoal</h3>
+                                <p>Personalize sua área de trabalho e gerencie tarefas</p>
+                                <a href="#dashboard-guide" class="btn">Ver Guia</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perguntas Frequentes -->
+                    <div class="faq-section">
+                        <h2>💬 Perguntas Frequentes</h2>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>O que é o SIGMA-PLI?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>O SIGMA-PLI é o Sistema Integrado de Gestão, Monitoramento e Apoio técnico ao Plano
+                                    de Logística e Investimentos do Estado de São Paulo. É uma plataforma digital
+                                    desenvolvida com tecnologias 100% open source para organizar, publicar e dar
+                                    rastreabilidade a dados, documentos e camadas geoespaciais relacionados ao PLI/SP.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Como solicito acesso ao sistema?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Para solicitar acesso, entre em contato com a equipe técnica através da página de
+                                    Contato ou envie um e-mail para suporte@sigma-pli.sp.gov.br informando seu nome
+                                    completo, CPF, órgão/instituição e justificativa de acesso. Sua solicitação será
+                                    analisada e você receberá as credenciais por e-mail em até 48 horas úteis.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Esqueci minha senha. Como recuperar?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Na tela de login, clique em "Esqueci minha senha". Digite seu CPF ou e-mail
+                                    cadastrado e você receberá um link de recuperação. O link é válido por 24 horas. Se
+                                    não receber o e-mail, verifique a caixa de spam ou entre em contato com o suporte
+                                    técnico.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Quais formatos de arquivo são aceitos no upload?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>O sistema aceita mais de 50 extensões de arquivo, incluindo documentos (PDF, DOCX,
+                                    XLSX), imagens (PNG, JPG, TIFF), dados geoespaciais (SHP, KML, GeoJSON, GeoTIFF),
+                                    planilhas (CSV, XLS) e arquivos compactados (ZIP, RAR). Cada arquivo pode ter até
+                                    500MB. Para uploads maiores, entre em contato com o suporte.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Como funciona o Dicionário de Dados?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>O Dicionário de Dados é um catálogo completo de metadados que organiza e documenta
+                                    todos os arquivos, camadas e bases de dados do PLI. Você pode realizar buscas
+                                    facetadas, filtrar por categoria, visualizar relações entre entidades usando grafos
+                                    (Neo4j) e acessar informações detalhadas sobre estrutura, formato, origem e
+                                    qualidade dos dados.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>O sistema funciona em dispositivos móveis?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Sim! O SIGMA-PLI possui design responsivo e funciona em smartphones, tablets e
+                                    desktops. Recomendamos navegadores modernos como Chrome, Firefox, Edge ou Safari nas
+                                    versões mais recentes para melhor experiência de uso.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Como visualizo mapas e camadas geoespaciais?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Acesse o módulo "GeoViewer" no menu principal. Lá você encontrará todas as camadas
+                                    geoespaciais disponíveis, organizadas por categoria. Você pode ativar/desativar
+                                    camadas, alterar estilos, fazer medições, consultas espaciais e exportar
+                                    visualizações. As camadas são servidas automaticamente pelo GeoServer integrado ao
+                                    sistema.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Posso exportar dados e relatórios?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Sim! Dependendo do seu nível de permissão, você pode exportar dados em múltiplos
+                                    formatos (CSV, Excel, PDF, Shapefile, GeoJSON). Relatórios e painéis podem ser
+                                    exportados como PDF ou imagens PNG. Consulte seu administrador para verificar suas
+                                    permissões de exportação.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">
+                                <span>Como reporto um problema ou bug?</span>
+                                <span class="faq-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Entre em contato através da página de Contato ou envie um e-mail para
+                                    suporte@sigma-pli.sp.gov.br detalhando o problema: o que você estava fazendo, qual
+                                    erro apareceu, navegador e sistema operacional utilizados. Se possível, anexe
+                                    screenshots. Nossa equipe técnica responderá em até 24 horas úteis.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documentação Técnica -->
+                    <div class="faq-section">
+                        <h2>📖 Documentação Técnica</h2>
+                        <div class="guides-grid">
+                            <div class="guide-card">
+                                <div class="guide-icon">⚙️</div>
+                                <h3>API REST</h3>
+                                <p>Documentação completa da API para desenvolvedores</p>
+                                <a href="/api/docs" class="btn">Ver Documentação</a>
+                            </div>
+
+                            <div class="guide-card">
+                                <div class="guide-icon">🔍</div>
+                                <h3>Neo4j Graph</h3>
+                                <p>Guia de uso do banco de dados de grafos</p>
+                                <a href="#neo4j-guide" class="btn">Ver Guia</a>
+                            </div>
+
+                            <div class="guide-card">
+                                <div class="guide-icon">🗄️</div>
+                                <h3>PostgreSQL</h3>
+                                <p>Estrutura do banco de dados relacional</p>
+                                <a href="#postgres-guide" class="btn">Ver Guia</a>
+                            </div>
+
+                            <div class="guide-card">
+                                <div class="guide-icon">🌐</div>
+                                <h3>GeoServer</h3>
+                                <p>Configuração e publicação de serviços WMS/WFS</p>
+                                <a href="#geoserver-guide" class="btn">Ver Guia</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contato para Suporte -->
+                    <div class="contact-box">
+                        <h3>🤝 Precisa de Mais Ajuda?</h3>
+                        <p>Nossa equipe técnica está disponível para auxiliar você</p>
+                        <a href="/contato" class="btn btn-primary"
+                            style="background: var(--dashboard-accent); color: white; padding: var(--spacing-md) var(--spacing-2xl); border-radius: var(--border-radius-md); text-decoration: none; display: inline-block; font-weight: 600; font-size: var(--font-size-lg);">
+                            Entrar em Contato
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 SIGMA-PLI. Desenvolvido e implementado por VPC-GEOSER</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const allFaqs = document.querySelectorAll('.faq-item');
+
+            // Close all other FAQs
+            allFaqs.forEach(item => {
+                if (item !== faqItem && item.classList.contains('active')) {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Toggle current FAQ
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

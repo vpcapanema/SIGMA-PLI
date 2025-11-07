@@ -1,0 +1,15 @@
+{
+  "name": "SIGMA-Minimal",
+  "settings": {
+    "editor.formatOnSave": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "terminal.integrated.defaultProfile.windows": "PowerShell"
+  },
+  "extensions": {
+    "enabled": [
+      "github.copilot",
+      "ms-vscode.powershell"
+    ],
+    "disabled": []
+  }
+}

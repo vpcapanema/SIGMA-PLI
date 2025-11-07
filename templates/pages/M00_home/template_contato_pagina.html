@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="Entre em contato com a equipe SIGMA-PLI">
+    <link rel="stylesheet" href="/static/css/style_global_reset_base.css">
+    <link rel="stylesheet" href="/static/css/M02_dashboard/style_dashboard_layout_base.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_layout_base.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_cards.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_navigation.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_contact_forms.css">
+    <style>
+        .contato-hero {
+            background: linear-gradient(135deg, rgba(15, 32, 62, 0.95), rgba(36, 75, 114, 0.85));
+            padding: var(--spacing-2xl);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--spacing-2xl);
+            text-align: center;
+        }
+
+        .contato-hero h1 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--dashboard-text);
+        }
+
+        .contato-hero p {
+            font-size: var(--font-size-lg);
+            color: var(--dashboard-muted);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info-box {
+            background: rgba(22, 42, 72, 0.4);
+            border: 1px solid var(--dashboard-border);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-xl);
+        }
+
+        .contact-info-box h2 {
+            color: var(--dashboard-accent);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .info-item {
+            background: rgba(15, 32, 62, 0.5);
+            border: 2px solid var(--dashboard-border);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            border-color: var(--dashboard-accent);
+            transform: translateX(8px);
+        }
+
+        .info-item-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--dashboard-accent), #1e5fa8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .info-item h3 {
+            color: var(--dashboard-text);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .info-item p {
+            color: var(--dashboard-muted);
+            line-height: 1.6;
+        }
+
+        .info-item a {
+            color: var(--dashboard-accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .info-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form-box {
+            background: rgba(22, 42, 72, 0.4);
+            border: 1px solid var(--dashboard-border);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-xl);
+        }
+
+        .contact-form-box h2 {
+            color: var(--dashboard-accent);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .form-success {
+            background: rgba(40, 167, 69, 0.2);
+            border: 2px solid #28a745;
+            color: #28a745;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-lg);
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(44, 143, 255, 0.2);
+            border: 2px solid var(--dashboard-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--dashboard-accent);
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .map-box {
+            background: rgba(22, 42, 72, 0.4);
+            border: 1px solid var(--dashboard-border);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+            text-align: center;
+        }
+
+        .map-box h2 {
+            color: var(--dashboard-accent);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .map-box p {
+            color: var(--dashboard-muted);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, rgba(15, 32, 62, 0.7), rgba(36, 75, 114, 0.5));
+            border: 2px solid var(--dashboard-border);
+            border-radius: var(--border-radius-md);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dashboard-muted);
+            font-size: var(--font-size-lg);
+        }
+    </style>
+</head>
+
+<body class="dashboard-body">
+    <!-- Header/Navigation -->
+    <header class="dashboard-header">
+        <nav class="sigma-nav">
+            <div class="header-brand">
+                <span class="brand-title">SIGMA-PLI</span>
+                <span class="brand-subtitle">Sistema Integrado de Gestão, Monitoramento e Apoio técnico ao PLI/SP</span>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/sobre" class="nav-link">Sobre o PLI</a>
+                <a href="/equipe" class="nav-link">Equipe</a>
+                <a href="/auth" class="nav-link">Entrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main style="padding: var(--spacing-2xl) 0;">
+        <section>
+            <div class="card-main">
+                <div class="container">
+                    <!-- Hero Section -->
+                    <div class="contato-hero">
+                        <h1>📧 Entre em Contato</h1>
+                        <p>Estamos à disposição para esclarecer dúvidas e receber sugestões</p>
+                    </div>
+
+                    <!-- Contact Grid -->
+                    <div class="contact-grid">
+                        <!-- Contact Info -->
+                        <div class="contact-info-box">
+                            <h2>📍 Informações de Contato</h2>
+
+                            <div class="info-item">
+                                <div class="info-item-icon">📧</div>
+                                <h3>E-mail</h3>
+                                <p>
+                                    Suporte Técnico:<br>
+                                    <a href="mailto:suporte@sigma-pli.sp.gov.br">suporte@sigma-pli.sp.gov.br</a>
+                                </p>
+                                <p style="margin-top: var(--spacing-sm);">
+                                    Contato Geral:<br>
+                                    <a href="mailto:contato@sigma-pli.sp.gov.br">contato@sigma-pli.sp.gov.br</a>
+                                </p>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-item-icon">📞</div>
+                                <h3>Telefone</h3>
+                                <p>
+                                    Central de Atendimento:<br>
+                                    <a href="tel:+551112345678">(11) 1234-5678</a>
+                                </p>
+                                <p style="margin-top: var(--spacing-sm);">
+                                    Horário de atendimento:<br>
+                                    Segunda a Sexta, das 9h às 18h
+                                </p>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-item-icon">🏢</div>
+                                <h3>Endereço</h3>
+                                <p>
+                                    Secretaria de Meio Ambiente,<br>
+                                    Infraestrutura e Logística<br>
+                                    São Paulo, SP - Brasil<br>
+                                    CEP: 01000-000
+                                </p>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-item-icon">⏰</div>
+                                <h3>Horário de Funcionamento</h3>
+                                <p>
+                                    Segunda a Quinta: 8h às 18h<br>
+                                    Sexta-feira: 8h às 17h<br>
+                                    Finais de semana e feriados: Fechado
+                                </p>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div style="margin-top: var(--spacing-2xl); text-align: center;">
+                                <h3 style="color: var(--dashboard-text); margin-bottom: var(--spacing-md);">🌐 Redes
+                                    Sociais</h3>
+                                <div class="social-links">
+                                    <a href="#" class="social-link" title="LinkedIn">💼</a>
+                                    <a href="#" class="social-link" title="Twitter">🐦</a>
+                                    <a href="#" class="social-link" title="YouTube">📺</a>
+                                    <a href="#" class="social-link" title="Instagram">📷</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="contact-form-box">
+                            <h2>✉️ Envie uma Mensagem</h2>
+
+                            <div id="form-success" class="form-success">
+                                ✅ Mensagem enviada com sucesso! Responderemos em breve.
+                            </div>
+
+                            <form id="contact-form" class="contact-form">
+                                <div class="form-group has-icon user">
+                                    <label for="name">Nome Completo *</label>
+                                    <input type="text" id="name" name="name" required
+                                        placeholder="Digite seu nome completo">
+                                </div>
+
+                                <div class="form-group has-icon email">
+                                    <label for="email">E-mail *</label>
+                                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone">Telefone</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="(11) 98765-4321">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subject">Assunto *</label>
+                                    <select id="subject" name="subject" required>
+                                        <option value="">Selecione um assunto</option>
+                                        <option value="suporte">Suporte Técnico</option>
+                                        <option value="acesso">Solicitação de Acesso</option>
+                                        <option value="duvida">Dúvida sobre o PLI</option>
+                                        <option value="sugestao">Sugestão</option>
+                                        <option value="erro">Reportar Erro/Bug</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Mensagem *</label>
+                                    <textarea id="message" name="message" rows="6" required
+                                        placeholder="Digite sua mensagem aqui..."></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label
+                                        style="display: flex; align-items: center; gap: var(--spacing-sm); color: var(--dashboard-muted); font-size: var(--font-size-sm);">
+                                        <input type="checkbox" id="privacy" name="privacy" required>
+                                        <span>Concordo com a política de privacidade e tratamento de dados</span>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary"
+                                    style="width: 100%; padding: var(--spacing-md); font-size: var(--font-size-lg); background: var(--dashboard-accent); color: white; border: none; border-radius: var(--border-radius-md); cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+                                    Enviar Mensagem
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Map Section -->
+                    <div class="map-box">
+                        <h2>📍 Nossa Localização</h2>
+                        <p>Secretaria de Meio Ambiente, Infraestrutura e Logística - São Paulo, SP</p>
+                        <div class="map-placeholder">
+                            🗺️ Mapa de localização (integração futura com Leaflet/OpenStreetMap)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 SIGMA-PLI. Desenvolvido e implementado por VPC-GEOSER</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+
+            try {
+                const response = await fetch('/api/v1/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('form-success').classList.add('show');
+
+                    // Reset form
+                    this.reset();
+
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('form-success').classList.remove('show');
+                    }, 5000);
+                } else {
+                    alert('Erro ao enviar mensagem. Tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao enviar mensagem. Verifique sua conexão e tente novamente.');
+            }
+        });
+    </script>
+</body>
+
+</html>

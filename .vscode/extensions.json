@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.debugpy",
+    "ms-python.black-formatter",
+    "ms-python.flake8",
+    "ms-azuretools.vscode-docker",
+    "ms-mssql.mssql",
+    "neo4j-extensions.neo4j-for-vscode",
+    "wholroyd.jinja",
+    "ms-vscode.vscode-json",
+    "redhat.vscode-yaml",
+    "ms-vscode-remote.remote-containers"
+  ]
+}

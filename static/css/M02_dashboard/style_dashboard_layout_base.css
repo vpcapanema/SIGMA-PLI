@@ -1,0 +1,219 @@
+:root {
+  --dashboard-bg: #0b1729;
+  --dashboard-panel: #111f36;
+  --dashboard-panel-alt: #162a48;
+  --dashboard-text: #e9f1ff;
+  --dashboard-muted: #9fb3d2;
+  --dashboard-accent: #2c8fff;
+  --dashboard-card-bg: rgba(44, 143, 255, 0.08);
+  --dashboard-border: rgba(233, 241, 255, 0.12);
+  --dashboard-disabled: rgba(233, 241, 255, 0.18);
+}
+
+body.dashboard-body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: radial-gradient(
+      circle at 10% 20%,
+      rgba(44, 143, 255, 0.18),
+      rgba(11, 23, 41, 0.95) 60%
+    ),
+    linear-gradient(190deg, rgba(3, 13, 27, 0.95), rgba(9, 23, 44, 0.9));
+  color: var(--dashboard-text);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 56px;
+  background: rgba(11, 23, 41, 0.9);
+  border-bottom: 1px solid var(--dashboard-border);
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand-subtitle {
+  font-size: 0.9rem;
+  color: var(--dashboard-muted);
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-info {
+  text-align: right;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-identifier {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--dashboard-muted);
+}
+
+.btn-secondary {
+  border: 1px solid var(--dashboard-accent);
+  background: transparent;
+  color: var(--dashboard-accent);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--dashboard-accent);
+  color: #041127;
+}
+
+.dashboard-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 36px 56px;
+  gap: 28px;
+}
+
+.overview-panel,
+.modules-panel {
+  background: rgba(9, 21, 39, 0.8);
+  border: 1px solid var(--dashboard-border);
+  border-radius: 18px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.overview-panel h1 {
+  margin: 0 0 8px;
+  font-size: 1.8rem;
+}
+
+.overview-panel p {
+  margin: 0;
+  color: var(--dashboard-muted);
+  line-height: 1.5;
+}
+
+.session-card {
+  background: var(--dashboard-card-bg);
+  border: 1px solid var(--dashboard-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.session-card h2 {
+  margin: 0 0 16px;
+  font-size: 1.2rem;
+}
+
+.session-card dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px 24px;
+  margin: 0;
+}
+
+.session-card dt {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--dashboard-muted);
+  letter-spacing: 0.08em;
+}
+
+.session-card dd {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+}
+
+.modules-panel h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.module-card {
+  border-radius: 14px;
+  border: 1px dashed var(--dashboard-disabled);
+  padding: 20px;
+  background: rgba(22, 42, 72, 0.6);
+  color: var(--dashboard-muted);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.module-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  color: var(--dashboard-text);
+}
+
+.module-card p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.module-card.disabled:hover {
+  transform: scale(1.01);
+  border-color: rgba(44, 143, 255, 0.4);
+}
+
+.dashboard-footer {
+  padding: 18px 56px;
+  border-top: 1px solid var(--dashboard-border);
+  text-align: center;
+  color: var(--dashboard-muted);
+  background: rgba(8, 18, 33, 0.88);
+}
+
+@media (max-width: 1024px) {
+  .dashboard-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .header-user {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-main {
+    padding: 24px;
+  }
+
+  .dashboard-footer {
+    padding: 16px 24px;
+  }
+}

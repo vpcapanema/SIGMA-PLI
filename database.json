@@ -1,0 +1,8 @@
+{
+  "host": "sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com",
+  "port": 5432,
+  "database": "sigma_pli",
+  "user": "sigma_admin",
+  "password": "Malditas131533*",
+  "ssl": true
+}

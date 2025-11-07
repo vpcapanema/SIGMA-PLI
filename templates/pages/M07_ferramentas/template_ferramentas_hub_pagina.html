@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="Hub de Ferramentas e Aplicações SIGMA-PLI">
+    <link rel="stylesheet" href="/static/css/style_global_reset_base.css">
+    <link rel="stylesheet" href="/static/css/M02_dashboard/style_dashboard_layout_base.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_layout_base.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_navigation.css">
+    <link rel="stylesheet" href="/static/css/M07_ferramentas/style_ferramentas_hub.css">
+</head>
+
+<body class="dashboard-body">
+    <!-- Header/Navigation -->
+    <header class="dashboard-header">
+        <nav class="sigma-nav">
+            <div class="header-brand">
+                <span class="brand-title">SIGMA-PLI</span>
+                <span class="brand-subtitle">Sistema Integrado de Gestão, Monitoramento e Apoio técnico ao PLI/SP</span>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/sobre" class="nav-link">Sobre o PLI</a>
+                <a href="/equipe" class="nav-link">Equipe</a>
+                <a href="/ferramentas" class="nav-link active">Ferramentas</a>
+                <a href="/auth" class="nav-link">Entrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="ferramentas-main">
+        <section>
+            <div class="card-main">
+                <div class="container">
+                    <!-- Hero Section -->
+                    <div class="ferramentas-hero fade-in">
+                        <h1>🚀 Ferramentas & Aplicações</h1>
+                        <p class="hero-subtitle">Hub de soluções geoespaciais, análise multicritério e ferramentas de
+                            apoio à decisão</p>
+                        <p class="hero-description">
+                            Confira nossas aplicações desenvolvidas para o PLI/SP. Cada ferramenta utiliza
+                            tecnologias abertas e padrões consolidados, focando em análise de dados, geoprocessamento
+                            e metodologias de apoio à tomada de decisão.
+                        </p>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="filter-container fade-in-delay-1">
+                        <button class="filter-btn active" data-filter="all">🎯 Todas</button>
+                        <button class="filter-btn" data-filter="ahp">📊 Análise Multicritério</button>
+                        <button class="filter-btn" data-filter="geo">🌍 Geoprocessamento</button>
+                        <button class="filter-btn" data-filter="data">📈 Coleta de Dados</button>
+                    </div>
+
+                    <!-- Applications Grid -->
+                    <div class="apps-grid">
+                        <!-- SIGMA Calculadora AHP -->
+                        <div class="app-card fade-in-up" data-category="ahp" data-delay="0">
+                            <div class="app-icon">📐</div>
+                            <h3 class="app-title">SIGMA - Calculadora AHP</h3>
+                            <p class="app-description">
+                                Sistema de análise multicritério usando o método AHP (Analytic Hierarchy Process) de
+                                Saaty.
+                                Permite comparações pareadas de até 20 critérios com cálculo automático de pesos e
+                                índices de consistência.
+                            </p>
+                            <div class="app-tags">
+                                <span class="tag">AHP/Saaty</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Visualização</span>
+                            </div>
+                            <div class="app-actions">
+                                <a href="https://vpcapanema.github.io/FAD-AHP_tool/sigma-ahp.html" target="_blank"
+                                    rel="noopener noreferrer" class="btn-primary">
+                                    <span>🚀 Acessar Aplicação</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Calculadora de Aderência de Indicadores -->
+                        <div class="app-card fade-in-up" data-category="ahp" data-delay="1">
+                            <div class="app-icon">📊</div>
+                            <h3 class="app-title">Calculadora de Aderência de Indicadores</h3>
+                            <p class="app-description">
+                                Sistema PLI SIGMA para avaliação metodológica de indicadores através de sete critérios
+                                analíticos:
+                                proximidade conceitual, mecanismo causal, validade empírica, especificidade,
+                                sensibilidade,
+                                mensurabilidade e custo-benefício.
+                            </p>
+                            <div class="app-tags">
+                                <span class="tag">Análise Multicritério</span>
+                                <span class="tag">Indicadores</span>
+                                <span class="tag">CSV Upload</span>
+                            </div>
+                            <div class="app-actions">
+                                <a href="https://vpcapanema.github.io/calculadora_aderencia_indicadores/home.html"
+                                    target="_blank" rel="noopener noreferrer" class="btn-primary">
+                                    <span>🚀 Acessar Aplicação</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- FAD - SmartGEO -->
+                        <div class="app-card fade-in-up" data-category="geo" data-delay="2">
+                            <div class="app-icon">🗺️</div>
+                            <h3 class="app-title">FAD - SmartGEO (OSM Extractor)</h3>
+                            <p class="app-description">
+                                Ferramenta de geoprocessamento inteligente para extração automatizada de dados vetoriais
+                                do
+                                OpenStreetMap via API. Permite extrair estradas, rios e limites municipais usando
+                                máscaras poligonais.
+                                Gera buffers segmentados com largura configurável.
+                            </p>
+                            <div class="app-tags">
+                                <span class="tag">OpenStreetMap API</span>
+                                <span class="tag">Shapefile</span>
+                                <span class="tag">Buffer Analysis</span>
+                            </div>
+                            <div class="app-actions">
+                                <a href="https://vpcapanema.github.io/FAD-SmartGeo/docs/index.html" target="_blank"
+                                    rel="noopener noreferrer" class="btn-primary">
+                                    <span>🚀 Acessar Aplicação</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Formulário de Entrevistas com Embarcadores -->
+                        <div class="app-card fade-in-up" data-category="data" data-delay="3">
+                            <div class="app-icon">📝</div>
+                            <h3 class="app-title">Formulário de Entrevista com Embarcadores</h3>
+                            <p class="app-description">
+                                Sistema web estruturado para coleta e caracterização de dados logísticos do transporte
+                                de mercadorias
+                                no Estado de São Paulo. Captura informações sobre produtos, origens, destinos,
+                                modalidades, custos
+                                e fatores decisórios.
+                            </p>
+                            <div class="app-tags">
+                                <span class="tag">Logística</span>
+                                <span class="tag">Coleta de Dados</span>
+                                <span class="tag">Análise Modal</span>
+                            </div>
+                            <div class="app-actions">
+                                <a href="https://vpcapanema.github.io/formulario_entrevista_embarcadores/"
+                                    target="_blank" rel="noopener noreferrer" class="btn-primary">
+                                    <span>🚀 Acessar Aplicação</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- WebGIS - Estadualização (Bonus) -->
+                        <div class="app-card fade-in-up" data-category="geo" data-delay="4">
+                            <div class="app-icon">🌐</div>
+                            <h3 class="app-title">WebGIS - Estadualização</h3>
+                            <p class="app-description">
+                                Sistema WebGIS interativo desenvolvido com Leaflet para visualização e análise espacial
+                                de elementos
+                                rodoviários candidatos à estadualização. Integra múltiplas camadas temáticas com
+                                controle de camadas,
+                                ferramentas de medição e três bases cartográficas.
+                            </p>
+                            <div class="app-tags">
+                                <span class="tag">Leaflet</span>
+                                <span class="tag">WebGIS</span>
+                                <span class="tag">Análise Espacial</span>
+                            </div>
+                            <div class="app-actions">
+                                <a href="https://vinicapanema.github.io/webgis-estadualizacao/" target="_blank"
+                                    rel="noopener noreferrer" class="btn-primary">
+                                    <span>🚀 Acessar Aplicação</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- FAD-Slope (Bonus) -->
+                        <div class="app-card fade-in-up" data-category="geo" data-delay="5">
+                            <div class="app-icon">⛰️</div>
+                            <h3 class="app-title">FAD-Slope (Google Earth Engine)</h3>
+                            <p class="app-description">
+                                Aplicação geoespacial baseada em Google Earth Engine para análise e visualização de
+                                declividade do
+                                terreno em larga escala. Utiliza modelos digitais de elevação (DEM) para cálculo
+                                automático de slope,
+                                essencial para estudos ambientais e planejamento territorial.
+                            </p>
+                            <div class="app-tags">
+                                <span class="tag">Google Earth Engine</span>
+                                <span class="tag">DEM</span>
+                                <span class="tag">Cloud Computing</span>
+                            </div>
+                            <div class="app-actions">
+                                <a href="https://ee-viniciuspradocapanema.projects.earthengine.app/view/fad-slope"
+                                    target="_blank" rel="noopener noreferrer" class="btn-primary">
+                                    <span>🚀 Acessar Aplicação</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Section -->
+                    <div class="info-section fade-in-delay-2">
+                        <h2>💡 Sobre as Ferramentas</h2>
+                        <p>
+                            Todas as aplicações são idealizadas sob o arcabouço teórico-conceitual do open source,
+                            utilizando ferramentas abertas e padrões consolidados, adaptados a cada problema. Atuamos
+                            em frentes como análise multicritério (AHP/Saaty), extração e processamento de dados
+                            geoespaciais (OpenStreetMap, DEM, Shapefiles, GeoTIFFs) com computação em nuvem (Google
+                            Earth Engine),
+                            WebGIS (Leaflet/OpenLayers, QGIS Server, GeoServer, PostGIS) e logística/planejamento
+                            territorial
+                            e de infraestrutura.
+                        </p>
+                        <p>
+                            Reforçando nosso compromisso com a ciência, unimos conceitos científicos — modelagem,
+                            inferência
+                            e governança/qualidade de dados — à tecnologia — arquiteturas modernas, interoperabilidade e
+                            automação — para entregar soluções transparentes, auditáveis e escaláveis.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack -->
+                    <div class="tech-section fade-in-delay-3">
+                        <h3>🛠️ Tecnologias & Competências</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Análise Multicritério (AHP)</span>
+                            <span class="tech-tag">Geoprocessamento</span>
+                            <span class="tech-tag">OpenStreetMap API</span>
+                            <span class="tech-tag">Leaflet</span>
+                            <span class="tech-tag">WebGIS</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Shapefile/GDAL</span>
+                            <span class="tech-tag">Google Earth Engine</span>
+                            <span class="tech-tag">QGIS</span>
+                            <span class="tech-tag">PostgreSQL/PostGIS</span>
+                            <span class="tech-tag">Sensoriamento Remoto</span>
+                            <span class="tech-tag">Logística & Transporte</span>
+                            <span class="tech-tag">Cloud Computing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 SIGMA-PLI. Desenvolvido e implementado por VPC-GEOSER</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/M07_ferramentas/script_ferramentas_animations.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+/* SIGMA visual base — usuarios (M01_auth)
+   Keep structure and IDs intact; only visual rules (variables, fonts, spacing).
+*/
+:root {
+  --sigma-primary: #0d6efd;
+  --sigma-bg: #f8f9fa;
+  --sigma-text: #1f2937;
+  --sigma-card-radius: 8px;
+  --sigma-font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+body.has-fixed-header {
+  font-family: var(--sigma-font);
+  color: var(--sigma-text);
+  background: var(--sigma-bg);
+}
+
+.pli-card {
+  border-radius: var(--sigma-card-radius);
+  box-shadow: 0 1px 2px rgba(31, 41, 55, 0.04);
+}
+
+.container.usuarios {
+  padding: 1rem 0;
+}
+
+/* Table responsiveness */
+#usuariosTable {
+  min-width: 640px;
+}
+
+.usuarios .card-header {
+  background: transparent;
+}
+
+.usuarios .form-label {
+  font-weight: 600;
+}
+
+/* End usuarios styles */

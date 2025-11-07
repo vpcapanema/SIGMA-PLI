@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SIGMA-PLI - Selecionar Perfil de Acesso">
+  <meta name="author" content="VPC-GEOSER">
+  <title>Selecionar Perfil | SIGMA-PLI</title>
+  
+  <!-- Bootstrap 5.3.2 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts - Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0b1729 0%, #162a48 100%);
+      color: #e0e6ed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .profile-container {
+      max-width: 900px;
+      width: 100%;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    
+    .header p {
+      font-size: 1.125rem;
+      color: #8b98a5;
+    }
+    
+    .user-info {
+      background: rgba(22, 42, 72, 0.6);
+      border: 1px solid rgba(77, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .user-info .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4da6ff, #0066cc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      margin: 0 auto 1rem;
+    }
+    
+    .user-info h5 {
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    
+    .user-info p {
+      color: #8b98a5;
+      margin: 0;
+    }
+    
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .profile-card {
+      background: rgba(22, 42, 72, 0.6);
+      border: 2px solid rgba(77, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--profile-color), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .profile-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--profile-color);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .profile-card:hover::before {
+      opacity: 1;
+    }
+    
+    .profile-card.admin {
+      --profile-color: #dc3545;
+    }
+    
+    .profile-card.gestor {
+      --profile-color: #ffc107;
+    }
+    
+    .profile-card.usuario {
+      --profile-color: #4da6ff;
+    }
+    
+    .profile-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+    }
+    
+    .profile-card.admin .profile-icon {
+      background: linear-gradient(135deg, #dc3545, #c82333);
+    }
+    
+    .profile-card.gestor .profile-icon {
+      background: linear-gradient(135deg, #ffc107, #e0a800);
+    }
+    
+    .profile-card.usuario .profile-icon {
+      background: linear-gradient(135deg, #4da6ff, #0066cc);
+    }
+    
+    .profile-card h4 {
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+    
+    .profile-card p {
+      color: #8b98a5;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .profile-permissions {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .profile-permissions h6 {
+      color: #ffffff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    
+    .profile-permissions ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+    
+    .profile-permissions li {
+      padding: 0.25rem 0;
+      color: #b8c5d6;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .profile-permissions li i {
+      font-size: 0.7rem;
+      color: var(--profile-color);
+    }
+    
+    .btn-select {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .profile-card.admin .btn-select {
+      background: linear-gradient(135deg, #dc3545, #c82333);
+    }
+    
+    .profile-card.gestor .btn-select {
+      background: linear-gradient(135deg, #ffc107, #e0a800);
+      color: #000;
+    }
+    
+    .profile-card.usuario .btn-select {
+      background: linear-gradient(135deg, #4da6ff, #0066cc);
+    }
+    
+    .btn-select:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .footer-actions {
+      text-align: center;
+    }
+    
+    .btn-logout {
+      background: rgba(220, 53, 69, 0.1);
+      border: 1px solid rgba(220, 53, 69, 0.3);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      color: #dc3545;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .btn-logout:hover {
+      background: rgba(220, 53, 69, 0.2);
+      border-color: rgba(220, 53, 69, 0.5);
+      color: #dc3545;
+      transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.75rem;
+      }
+      
+      .profiles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <!-- Cabeçalho -->
+    <div class="header">
+      <h1>Selecione seu Perfil de Acesso</h1>
+      <p>Você possui múltiplos perfis. Escolha como deseja acessar o sistema.</p>
+    </div>
+    
+    <!-- Informações do Usuário -->
+    <div class="user-info">
+      <div class="avatar" id="userAvatar">U</div>
+      <h5 id="userName">Usuário do Sistema</h5>
+      <p id="userEmail">usuario@sigma.gov.br</p>
+    </div>
+    
+    <!-- Grid de Perfis -->
+    <div class="profiles-grid">
+      
+      <!-- Perfil Administrador -->
+      <div class="profile-card admin">
+        <div class="profile-icon">
+          <i class="fas fa-crown"></i>
+        </div>
+        <h4>Administrador</h4>
+        <p>Acesso total ao sistema</p>
+        
+        <div class="profile-permissions">
+          <h6><i class="fas fa-shield-check me-1"></i> Permissões:</h6>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Gerenciar usuários</li>
+            <li><i class="fas fa-check-circle"></i> Configurações do sistema</li>
+            <li><i class="fas fa-check-circle"></i> Auditoria e logs</li>
+            <li><i class="fas fa-check-circle"></i> Aprovar/rejeitar cadastros</li>
+            <li><i class="fas fa-check-circle"></i> Acesso irrestrito</li>
+          </ul>
+        </div>
+        
+        <button class="btn-select mt-3" onclick="selecionarPerfil('admin')">
+          <i class="fas fa-sign-in-alt"></i>
+          Entrar como Admin
+        </button>
+      </div>
+      
+      <!-- Perfil Gestor -->
+      <div class="profile-card gestor">
+        <div class="profile-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h4>Gestor</h4>
+        <p>Gerenciar cadastros e equipe</p>
+        
+        <div class="profile-permissions">
+          <h6><i class="fas fa-tasks me-1"></i> Permissões:</h6>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Gerenciar cadastros</li>
+            <li><i class="fas fa-check-circle"></i> Aprovar solicitações</li>
+            <li><i class="fas fa-check-circle"></i> Visualizar relatórios</li>
+            <li><i class="fas fa-check-circle"></i> Gerenciar equipe</li>
+            <li><i class="fas fa-times-circle text-secondary"></i> Configurações do sistema</li>
+          </ul>
+        </div>
+        
+        <button class="btn-select mt-3" onclick="selecionarPerfil('gestor')">
+          <i class="fas fa-sign-in-alt"></i>
+          Entrar como Gestor
+        </button>
+      </div>
+      
+      <!-- Perfil Usuário -->
+      <div class="profile-card usuario">
+        <div class="profile-icon">
+          <i class="fas fa-user"></i>
+        </div>
+        <h4>Usuário</h4>
+        <p>Acesso padrão ao sistema</p>
+        
+        <div class="profile-permissions">
+          <h6><i class="fas fa-list-check me-1"></i> Permissões:</h6>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Visualizar cadastros</li>
+            <li><i class="fas fa-check-circle"></i> Solicitar cadastros</li>
+            <li><i class="fas fa-check-circle"></i> Gerenciar meus dados</li>
+            <li><i class="fas fa-times-circle text-secondary"></i> Aprovar solicitações</li>
+            <li><i class="fas fa-times-circle text-secondary"></i> Gerenciar usuários</li>
+          </ul>
+        </div>
+        
+        <button class="btn-select mt-3" onclick="selecionarPerfil('usuario')">
+          <i class="fas fa-sign-in-alt"></i>
+          Entrar como Usuário
+        </button>
+      </div>
+      
+    </div>
+    
+    <!-- Ações do Rodapé -->
+    <div class="footer-actions">
+      <a href="/auth/logout" class="btn-logout">
+        <i class="fas fa-sign-out-alt"></i>
+        Sair do Sistema
+      </a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Carregar informações do usuário (simulado)
+    document.addEventListener('DOMContentLoaded', function() {
+      // Em produção, estes dados viriam do backend
+      const userData = {
+        nome: 'João Silva Santos',
+        email: 'joao.silva@sigma.gov.br'
+      };
+      
+      document.getElementById('userName').textContent = userData.nome;
+      document.getElementById('userEmail').textContent = userData.email;
+      document.getElementById('userAvatar').textContent = userData.nome.charAt(0).toUpperCase();
+    });
+    
+    // Função para selecionar perfil
+    function selecionarPerfil(perfil) {
+      // Mostrar loading
+      const btn = event.target;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
+      btn.disabled = true;
+      
+      // Simular requisição ao backend
+      setTimeout(() => {
+        // Em produção, fazer POST para /api/v1/auth/select-profile
+        // com o perfil selecionado e redirecionar para o dashboard
+        console.log('Perfil selecionado:', perfil);
+        
+        // Redirecionar para o dashboard com o perfil selecionado
+        window.location.href = `/dashboard?perfil=${perfil}`;
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>

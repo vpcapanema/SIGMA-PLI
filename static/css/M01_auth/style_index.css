@@ -1,0 +1,87 @@
+/* Visual adjustments for the M01_auth index page
+   - altera background, tipografia, tamanhos e cores de fonte conforme solicitado
+   - mantém estrutura HTML idêntica; apenas estilos visuais
+*/
+
+:root {
+  --index-bg-top: #f5f8fb;
+  --index-bg-bottom: #eef6ff;
+  --index-head-color: #0b3d91; /* título */
+  --index-lead-color: #334155; /* texto secundário */
+  --index-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+body.index__p-index--body {
+  background: linear-gradient(
+    180deg,
+    var(--index-bg-top) 0%,
+    var(--index-bg-bottom) 100%
+  );
+  font-family: var(--index-font);
+  color: var(--index-lead-color);
+  font-size: 16px;
+}
+
+.hero-section .index__hero-card--div {
+  background: #ffffff;
+  border-radius: 12px;
+}
+
+.hero-section h1 {
+  color: var(--index-head-color);
+  font-size: 2.1rem;
+}
+.hero-section .lead {
+  color: var(--index-lead-color);
+  font-size: 1.05rem;
+}
+
+.index__stat-icon--div i {
+  font-size: 2rem;
+}
+
+.index__feature-card-icon--div i {
+  font-size: 2.5rem;
+}
+
+/* Specific feature icon colors (mapeados do HTML original) */
+.index__feature-card-icon--div .fa-user {
+  color: #007bff;
+}
+.index__feature-card-icon--div .fa-building {
+  color: #28a745;
+}
+.index__feature-card-icon--div .fa-users-cog {
+  color: #17a2b8;
+}
+.index__feature-card-icon--div .fa-shield-alt {
+  color: #dc3545;
+}
+.index__feature-card-icon--div .fa-search {
+  color: #ffc107;
+}
+.index__feature-card-icon--div .fa-mobile-alt {
+  color: #6f42c1;
+}
+
+/* Steps visuals */
+.steps-container .step-number {
+  font-weight: 700;
+}
+
+/* CTA buttons larger */
+.hero-section .btn-pli {
+  font-size: 1rem;
+  padding: 0.6rem 1.1rem;
+}
+
+/* Responsividade: manter legibilidade em telas pequenas */
+@media (max-width: 767px) {
+  .hero-section h1 {
+    font-size: 1.55rem;
+  }
+  body.index__p-index--body {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../neo4j_dicionario_de_dados"
+    },
+    {
+      "path": "../PLI-CADASTRO"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "SIGMA-PRINCIPAL",
+    "powershell.cwd": "SIGMA-PRINCIPAL",
+    "liveServer.settings.port": 5501
+  }
+}

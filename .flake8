@@ -1,0 +1,34 @@
+[flake8]
+# Configuração do Flake8 para SIGMA-PLI
+
+# Tamanho máximo de linha
+max-line-length = 130
+
+# Ignorar erros específicos
+ignore =
+    E501,  # line too long (HTML strings)
+    W503,  # line break before binary operator
+    E203,  # whitespace before ':' (conflita com Black)
+
+# Excluir arquivos/diretórios
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    build,
+    dist,
+    *.egg-info,
+    .tox,
+    .pytest_cache,
+    node_modules,
+    migrations,
+    *.sql,
+
+# Contagem de complexidade ciclomática máxima
+max-complexity = 15
+
+# Por arquivo: permitir imports não no topo (arquivos de exemplo)
+per-file-ignores =
+    exemplos_uso_hierarquia.py:E402
+    test_email_service.py:E402

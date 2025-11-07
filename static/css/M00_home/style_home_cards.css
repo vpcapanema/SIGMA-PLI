@@ -1,0 +1,177 @@
+/* SIGMA-PLI - M00: Home - Cards principais */
+/* Arquivo: style_home_cards.css */
+
+/* Card principal que envolve todo o conteúdo das seções (exceto header/footer).
+   Alteração: padronizamos espaçamento vertical entre cards usando
+   `var(--spacing-2xl)` para margem-top/margin-bottom, mantendo gutters laterais
+   de 5vw. Isso cria uma distância visual uniforme entre todas as seções. */
+.card-main {
+  /* largura baseada no viewport para manter os gutters fixos em 5vw */
+  width: 90vw; /* 90% do viewport */
+  /* margem vertical padronizada e gutters laterais fixos */
+  margin: var(--spacing-2xl) 5vw; /* top/bottom: spacing-2xl, left/right: 5vw */
+  box-sizing: border-box; /* inclui padding dentro da largura */
+
+  /* fundo, borda e radius consistentes com a paleta do dashboard */
+  background-color: rgba(11, 23, 41, 0.6);
+  border: 1px solid var(--dashboard-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  color: var(--dashboard-text);
+  overflow: visible;
+}
+
+/* Para seções que já têm fundo escuro (hero), aplicamos uma versão translúcida
+   para manter legibilidade e não romper o contraste visual. */
+.hero-section .card-main {
+  /* Ajustes específicos para o card do hero: menos sombra e pequeno offset à direita
+     para compor visualmente com imagens/visualizações ao lado. */
+  background-color: rgba(11, 23, 41, 0.55);
+  color: var(--dashboard-text);
+  box-shadow: none;
+  margin-right: calc(5vw + var(--spacing-md));
+}
+
+/* Títulos dos cards principais: reduzir margem esquerda para alinhamento mais
+   compacto sem alterar o espaçamento vertical das seções. */
+.card-main h2,
+.card-main h3 {
+  /* título dos cards: pequeno deslocamento horizontal para melhor alinhamento */
+  margin-left: var(--spacing-sm);
+  color: var(--dashboard-text);
+}
+
+/* Justificar o texto descriptivo do hero dentro do card */
+.hero-description {
+  /* Justifica o texto descritivo do hero para um bloco mais formal */
+  text-align: justify;
+}
+
+/* Feature cards (blocos de funcionalidades) */
+.feature-card {
+  /* Cartões de feature com fundo translúcido, borda sutil e pequena transição */
+  background: rgba(22, 42, 72, 0.6);
+  border: 1px dashed rgba(233, 241, 255, 0.06);
+  color: var(--dashboard-text);
+  padding: 18px;
+  border-radius: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.feature-icon {
+  font-size: 1.6rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Hero stats / estatísticas */
+.stat-item {
+  /* Blocos de estatísticas do hero: fundo escuro translúcido e borda leve */
+  background: rgba(11, 23, 41, 0.6);
+  border: 1px solid var(--dashboard-border);
+  border-radius: 12px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  min-width: 110px;
+  text-align: center;
+  color: var(--dashboard-text);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dashboard-accent);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(233, 241, 255, 0.8);
+}
+
+/* Module / feature grid (status/module cards) */
+.module-card {
+  background: rgba(22, 42, 72, 0.55) !important;
+  border: 1px dashed rgba(233, 241, 255, 0.06) !important;
+  color: var(--dashboard-muted) !important;
+}
+
+/* Contact form and info boxes */
+.contact-content .contact-info,
+.contact-form {
+  background: rgba(11, 23, 41, 0.6);
+  border: 1px solid var(--dashboard-border);
+  padding: var(--spacing-md);
+  border-radius: 10px;
+  color: var(--dashboard-text);
+}
+
+/* Status grid placeholder */
+.status-grid .status-loading {
+  color: var(--dashboard-muted);
+}
+
+/* Pequeno ajuste responsivo para dispositivos móveis */
+@media (max-width: 768px) {
+  .card-main {
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 5vw;
+    border-radius: var(--border-radius-md);
+    width: 90vw;
+  }
+}
+
+/* Mini-cards (ex.: blocos com números/indicadores dentro do primeiro card) */
+.mini-cards {
+  /* Contêiner para mini-cards: usa flexbox com espaçamento consistente */
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-end;
+  margin-top: var(--spacing-lg);
+}
+
+.mini-card {
+  /* Mini-cards: fundo consistente com outros cards, proteção contra overflow
+     e comportamento flexível para responsividade. */
+  background: rgba(11, 23, 41, 0.6); /* padronizado */
+  border-radius: var(--border-radius-md);
+  padding: calc(var(--spacing-sm) + 0.25rem) var(--spacing-md);
+  box-sizing: border-box; /* garante que padding não aumente a largura */
+  min-width: 96px; /* evita colapsar demais */
+  max-width: 220px; /* evita que um cartão cresça demais em larguras grandes */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--dashboard-text);
+  word-wrap: break-word; /* força quebra de palavras longas */
+  white-space: normal; /* garante que o texto possa quebrar linhas */
+}
+
+.mini-card .value {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mini-card .label {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 768px) {
+  .mini-cards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .mini-card {
+    flex: 1 1 140px; /* base responsiva maior para evitar overflow de texto */
+    min-width: 120px;
+    margin-bottom: var(--spacing-md);
+  }
+}

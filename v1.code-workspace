@@ -1,0 +1,29 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../../../SEMIL/PLI/Demandas/02_Aplicacoes/sigma_pli/banco_de_dados/neo4j_dicionario_de_dados"
+    }
+  ],
+  "settings": {
+    // Formatadores padrão para o workspace
+    "[html]": {
+      "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[sql]": {
+      "editor.defaultFormatter": "ms-mssql.mssql"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "editor.formatOnSave": true
+  }
+}

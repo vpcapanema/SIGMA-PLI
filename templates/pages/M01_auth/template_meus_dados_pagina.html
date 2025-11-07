@@ -1,0 +1,26 @@
+<!--
+OBSOLETO: Este template não está sendo usado.
+A rota /meus-dados aponta diretamente para pages/M01_auth/app/meus-dados.html
+Este arquivo pode ser removido com segurança.
+-->
+
+{% extends 'pages/M01_auth/template_base_auth.html' %}
+
+{% block title %}Meus Dados | SIGMA-PLI{% endblock %}
+
+{% block extra_head %}
+  <link href="/static/css/M01_auth/style_auth_meus_dados.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <div class="pli-main-content">
+    <main class="container-fluid py-4">
+      <!-- Conteúdo Meus Dados (IDs preservados) -->
+      <!-- (ver `templates/pages/M01_auth/app/meus-dados.html` para versão completa) -->
+    </main>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script defer src="/static/js/M01_auth/script_meus_dados.js"></script>
+{% endblock %}

@@ -1,0 +1,393 @@
+/* Compat stylesheet to map legacy PLI classes to SIGMA global variables and utilities
+   Placed under static/css/M01_auth per repository convention. This file should be
+   incrementally merged into existing module CSS during porting. */
+
+:root {
+  --pli-primary: var(--sigma-primary, #0d6efd);
+  --pli-secondary: var(--sigma-secondary, #6c757d);
+  --pli-bg: var(--sigma-bg, #f8f9fa);
+  --pli-text: var(--sigma-text, #212529);
+}
+
+/* Basic reset for PLI components that used bespoke classes */
+.pli-navbar {
+  background: var(--pli-primary);
+  color: white;
+}
+.pli-navbar__brand {
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+.pli-navbar__link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+.pli-navbar__link--active {
+  text-decoration: underline;
+}
+.pli-navbar__dropdown-menu {
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+}
+.pli-navbar__dropdown-link {
+  color: #fff;
+}
+
+.pli-footer {
+  background: #0b1725;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 1.6rem 0;
+}
+.pli-footer__link {
+  color: rgba(255, 255, 255, 0.85);
+  margin-right: 1rem;
+}
+.pli-footer__status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2ecc71;
+  margin-right: 0.5rem;
+}
+.pli-footer__status-indicator--warning {
+  background: #f39c12;
+}
+.pli-footer__status-indicator--error {
+  background: #e74c3c;
+}
+
+/* utility */
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* small responsiveness fixes for older PLI templates */
+@media (max-width: 767px) {
+  .pli-navbar__brand {
+    font-size: 0.95rem;
+  }
+  .pli-navbar__link {
+    font-size: 0.9rem;
+  }
+}
+
+/* Forms */
+.pli-form-input {
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.6rem;
+}
+.pli-btn-primary {
+  background: var(--pli-primary);
+  color: #fff;
+  border: none;
+}
+
+/* Keep compat small — move rules to module CSS during porting */
+/* Compatibilização de classes do PLI-CADASTRO para o SIGMA (M01_auth)
+   Objetivo: definir no padrão visual do SIGMA (variáveis CSS) as classes usadas
+   pelo base.html/base.ejs do PLI quando não existem no CSS global.
+   Não sobrescreve resets; usa as variáveis definidas em style_global_reset_base.css
+*/
+
+:root {
+  --pli-header-gradient: linear-gradient(
+    135deg,
+    #0e3600 0%,
+    #449244 33.36%,
+    #bfe5b2 50%,
+    #244b72 66.68%,
+    #0f203e 83.34%,
+    #171e31 100%
+  );
+}
+
+/* Layout helpers */
+.l-main {
+  flex: 1 0 auto;
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+}
+
+.l-header {
+  position: relative;
+  z-index: 1030;
+  background: var(--pli-header-gradient);
+  color: #ffffff;
+  min-height: var(--header-height);
+  padding: 8px 0;
+  box-shadow: var(--shadow-md);
+}
+
+.l-footer {
+  margin-top: auto;
+  padding: 1rem 0;
+  background: var(--pli-header-gradient);
+  color: #f1f3f5;
+}
+
+/* Navbar components (PLI naming) */
+.pli-navbar {
+  font-family: var(--font-family);
+}
+
+.pli-navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  width: 100%;
+}
+
+.pli-navbar__brand {
+  color: #fff;
+  font-weight: 600;
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  text-decoration: none;
+}
+
+.pli-navbar__toggle {
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 6px 10px;
+  border-radius: var(--border-radius-sm);
+  color: #fff;
+}
+
+.pli-navbar__nav {
+  display: flex;
+  list-style: none;
+  gap: 16px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.pli-navbar__link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.12s ease, color 0.12s ease,
+    transform 0.08s ease;
+}
+
+.pli-navbar__link--active {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pli-navbar__dropdown {
+  position: relative;
+}
+
+.pli-navbar__dropdown-menu,
+.dropdown-menu {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+  min-width: 200px;
+  padding: 6px 0;
+}
+
+.pli-navbar__dropdown-link,
+.dropdown-item {
+  padding: 8px 14px;
+  color: var(--sigma-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.pli-navbar__dropdown-link:hover,
+.dropdown-item:hover {
+  background: #bfe5b2;
+  color: var(--sigma-primary);
+}
+
+.pli-navbar__profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pli-navbar__profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+
+.pli-navbar__profile-name {
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Footer specific */
+.pli-footer {
+  color: #f1f3f5;
+  padding: 10px 0;
+}
+
+.pli-footer__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  justify-content: center;
+}
+
+.pli-footer__logo {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.pli-footer__links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pli-footer__link {
+  color: #bfe5b2;
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.pli-footer__link:hover {
+  color: #e3eefd;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pli-footer__status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--sigma-success);
+  margin-right: 6px;
+}
+
+.pli-footer__status-indicator--warning {
+  background: var(--sigma-warning);
+}
+.pli-footer__status-indicator--error {
+  background: var(--sigma-error);
+}
+
+/* Small helpers used in base templates */
+.has-fixed-header {
+  padding-top: calc(var(--header-height) + 8px);
+}
+
+@media (max-width: 768px) {
+  .pli-navbar__profile-name {
+    display: none;
+  }
+}
+
+/* Map SIGMA component classnames to compat rules so components/navbar.html and
+   components/footer.html render with the SIGMA visual tokens without changing
+   the original PLI markup/IDs. This preserves structure while applying SIGMA
+   visuals. */
+.sigma-navbar {
+  background: var(--pli-primary);
+  color: #fff;
+  font-family: var(
+    --font-family,
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial
+  );
+}
+.sigma-navbar__container {
+  /* reuse PLI container rules */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+.sigma-navbar__brand {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.sigma-navbar__links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.sigma-navbar__link {
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.sigma-navbar__dropdown-menu {
+  background: #fff;
+  color: var(--pli-text);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.sigma-footer {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 23, 37, 1) 0%,
+    rgba(36, 75, 114, 1) 100%
+  );
+  color: rgba(255, 255, 255, 0.9);
+  padding: 1.2rem 0;
+}
+.sigma-footer__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.sigma-footer__logo {
+  font-weight: 700;
+}
+.sigma-footer__links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.sigma-footer__links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .sigma-navbar__links {
+    display: none;
+  }
+  .sigma-footer__container {
+    flex-direction: column;
+    text-align: center;
+  }
+}

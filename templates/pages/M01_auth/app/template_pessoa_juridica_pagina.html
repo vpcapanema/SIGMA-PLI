@@ -1,0 +1,700 @@
+{% extends 'pages/M01_auth/template_base_auth.html' %}
+
+{% block title %}Pessoas Jurídicas | SIGMA-PLI{% endblock %}
+
+{% block extra_head %}
+<style>
+  .metric-card {
+    border-radius: 12px;
+    border: 1px solid rgba(77, 166, 255, 0.3);
+    background: rgba(22, 42, 72, 0.9);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(77, 166, 255, 0.2);
+    border-color: rgba(77, 166, 255, 0.6);
+  }
+  .metric-card h6 {
+    color: #8b98a5;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .metric-card h3 {
+    color: #4da6ff;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  .metric-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.2;
+  }
+  .metric-icon i {
+    font-size: 1.8rem;
+    color: white;
+  }
+  .bg-primary { background: linear-gradient(135deg, #4da6ff, #0066cc); }
+  .bg-success { background: linear-gradient(135deg, #28a745, #1e7e34); }
+  .bg-warning { background: linear-gradient(135deg, #ffc107, #e0a800); }
+  .bg-info { background: linear-gradient(135deg, #17a2b8, #117a8b); }
+  
+  .card {
+    background: rgba(22, 42, 72, 0.9);
+    border: 1px solid rgba(77, 166, 255, 0.3);
+    border-radius: 12px;
+  }
+  .card-header {
+    background: rgba(77, 166, 255, 0.1);
+    border-bottom: 1px solid rgba(77, 166, 255, 0.3);
+    color: #4da6ff;
+    font-weight: 600;
+  }
+  .table {
+    color: #e0e6ed;
+  }
+  .table thead th {
+    background: rgba(77, 166, 255, 0.1);
+    border-color: rgba(77, 166, 255, 0.3);
+    color: #4da6ff;
+  }
+  .table tbody tr:hover {
+    background: rgba(77, 166, 255, 0.05);
+  }
+  .modal-content {
+    background: linear-gradient(135deg, #0b1729 0%, #162a48 100%);
+    border: 1px solid rgba(77, 166, 255, 0.3);
+  }
+  .modal-header {
+    border-bottom: 1px solid rgba(77, 166, 255, 0.3);
+  }
+  .modal-footer {
+    border-top: 1px solid rgba(77, 166, 255, 0.3);
+  }
+  .section-divider {
+    border-top: 2px solid rgba(77, 166, 255, 0.3);
+    margin: 1.5rem 0;
+    padding-top: 1rem;
+  }
+  .section-title {
+    color: #4da6ff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="pli-main-content">
+  <main class="container-fluid py-4">
+    <!-- Cabeçalho -->
+    <div class="row mb-4">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h3 mb-1">
+            <i class="fas fa-building text-primary"></i>
+            Gestão de Pessoas Jurídicas
+          </h1>
+          <p class="text-muted mb-0">Gerencie os cadastros de empresas e organizações do sistema</p>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-success" id="btnExportar">
+            <i class="fas fa-file-excel me-2"></i>Exportar
+          </button>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pessoaJuridicaModal" id="btnNovo">
+            <i class="fas fa-plus me-2"></i>Nova Empresa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métricas -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card metric-card border-primary">
+          <div class="card-body">
+            <h6>Total de Empresas</h6>
+            <h3 id="totalEmpresas">-</h3>
+            <div class="metric-icon bg-primary">
+              <i class="fas fa-building"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card metric-card border-success">
+          <div class="card-body">
+            <h6>Empresas Ativas</h6>
+            <h3 id="empresasAtivas">-</h3>
+            <div class="metric-icon bg-success">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card metric-card border-warning">
+          <div class="card-body">
+            <h6>Pendentes Validação</h6>
+            <h3 id="empresasPendentes">-</h3>
+            <div class="metric-icon bg-warning">
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card metric-card border-info">
+          <div class="card-body">
+            <h6>Novos (30 dias)</h6>
+            <h3 id="empresasNovas">-</h3>
+            <div class="metric-icon bg-info">
+              <i class="fas fa-calendar-plus"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros Avançados -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0"><i class="fas fa-filter"></i> Filtros de Busca</h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-3">
+                <label class="form-label" for="filtroRazaoSocial">Razão Social</label>
+                <input class="form-control" id="filtroRazaoSocial" placeholder="Buscar por razão social" type="text">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="filtroCnpj">CNPJ</label>
+                <input class="form-control" id="filtroCnpj" placeholder="00.000.000/0000-00" type="text">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="filtroEmail">E-mail</label>
+                <input class="form-control" id="filtroEmail" placeholder="empresa@exemplo.com" type="email">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label" for="filtroStatus">Status</label>
+                <select class="form-select" id="filtroStatus">
+                  <option value="">Todos</option>
+                  <option value="ativo">Ativo</option>
+                  <option value="pendente">Pendente</option>
+                  <option value="inativo">Inativo</option>
+                </select>
+              </div>
+              <div class="col-12 d-flex gap-2">
+                <button class="btn btn-primary" id="btnBuscar">
+                  <i class="fas fa-search me-2"></i>Buscar
+                </button>
+                <button class="btn btn-secondary" id="btnLimpar">
+                  <i class="fas fa-times me-2"></i>Limpar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabela -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0"><i class="fas fa-table"></i> Lista de Empresas</h5>
+            <div class="d-flex gap-2 align-items-center">
+              <input type="checkbox" id="selectAll" class="form-check-input">
+              <label for="selectAll" class="form-check-label me-3">Selecionar Todos</label>
+              <span class="text-muted" id="totalRegistros">0 registros</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover" id="empresasTable">
+                <thead>
+                  <tr>
+                    <th width="50"><input type="checkbox" class="form-check-input" id="selectAllHeader"></th>
+                    <th>Razão Social</th>
+                    <th>CNPJ</th>
+                    <th>Nome Fantasia</th>
+                    <th>Telefone</th>
+                    <th>E-mail</th>
+                    <th>Status</th>
+                    <th width="150">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="8" class="text-center text-muted">
+                      <i class="fas fa-spinner fa-spin me-2"></i>Carregando dados...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Paginação -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <div class="text-muted">
+                Mostrando <span id="showingStart">0</span> a <span id="showingEnd">0</span> de <span id="showingTotal">0</span> registros
+              </div>
+              <nav>
+                <ul class="pagination mb-0" id="pagination"></ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Modal Cadastro/Edição COMPLETO -->
+<div class="modal fade" id="pessoaJuridicaModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="fas fa-building me-2 text-primary"></i>
+          <span id="modalTitle">Nova Pessoa Jurídica</span>
+        </h5>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Fechar" type="button"></button>
+      </div>
+      <form id="pessoaJuridicaForm" novalidate>
+        <input type="hidden" id="empresaId" name="id">
+        <div class="modal-body">
+          
+          <!-- SEÇÃO 1: Dados Cadastrais -->
+          <div class="section-title">
+            <i class="fas fa-building"></i>
+            Dados Cadastrais
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-4">
+              <label class="form-label" for="cnpj">CNPJ *</label>
+              <input class="form-control" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" required type="text" maxlength="18">
+              <div class="invalid-feedback">CNPJ é obrigatório</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="inscricaoEstadual">Inscrição Estadual</label>
+              <input class="form-control" id="inscricaoEstadual" name="inscricaoEstadual" type="text">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="inscricaoMunicipal">Inscrição Municipal</label>
+              <input class="form-control" id="inscricaoMunicipal" name="inscricaoMunicipal" type="text">
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="razaoSocial">Razão Social *</label>
+              <input class="form-control" id="razaoSocial" name="razaoSocial" required type="text">
+              <div class="invalid-feedback">Razão Social é obrigatória</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="nomeFantasia">Nome Fantasia</label>
+              <input class="form-control" id="nomeFantasia" name="nomeFantasia" type="text">
+            </div>
+          </div>
+
+          <!-- SEÇÃO 2: Contato -->
+          <div class="section-divider"></div>
+          <div class="section-title">
+            <i class="fas fa-phone"></i>
+            Informações de Contato
+          </div>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label" for="telefone">Telefone *</label>
+              <input class="form-control" id="telefone" name="telefone" placeholder="(00) 0000-0000" required type="tel">
+              <div class="invalid-feedback">Telefone é obrigatório</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="celular">Celular</label>
+              <input class="form-control" id="celular" name="celular" placeholder="(00) 00000-0000" type="tel">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="email">E-mail *</label>
+              <input class="form-control" id="email" name="email" placeholder="empresa@exemplo.com" required type="email">
+              <div class="invalid-feedback">E-mail válido é obrigatório</div>
+            </div>
+          </div>
+
+          <!-- SEÇÃO 3: Endereço -->
+          <div class="section-divider"></div>
+          <div class="section-title">
+            <i class="fas fa-map-marker-alt"></i>
+            Endereço
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-3">
+              <label class="form-label" for="cep">CEP *</label>
+              <div class="input-group">
+                <input class="form-control" id="cep" name="cep" placeholder="00000-000" required type="text" maxlength="9">
+                <button class="btn btn-outline-primary" type="button" id="btnBuscarCep">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              <div class="invalid-feedback">CEP é obrigatório</div>
+            </div>
+            <div class="col-md-7">
+              <label class="form-label" for="logradouro">Logradouro *</label>
+              <input class="form-control" id="logradouro" name="logradouro" required type="text">
+              <div class="invalid-feedback">Logradouro é obrigatório</div>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label" for="numero">Número *</label>
+              <input class="form-control" id="numero" name="numero" required type="text">
+              <div class="invalid-feedback">Número é obrigatório</div>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label" for="complemento">Complemento</label>
+              <input class="form-control" id="complemento" name="complemento" type="text">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="bairro">Bairro *</label>
+              <input class="form-control" id="bairro" name="bairro" required type="text">
+              <div class="invalid-feedback">Bairro é obrigatório</div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label" for="cidade">Cidade *</label>
+              <input class="form-control" id="cidade" name="cidade" required type="text">
+              <div class="invalid-feedback">Cidade é obrigatória</div>
+            </div>
+            <div class="col-md-1">
+              <label class="form-label" for="uf">UF *</label>
+              <select class="form-select" id="uf" name="uf" required>
+                <option value="">-</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MT">MT</option>
+                <option value="MS">MS</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP">SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+              </select>
+              <div class="invalid-feedback">UF é obrigatória</div>
+            </div>
+          </div>
+
+          <!-- SEÇÃO 4: Informações Adicionais -->
+          <div class="section-divider"></div>
+          <div class="section-title">
+            <i class="fas fa-info-circle"></i>
+            Informações Adicionais
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="ramoAtividade">Ramo de Atividade</label>
+              <input class="form-control" id="ramoAtividade" name="ramoAtividade" type="text">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label" for="porte">Porte da Empresa</label>
+              <select class="form-select" id="porte" name="porte">
+                <option value="">Selecione</option>
+                <option value="MEI">MEI</option>
+                <option value="ME">Microempresa</option>
+                <option value="EPP">Empresa de Pequeno Porte</option>
+                <option value="MEDIA">Média Empresa</option>
+                <option value="GRANDE">Grande Empresa</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label" for="status">Status *</label>
+              <select class="form-select" id="status" name="status" required>
+                <option value="ativo">Ativo</option>
+                <option value="pendente">Pendente</option>
+                <option value="inativo">Inativo</option>
+              </select>
+            </div>
+          </div>
+          <div class="row g-3 mt-2">
+            <div class="col-md-12">
+              <label class="form-label" for="observacoes">Observações</label>
+              <textarea class="form-control" id="observacoes" name="observacoes" rows="3"></textarea>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+            <i class="fas fa-times me-2"></i>Cancelar
+          </button>
+          <button class="btn btn-primary" type="submit">
+            <i class="fas fa-save me-2"></i>Salvar Empresa
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Dados mockados para demonstração
+const empresasMock = [
+  {
+    id: 1,
+    razaoSocial: 'Tech Solutions Ltda',
+    nomeFantasia: 'TechSol',
+    cnpj: '12.345.678/0001-90',
+    inscricaoEstadual: '123456789',
+    telefone: '(11) 3456-7890',
+    celular: '(11) 98765-4321',
+    email: 'contato@techsol.com.br',
+    cep: '01310-100',
+    logradouro: 'Av. Paulista',
+    numero: '1578',
+    bairro: 'Bela Vista',
+    cidade: 'São Paulo',
+    uf: 'SP',
+    porte: 'MEDIA',
+    status: 'ativo'
+  },
+  {
+    id: 2,
+    razaoSocial: 'Construtora ABC S.A.',
+    nomeFantasia: 'ABC Construções',
+    cnpj: '98.765.432/0001-10',
+    telefone: '(21) 2345-6789',
+    email: 'abc@construtora.com.br',
+    cep: '20040-020',
+    logradouro: 'Av. Rio Branco',
+    numero: '156',
+    bairro: 'Centro',
+    cidade: 'Rio de Janeiro',
+    uf: 'RJ',
+    status: 'ativo'
+  },
+  {
+    id: 3,
+    razaoSocial: 'Comércio XYZ Eireli',
+    nomeFantasia: 'XYZ Comércio',
+    cnpj: '11.222.333/0001-44',
+    telefone: '(31) 3344-5566',
+    email: 'xyz@comercio.com.br',
+    cep: '30130-010',
+    logradouro: 'Av. Afonso Pena',
+    numero: '867',
+    bairro: 'Centro',
+    cidade: 'Belo Horizonte',
+    uf: 'MG',
+    status: 'pendente'
+  }
+];
+
+// Carregar métricas
+function carregarMetricas() {
+  document.getElementById('totalEmpresas').textContent = empresasMock.length;
+  document.getElementById('empresasAtivas').textContent = empresasMock.filter(e => e.status === 'ativo').length;
+  document.getElementById('empresasPendentes').textContent = empresasMock.filter(e => e.status === 'pendente').length;
+  document.getElementById('empresasNovas').textContent = '2';
+}
+
+// Carregar tabela
+function carregarTabela(dados = empresasMock) {
+  const tbody = document.querySelector('#empresasTable tbody');
+  
+  if (dados.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">Nenhuma empresa encontrada</td></tr>';
+    return;
+  }
+  
+  tbody.innerHTML = dados.map(emp => `
+    <tr>
+      <td><input type="checkbox" class="form-check-input row-select" data-id="${emp.id}"></td>
+      <td>${emp.razaoSocial}</td>
+      <td>${emp.cnpj}</td>
+      <td>${emp.nomeFantasia || '-'}</td>
+      <td>${emp.telefone}</td>
+      <td>${emp.email}</td>
+      <td>
+        <span class="badge bg-${emp.status === 'ativo' ? 'success' : emp.status === 'pendente' ? 'warning' : 'secondary'}">
+          ${emp.status === 'ativo' ? 'Ativo' : emp.status === 'pendente' ? 'Pendente' : 'Inativo'}
+        </span>
+      </td>
+      <td>
+        <button class="btn btn-sm btn-primary" onclick="editarEmpresa(${emp.id})" title="Editar">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-sm btn-danger" onclick="excluirEmpresa(${emp.id})" title="Excluir">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  `).join('');
+  
+  document.getElementById('totalRegistros').textContent = `${dados.length} registro${dados.length !== 1 ? 's' : ''}`;
+}
+
+// Editar empresa
+function editarEmpresa(id) {
+  const empresa = empresasMock.find(e => e.id === id);
+  if (!empresa) return;
+  
+  document.getElementById('modalTitle').textContent = 'Editar Pessoa Jurídica';
+  document.getElementById('empresaId').value = empresa.id;
+  
+  // Preencher todos os campos
+  Object.keys(empresa).forEach(key => {
+    const field = document.getElementById(key);
+    if (field) field.value = empresa[key] || '';
+  });
+  
+  new bootstrap.Modal(document.getElementById('pessoaJuridicaModal')).show();
+}
+
+// Excluir empresa
+function excluirEmpresa(id) {
+  if (confirm('Tem certeza que deseja excluir esta empresa?')) {
+    alert('Empresa excluída com sucesso!');
+    // Aqui faria a exclusão real
+    carregarTabela();
+  }
+}
+
+// Buscar CEP
+document.getElementById('btnBuscarCep')?.addEventListener('click', async function() {
+  const cep = document.getElementById('cep').value.replace(/\D/g, '');
+  if (cep.length !== 8) {
+    alert('CEP inválido');
+    return;
+  }
+  
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await response.json();
+    
+    if (!data.erro) {
+      document.getElementById('logradouro').value = data.logradouro;
+      document.getElementById('bairro').value = data.bairro;
+      document.getElementById('cidade').value = data.localidade;
+      document.getElementById('uf').value = data.uf;
+    }
+  } catch (error) {
+    console.error('Erro ao buscar CEP:', error);
+  }
+});
+
+// Form submit
+document.getElementById('pessoaJuridicaForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (!this.checkValidity()) {
+    e.stopPropagation();
+    this.classList.add('was-validated');
+    return;
+  }
+  
+  alert('Empresa salva com sucesso!');
+  bootstrap.Modal.getInstance(document.getElementById('pessoaJuridicaModal')).hide();
+  this.reset();
+  this.classList.remove('was-validated');
+  carregarTabela();
+});
+
+// Limpar modal ao fechar
+document.getElementById('pessoaJuridicaModal')?.addEventListener('hidden.bs.modal', function() {
+  document.getElementById('pessoaJuridicaForm').reset();
+  document.getElementById('pessoaJuridicaForm').classList.remove('was-validated');
+  document.getElementById('modalTitle').textContent = 'Nova Pessoa Jurídica';
+  document.getElementById('empresaId').value = '';
+});
+
+// Exportar
+document.getElementById('btnExportar')?.addEventListener('click', function() {
+  alert('Exportando dados para Excel...');
+});
+
+// Buscar
+document.getElementById('btnBuscar')?.addEventListener('click', function() {
+  const razao = document.getElementById('filtroRazaoSocial').value.toLowerCase();
+  const cnpj = document.getElementById('filtroCnpj').value;
+  const email = document.getElementById('filtroEmail').value.toLowerCase();
+  const status = document.getElementById('filtroStatus').value;
+  
+  const filtrados = empresasMock.filter(emp => {
+    return (!razao || emp.razaoSocial.toLowerCase().includes(razao)) &&
+           (!cnpj || emp.cnpj.includes(cnpj)) &&
+           (!email || emp.email.toLowerCase().includes(email)) &&
+           (!status || emp.status === status);
+  });
+  
+  carregarTabela(filtrados);
+});
+
+// Limpar filtros
+document.getElementById('btnLimpar')?.addEventListener('click', function() {
+  document.getElementById('filtroRazaoSocial').value = '';
+  document.getElementById('filtroCnpj').value = '';
+  document.getElementById('filtroEmail').value = '';
+  document.getElementById('filtroStatus').value = '';
+  carregarTabela();
+});
+
+// Máscaras
+document.getElementById('cnpj')?.addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, '');
+  value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+  value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+  value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+  value = value.replace(/(\d{4})(\d)/, '$1-$2');
+  e.target.value = value;
+});
+
+document.getElementById('cep')?.addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, '');
+  value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+  e.target.value = value;
+});
+
+// Inicializar
+document.addEventListener('DOMContentLoaded', function() {
+  carregarMetricas();
+  carregarTabela();
+});
+</script>
+{% endblock %}

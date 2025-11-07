@@ -1,0 +1,30 @@
+/* Skeleton CSS para a página Dashboard (manter IDs e estrutura) */
+body.dashboard__p-dashboard--body {
+  font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial;
+}
+.pli-main-content {
+  padding-top: 24px;
+}
+.pli-card-rounded {
+  border-radius: 10px;
+}
+.dashboard__dashboard-metric-card--div .card-body {
+  min-height: 120px;
+}
+.compact-calendar {
+  height: 80px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+/* Canvas containers */
+#chartTipos,
+#chartMensal {
+  max-width: 100%;
+  height: auto;
+}
+/* CSS skeleton for dashboard */
+.app-dashboard {
+  padding: 1rem;
+}

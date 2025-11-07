@@ -1,0 +1,168 @@
+/* SIGMA-PLI - M00: Home - Hero Banner */
+/* Arquivo: style_home_hero_banner.css */
+
+/* Observações:
+   - Este ficheiro isola a grelha e tipografia do hero, incluindo animações
+     e ajustes responsivos. Mantemos regras aqui para evitar espalhar
+     comportamento de layout em outros ficheiros.
+ */
+
+.hero-content {
+  flex: 1;
+  padding: 0 var(--spacing-lg);
+  max-width: 720px;
+}
+
+.hero-content h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.2;
+}
+
+.hero-description {
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.hero-visual {
+  flex: 1;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container grid for hero - keep in hero css to avoid global duplication */
+.hero-section .container {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.hero-title {
+  font-size: var(--font-size-3xl);
+  line-height: 1.15;
+}
+
+.hero-description {
+  margin-top: var(--spacing-md);
+  color: var(--dashboard-text);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  max-width: 400px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: rgba(11, 23, 41, 0.6); /* dashboard-like */
+  border-radius: var(--border-radius-lg);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--dashboard-border);
+}
+
+.stat-number {
+  display: block;
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  color: var(--dashboard-accent);
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content h2,
+.hero-description,
+.hero-actions,
+.stat-item {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.hero-content h2 {
+  animation-delay: 0.1s;
+}
+
+.hero-description {
+  animation-delay: 0.3s;
+}
+
+.hero-actions {
+  animation-delay: 0.5s;
+}
+
+.stat-item:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.stat-item:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.stat-item:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 0 var(--spacing-md);
+    order: 2;
+  }
+
+  .hero-content h2 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .hero-description {
+    font-size: var(--font-size-base);
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    padding: var(--spacing-xl) var(--spacing-md);
+    order: 1;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .stat-item {
+    padding: var(--spacing-md);
+  }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SIGMA-PLI{% endblock %}</title>
+  <link rel="icon" href="/favicon.ico">
+  
+  <!-- Bootstrap 5.3.2 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts - Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- SIGMA global styles -->
+  <link rel="stylesheet" href="/static/css/style_global_reset_base.css">
+  <!-- PLI compatibility (module) -->
+  <link rel="stylesheet" href="/static/css/M01_auth/style_pli_compat.css">
+  
+  <style>
+    /* SIGMA Base Styles - Inline para garantir funcionamento */
+    :root {
+      --sigma-primary: #4da6ff;
+      --sigma-bg-dark: #0b1729;
+      --sigma-bg-card: rgba(22, 42, 72, 0.9);
+      --sigma-border: rgba(77, 166, 255, 0.3);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0b1729 0%, #162a48 100%);
+      color: #e0e6ed;
+      min-height: 100vh;
+    }
+    
+    .pli-main-content {
+      padding-top: 80px; /* Espaço para navbar fixa */
+      min-height: 100vh;
+    }
+    
+    /* Fix for modals */
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+  
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="has-fixed-header">
+  <!-- Navbar (incluído server-side para consistência visual SIGMA) -->
+  {% include 'pages/M01_auth/components/navbar.html' %}
+
+  <main class="pli-main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer (incluído server-side para consistência visual SIGMA) -->
+  {% include 'pages/M01_auth/components/footer.html' %}
+
+  <!-- Bootstrap 5.3.2 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Core scripts (kept minimal) -->
+  <script src="/static/js/core-scripts-loader.js"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

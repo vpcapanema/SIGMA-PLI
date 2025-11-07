@@ -1,0 +1,824 @@
+Schema: dicionario
+  Table: arquivo
+    Columns (17):
+      - id: uuid NO default=gen_random_uuid()
+      - nome_arquivo: text NO default=None
+      - tipo_mime: text YES default=None
+      - extensao: text NO default=None
+      - tamanho_bytes: bigint YES default=None
+      - checksum_md5: text YES default=None
+      - caminho_armazenamento: text YES default=None
+      - data_upload: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - data_criacao_arquivo: timestamp with time zone YES default=None
+      - data_modificacao_arquivo: timestamp with time zone YES default=None
+      - versao: text YES default=None
+      - autor_arquivo: text YES default=None
+      - codificacao: text YES default=None
+      - idioma_conteudo: text YES default=None
+      - palavras_chave: ARRAY YES default=None
+      - padrao_metadados: text YES default=None
+      - data_metadado: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: []
+    Indexes: 5
+  Table: auditoria_evento
+    Columns (26):
+      - id: uuid NO default=gen_random_uuid()
+      - timestamp_evento: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - tipo_evento: text NO default=None
+      - operacao: text NO default=None
+      - tabela_afetada: text NO default=None
+      - registro_id: uuid YES default=None
+      - schema_name: text YES default='dicionario'::text
+      - usuario_sistema: text YES default=CURRENT_USER
+      - usuario_aplicacao: text YES default=None
+      - sessao_id: text YES default=None
+      - ip_origem: inet YES default=None
+      - user_agent: text YES default=None
+      - dados_antes: jsonb YES default=None
+      - dados_depois: jsonb YES default=None
+      - campos_alterados: ARRAY YES default=None
+      - motivo_alteracao: text YES default=None
+      - observacoes: text YES default=None
+      - nivel_criticidade: text YES default='INFO'::text
+      - correlation_id: uuid YES default=None
+      - parent_event_id: uuid YES default=None
+      - duracao_ms: integer YES default=None
+      - sucesso: boolean YES default=true
+      - codigo_erro: text YES default=None
+      - mensagem_erro: text YES default=None
+      - versao_schema: text YES default='1.0'::text
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'parent_event_id', 'ref_schema': 'dicionario', 'ref_table': 'auditoria_evento', 'ref_column': 'id'}]
+    Indexes: 1
+  Table: conteudo__database
+    Columns (26):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - dominio_negocio: text YES default=None
+      - sistema_origem: text YES default=None
+      - finalidade_banco: text YES default=None
+      - entidades_principais: ARRAY YES default=None
+      - processos_suportados: ARRAY YES default=None
+      - regras_negocio_identificadas: ARRAY YES default=None
+      - fluxos_dados_principais: ARRAY YES default=None
+      - completude_dados: numeric YES default=None
+      - consistencia_geral: numeric YES default=None
+      - integridade_referencial: numeric YES default=None
+      - qualidade_denominacao: text YES default=None
+      - tabelas_mais_utilizadas: ARRAY YES default=None
+      - consultas_tipicas: ARRAY YES default=None
+      - padroes_acesso: jsonb YES default=None
+      - performance_estimada: text YES default=None
+      - tem_documentacao: boolean YES default=false
+      - dicionario_dados: jsonb YES default=None
+      - politicas_acesso: text YES default=None
+      - historico_versoes: text YES default=None
+      - apis_disponiveis: ARRAY YES default=None
+      - formatos_exportacao: ARRAY YES default=None
+      - compatibilidade_sistemas: ARRAY YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__database', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: conteudo__desenho_2d3d
+    Columns (24):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - tipo_projeto: text YES default=None
+      - disciplina_tecnica: text YES default=None
+      - fase_projeto: text YES default=None
+      - objetos_principais: ARRAY YES default=None
+      - sistemas_representados: ARRAY YES default=None
+      - detalhes_tecnicos: ARRAY YES default=None
+      - especificacoes_materiais: jsonb YES default=None
+      - normas_aplicadas: ARRAY YES default=None
+      - codigos_referencia: ARRAY YES default=None
+      - criterios_projeto: text YES default=None
+      - restricoes_construtivas: ARRAY YES default=None
+      - completude_projeto: numeric YES default=None
+      - nivel_detalhamento: text YES default=None
+      - consistencia_tecnica: boolean YES default=None
+      - tem_dimensionamento: boolean YES default=false
+      - tem_especificacoes: boolean YES default=false
+      - area_aplicacao: text YES default=None
+      - responsavel_tecnico: text YES default=None
+      - numero_art_rrt: text YES default=None
+      - aprovacoes_obtidas: ARRAY YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__desenho_2d3d', 'ref_column': 'id'}]
+    Indexes: 2
+  Table: conteudo__documentos_texto
+    Columns (21):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - resumo_automatico: text YES default=None
+      - palavras_chave_extraidas: ARRAY YES default=None
+      - entidades_nomeadas: ARRAY YES default=None
+      - tipo_documento: text YES default=None
+      - area_conhecimento: text YES default=None
+      - nivel_tecnico: text YES default=None
+      - publico_alvo: text YES default=None
+      - sentimento_geral: text YES default=None
+      - topicos_principais: ARRAY YES default=None
+      - conceitos_chave: ARRAY YES default=None
+      - tem_sumario: boolean YES default=false
+      - tem_bibliografia: boolean YES default=false
+      - tem_glossario: boolean YES default=false
+      - secoes_principais: ARRAY YES default=None
+      - completude_info: numeric YES default=None
+      - qualidade_redacao: text YES default=None
+      - nivel_atualizacao: text YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__documentos_texto', 'ref_column': 'id'}]
+    Indexes: 4
+  Table: conteudo__geodatabase
+    Columns (26):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - dominio_espacial: text YES default=None
+      - escala_trabalho: text YES default=None
+      - abrangencia_geografica: text YES default=None
+      - temas_principais: ARRAY YES default=None
+      - feature_classes_principais: ARRAY YES default=None
+      - atributos_chave: ARRAY YES default=None
+      - relacionamentos_tematicos: jsonb YES default=None
+      - finalidade_principal: text YES default=None
+      - aplicacoes_sugeridas: ARRAY YES default=None
+      - analises_espaciais_possiveis: ARRAY YES default=None
+      - produtos_cartograficos: ARRAY YES default=None
+      - completude_tematica: numeric YES default=None
+      - atualidade_dados: text YES default=None
+      - consistencia_atributos: numeric YES default=None
+      - acuracia_posicional: text YES default=None
+      - metodologia_coleta: text YES default=None
+      - fontes_dados_originais: ARRAY YES default=None
+      - processamentos_aplicados: ARRAY YES default=None
+      - validacoes_realizadas: ARRAY YES default=None
+      - padroes_seguidos: ARRAY YES default=None
+      - servicos_disponiveis: ARRAY YES default=None
+      - compatibilidade_software: ARRAY YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__geodatabase', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: conteudo__geoespacial_raster
+    Columns (17):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - intervalo_temporal: text YES default=None
+      - produtos_derivados: ARRAY YES default=None
+      - aplicacoes_sugeridas: ARRAY YES default=None
+      - bandas_espectrais: jsonb YES default=None
+      - indices_calculaveis: ARRAY YES default=None
+      - classe_tematica: text YES default=None
+      - categoria_uso: text YES default=None
+      - nivel_processamento: text YES default=None
+      - algoritmos_aplicados: ARRAY YES default=None
+      - cobertura_nuvens: numeric YES default=None
+      - qualidade_radiometrica: text YES default=None
+      - calibracao_aplicada: boolean YES default=false
+      - correcoes_atmosfericas: boolean YES default=false
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__geoespacial_raster', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: conteudo__geoespacial_vetor
+    Columns (19):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - campos_tematicos: ARRAY YES default=None
+      - periodo_referencia: text YES default=None
+      - escala_representacao: text YES default=None
+      - nivel_detalhamento: text YES default=None
+      - qualidade_posicional: text YES default=None
+      - categorias_tematicas: ARRAY YES default=None
+      - palavras_chave_espaciais: ARRAY YES default=None
+      - toponimos: ARRAY YES default=None
+      - campos_obrigatorios: ARRAY YES default=None
+      - campos_opcionais: ARRAY YES default=None
+      - tipos_dados_atributos: jsonb YES default=None
+      - dominios_atributos: jsonb YES default=None
+      - completude_espacial: numeric YES default=None
+      - consistencia_logica: boolean YES default=None
+      - acuracia_tematica: numeric YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__geoespacial_vetor', 'ref_column': 'id'}]
+    Indexes: 4
+  Table: conteudo__midia
+    Columns (27):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - descricao_conteudo: text YES default=None
+      - palavras_chave_visuais: ARRAY YES default=None
+      - objetos_identificados: ARRAY YES default=None
+      - local_captura: text YES default=None
+      - data_captura: timestamp with time zone YES default=None
+      - equipamento_captura: text YES default=None
+      - condicoes_captura: text YES default=None
+      - tem_pessoas: boolean YES default=false
+      - tem_texto_ocr: boolean YES default=false
+      - texto_extraido: text YES default=None
+      - cores_dominantes: ARRAY YES default=None
+      - composicao_visual: text YES default=None
+      - tem_fala_humana: boolean YES default=false
+      - idioma_audio: text YES default=None
+      - transcricao: text YES default=None
+      - genero_musical: text YES default=None
+      - instrumentos_identificados: ARRAY YES default=None
+      - categoria_conteudo: text YES default=None
+      - nivel_audiencia: text YES default=None
+      - finalidade_uso: text YES default=None
+      - direitos_autorais: text YES default=None
+      - clareza_visual: numeric YES default=None
+      - relevancia_tematica: numeric YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__midia', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: conteudo__nuvem_pontos
+    Columns (19):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - metodo_coleta: text YES default=None
+      - intervalo_temporal: text YES default=None
+      - finalidade_levantamento: text YES default=None
+      - tipo_terreno: text YES default=None
+      - cobertura_vegetal: text YES default=None
+      - densidade_construcoes: text YES default=None
+      - condicoes_meteorologicas: text YES default=None
+      - produtos_derivaveis: ARRAY YES default=None
+      - aplicacoes_recomendadas: ARRAY YES default=None
+      - nivel_processamento: text YES default=None
+      - acuracia_planimetrica: numeric YES default=None
+      - acuracia_altimetrica: numeric YES default=None
+      - completude: numeric YES default=None
+      - classes_pontos: jsonb YES default=None
+      - distribuicao_classes: jsonb YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__nuvem_pontos', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: conteudo__pacote
+    Columns (26):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - finalidade_pacote: text YES default=None
+      - categoria_conteudo: text YES default=None
+      - origem_dados: text YES default=None
+      - temas_abordados: ARRAY YES default=None
+      - projetos_relacionados: ARRAY YES default=None
+      - versoes_software: ARRAY YES default=None
+      - documentacao_incluida: ARRAY YES default=None
+      - estrutura_logica: text YES default=None
+      - padrao_nomenclatura: text YES default=None
+      - tem_organizacao_tematica: boolean YES default=false
+      - tem_metadados_internos: boolean YES default=false
+      - completude_conjunto: numeric YES default=None
+      - consistencia_interna: numeric YES default=None
+      - redundancia_arquivos: boolean YES default=false
+      - arquivos_corrompidos: integer YES default=0
+      - instrucoes_uso: text YES default=None
+      - dependencias_externas: ARRAY YES default=None
+      - sistemas_operacionais: ARRAY YES default=None
+      - softwares_necessarios: ARRAY YES default=None
+      - relevancia_conteudo: numeric YES default=None
+      - atualidade_geral: text YES default=None
+      - potencial_reutilizacao: text YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__pacote', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: conteudo__tabular
+    Columns (23):
+      - id: uuid NO default=gen_random_uuid()
+      - estrutura_id: uuid NO default=None
+      - assunto_principal: text YES default=None
+      - dominio_aplicacao: text YES default=None
+      - finalidade_coleta: text YES default=None
+      - periodo_referencia: text YES default=None
+      - variaveis_principais: ARRAY YES default=None
+      - metricas_disponiveis: ARRAY YES default=None
+      - dimensoes_analiticas: ARRAY YES default=None
+      - granularidade_temporal: text YES default=None
+      - granularidade_espacial: text YES default=None
+      - completude_semantica: numeric YES default=None
+      - consistencia_dados: numeric YES default=None
+      - atualidade_informacao: text YES default=None
+      - confiabilidade_fonte: numeric YES default=None
+      - analises_possiveis: ARRAY YES default=None
+      - visualizacoes_sugeridas: ARRAY YES default=None
+      - cruzamentos_recomendados: ARRAY YES default=None
+      - metodologia_coleta: text YES default=None
+      - fonte_original: text YES default=None
+      - limitacoes_conhecidas: ARRAY YES default=None
+      - observacoes_importantes: text YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+    PK: ['id']
+    FKs: [{'column': 'estrutura_id', 'ref_schema': 'dicionario', 'ref_table': 'estrutura__tabular', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: estrutura__database
+    Columns (30):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - tipo_database: text YES default=None
+      - sgbd: text YES default=None
+      - versao_sgbd: text YES default=None
+      - formato_arquivo: text YES default=None
+      - n_tabelas: integer YES default=None
+      - n_views: integer YES default=None
+      - n_procedures: integer YES default=None
+      - n_functions: integer YES default=None
+      - n_triggers: integer YES default=None
+      - n_indices: integer YES default=None
+      - tamanho_banco: bigint YES default=None
+      - n_registros_total: bigint YES default=None
+      - n_campos_total: integer YES default=None
+      - densidade_relacionamentos: numeric YES default=None
+      - suporte_transacional: boolean YES default=false
+      - suporte_gis: boolean YES default=false
+      - suporte_fulltext: boolean YES default=false
+      - tem_criptografia: boolean YES default=false
+      - tem_backup: boolean YES default=false
+      - tem_constraints: boolean YES default=false
+      - tem_foreign_keys: boolean YES default=false
+      - nivel_normalizacao: text YES default=None
+      - consistencia_referencial: boolean YES default=None
+      - tabelas_principais: ARRAY YES default=None
+      - relacionamentos_mapeados: jsonb YES default=None
+      - esquemas_identificados: ARRAY YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: estrutura__desenho_2d3d
+    Columns (26):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - tipo_desenho: text YES default=None
+      - formato_arquivo: text YES default=None
+      - versao_formato: text YES default=None
+      - software_origem: text YES default=None
+      - unidade_medida: text YES default=None
+      - sistema_coordenadas: text YES default=None
+      - bbox_2d: USER-DEFINED YES default=None
+      - dimensoes_modelo: jsonb YES default=None
+      - n_entidades: bigint YES default=None
+      - n_layers: integer YES default=None
+      - n_blocos: integer YES default=None
+      - n_materiais: integer YES default=None
+      - n_texturas: integer YES default=None
+      - complexidade_geometrica: text YES default=None
+      - tem_elementos_3d: boolean YES default=false
+      - tem_animacao: boolean YES default=false
+      - tem_iluminacao: boolean YES default=false
+      - tem_render: boolean YES default=false
+      - tamanho_arquivo: bigint YES default=None
+      - nivel_detalhamento: text YES default=None
+      - escala_representacao: text YES default=None
+      - precisao_geometrica: numeric YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 4
+  Table: estrutura__documentos_texto
+    Columns (24):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - formato_documento: text YES default=None
+      - versao_formato: text YES default=None
+      - tamanho_arquivo: bigint YES default=None
+      - n_paginas: integer YES default=None
+      - n_caracteres: bigint YES default=None
+      - n_palavras: bigint YES default=None
+      - n_paragrafos: integer YES default=None
+      - codificacao_texto: text YES default=None
+      - idioma_detectado: text YES default=None
+      - tem_metadados: boolean YES default=false
+      - tem_ocr: boolean YES default=false
+      - tem_imagens_incorporadas: boolean YES default=false
+      - protegido_senha: boolean YES default=false
+      - tem_assinatura_digital: boolean YES default=false
+      - nivel_compressao: text YES default=None
+      - densidade_texto: numeric YES default=None
+      - complexidade_leitura: numeric YES default=None
+      - tem_tabelas: boolean YES default=false
+      - tem_graficos: boolean YES default=false
+      - tem_hyperlinks: boolean YES default=false
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 4
+  Table: estrutura__geodatabase
+    Columns (29):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - tipo_geodatabase: text YES default=None
+      - formato_arquivo: text YES default=None
+      - versao_formato: text YES default=None
+      - software_origem: text YES default=None
+      - sistema_coordenadas_principal: text YES default=None
+      - srid_principal: integer YES default=None
+      - n_feature_classes: integer YES default=None
+      - n_tabelas: integer YES default=None
+      - n_rasters: integer YES default=None
+      - n_relacionamentos: integer YES default=None
+      - bbox_geral: USER-DEFINED YES default=None
+      - sistemas_coordenadas: jsonb YES default=None
+      - tipos_geometria: ARRAY YES default=None
+      - topologia_definida: boolean YES default=false
+      - tamanho_total: bigint YES default=None
+      - n_features_total: bigint YES default=None
+      - densidade_espacial: numeric YES default=None
+      - complexidade_topologica: text YES default=None
+      - extensoes_espaciais: ARRAY YES default=None
+      - domains_atributos: jsonb YES default=None
+      - subtypes_definidos: jsonb YES default=None
+      - regras_validacao: integer YES default=None
+      - validacao_geometrica: boolean YES default=None
+      - consistencia_topologica: boolean YES default=None
+      - integridade_espacial: numeric YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 4
+  Table: estrutura__geoespacial_raster
+    Columns (26):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - srid: integer YES default=None
+      - n_bandas: integer YES default=None
+      - largura_pixels: integer YES default=None
+      - altura_pixels: integer YES default=None
+      - pixel_size_x: numeric YES default=None
+      - pixel_size_y: numeric YES default=None
+      - no_data_value: numeric YES default=None
+      - bbox: USER-DEFINED YES default=None
+      - sistema_coordenadas: text YES default=None
+      - datum: text YES default=None
+      - projecao: text YES default=None
+      - estatisticas: jsonb YES default=None
+      - histogramas: jsonb YES default=None
+      - compressao: text YES default=None
+      - formato_pixel: text YES default=None
+      - ordem_bytes: text YES default=None
+      - interleaving: text YES default=None
+      - sensor: text YES default=None
+      - plataforma: text YES default=None
+      - data_aquisicao: timestamp with time zone YES default=None
+      - angulo_solar: numeric YES default=None
+      - angulo_visualizacao: numeric YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 6
+  Table: estrutura__geoespacial_vetor
+    Columns (20):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - srid: integer YES default=None
+      - geom_tipo: text YES default=None
+      - n_features: bigint YES default=None
+      - bbox: USER-DEFINED YES default=None
+      - sistema_coordenadas: text YES default=None
+      - precisao_horizontal: numeric YES default=None
+      - precisao_vertical: numeric YES default=None
+      - datum: text YES default=None
+      - projecao: text YES default=None
+      - tem_z_dimension: boolean YES default=false
+      - tem_m_dimension: boolean YES default=false
+      - geometria_valida: boolean YES default=None
+      - self_intersections: boolean YES default=false
+      - formato_original: text YES default=None
+      - codificacao_caracteres: text YES default=None
+      - separador_decimal: character YES default='.'::bpchar
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 5
+  Table: estrutura__midia
+    Columns (27):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - tipo_midia: text YES default=None
+      - formato_arquivo: text YES default=None
+      - codec_video: text YES default=None
+      - codec_audio: text YES default=None
+      - tamanho_arquivo: bigint YES default=None
+      - duracao_segundos: numeric YES default=None
+      - bitrate: bigint YES default=None
+      - taxa_amostragem: integer YES default=None
+      - largura_pixels: integer YES default=None
+      - altura_pixels: integer YES default=None
+      - profundidade_cor: integer YES default=None
+      - taxa_quadros: numeric YES default=None
+      - aspecto_ratio: text YES default=None
+      - n_canais: integer YES default=None
+      - frequencia_corte_baixa: integer YES default=None
+      - frequencia_corte_alta: integer YES default=None
+      - tem_metadados_exif: boolean YES default=false
+      - perfil_cor: text YES default=None
+      - espaco_cor: text YES default=None
+      - compressao_aplicada: text YES default=None
+      - qualidade_estimada: numeric YES default=None
+      - tem_ruido: boolean YES default=false
+      - tem_marca_dagua: boolean YES default=false
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 4
+  Table: estrutura__nuvem_pontos
+    Columns (26):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - sistema_ref: text YES default=None
+      - srid: integer YES default=None
+      - densidade_pts: numeric YES default=None
+      - n_pontos: bigint YES default=None
+      - has_rgb: boolean YES default=false
+      - has_intensity: boolean YES default=false
+      - has_classification: boolean YES default=false
+      - has_return_info: boolean YES default=false
+      - has_gps_time: boolean YES default=false
+      - bbox: USER-DEFINED YES default=None
+      - altura_minima: numeric YES default=None
+      - altura_maxima: numeric YES default=None
+      - datum: text YES default=None
+      - metodo_aquisicao: text YES default=None
+      - equipamento: text YES default=None
+      - configuracao_voo: jsonb YES default=None
+      - filtros_aplicados: ARRAY YES default=None
+      - classificacoes_disponiveis: ARRAY YES default=None
+      - precisao_xyz: numeric YES default=None
+      - formato_arquivo: text YES default=None
+      - compressao_laz: boolean YES default=false
+      - versao_formato: text YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 5
+  Table: estrutura__pacote
+    Columns (29):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - formato_compressao: text YES default=None
+      - algoritmo_compressao: text YES default=None
+      - nivel_compressao: integer YES default=None
+      - tamanho_comprimido: bigint YES default=None
+      - tamanho_descomprimido: bigint YES default=None
+      - taxa_compressao: numeric YES default=None
+      - n_arquivos_total: integer YES default=None
+      - n_diretorios: integer YES default=None
+      - profundidade_maxima: integer YES default=None
+      - tipos_arquivo_contidos: jsonb YES default=None
+      - estrutura_diretorios: jsonb YES default=None
+      - arquivo_maior: text YES default=None
+      - tamanho_arquivo_maior: bigint YES default=None
+      - perfis_identificados: ARRAY YES default=None
+      - tem_executaveis: boolean YES default=false
+      - tem_scripts: boolean YES default=false
+      - tem_senha: boolean YES default=false
+      - tem_assinatura: boolean YES default=false
+      - checksum_md5: text YES default=None
+      - checksum_sha256: text YES default=None
+      - virus_scan_resultado: text YES default=None
+      - data_criacao: timestamp with time zone YES default=None
+      - software_compressao: text YES default=None
+      - comentario_pacote: text YES default=None
+      - tem_arquivo_readme: boolean YES default=false
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: estrutura__tabular
+    Columns (25):
+      - id: uuid NO default=gen_random_uuid()
+      - produtor_id: uuid NO default=None
+      - formato_arquivo: text YES default=None
+      - separador_campos: text YES default=None
+      - delimitador_texto: character YES default=None
+      - codificacao: text YES default=None
+      - tem_cabecalho: boolean YES default=true
+      - n_linhas: bigint YES default=None
+      - n_colunas: integer YES default=None
+      - n_celulas_vazias: bigint YES default=None
+      - n_celulas_preenchidas: bigint YES default=None
+      - percentual_preenchimento: numeric YES default=None
+      - tipos_colunas: jsonb YES default=None
+      - colunas_nomes: ARRAY YES default=None
+      - colunas_obrigatorias: ARRAY YES default=None
+      - colunas_chave: ARRAY YES default=None
+      - tem_valores_duplicados: boolean YES default=false
+      - tem_inconsistencias: boolean YES default=false
+      - tem_outliers: boolean YES default=false
+      - formato_data_detectado: text YES default=None
+      - formato_numerico_detectado: text YES default=None
+      - possivel_chave_estrangeira: jsonb YES default=None
+      - relacionamentos_detectados: ARRAY YES default=None
+      - atualizado_em: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'produtor_id', 'ref_schema': 'dicionario', 'ref_table': 'produtor', 'ref_column': 'id'}]
+    Indexes: 3
+  Table: extensao
+    Columns (7):
+      - id: uuid NO default=gen_random_uuid()
+      - codigo: text NO default=None
+      - perfil_id: uuid YES default=None
+      - nome: text YES default=None
+      - ativo: boolean YES default=true
+      - descricao: text YES default=None
+      - mime_types: ARRAY YES default=None
+    PK: ['id']
+    FKs: [{'column': 'perfil_id', 'ref_schema': 'dicionario', 'ref_table': 'perfil', 'ref_column': 'id'}]
+    Indexes: 5
+  Table: perfil
+    Columns (8):
+      - id: uuid NO default=gen_random_uuid()
+      - codigo: text NO default=None
+      - nome: text NO default=None
+      - descricao: text YES default=None
+      - ativo: boolean YES default=true
+      - ordem_exibicao: integer YES default=0
+      - icone: text YES default=None
+      - cor_hex: character varying YES default=None
+    PK: ['id']
+    FKs: []
+    Indexes: 5
+  Table: produtor
+    Columns (13):
+      - id: uuid NO default=gen_random_uuid()
+      - arquivo_id: uuid NO default=None
+      - orgao_responsavel: text YES default=None
+      - departamento: text YES default=None
+      - nome_contato: text YES default=None
+      - email_contato: text YES default=None
+      - telefone_contato: text YES default=None
+      - direitos_uso: text YES default=None
+      - licenca: text YES default=None
+      - declaracao_origem: text YES default=None
+      - frequencia_atualizacao: text YES default=None
+      - data_recebimento: date YES default=None
+      - link_fonte: text YES default=None
+    PK: ['id']
+    FKs: [{'column': 'arquivo_id', 'ref_schema': 'dicionario', 'ref_table': 'arquivo', 'ref_column': 'id'}]
+    Indexes: 4
+  Table: status_publicacao_geoserver
+    Columns (37):
+      - id: uuid NO default=gen_random_uuid()
+      - arquivo_id: uuid NO default=None
+      - versao_id: uuid YES default=None
+      - status_publicacao: text YES default='NAO_PUBLICADO'::text
+      - publicado_em: timestamp with time zone YES default=None
+      - publicado_por: text YES default=None
+      - despublicado_em: timestamp with time zone YES default=None
+      - despublicado_por: text YES default=None
+      - workspace_geoserver: text YES default=None
+      - datastore_geoserver: text YES default=None
+      - layer_name: text YES default=None
+      - style_name: text YES default=None
+      - service_url: text YES default=None
+      - servicos_habilitados: ARRAY YES default='{}'::text[]
+      - nivel_acesso: text YES default='PUBLICO'::text
+      - grupos_acesso: ARRAY YES default=None
+      - titulo_servico: text YES default=None
+      - resumo_servico: text YES default=None
+      - palavras_chave_servico: ARRAY YES default=None
+      - contato_responsavel: text YES default=None
+      - cache_habilitado: boolean YES default=false
+      - tempo_cache_segundos: integer YES default=None
+      - acessos_ultimos_30_dias: integer YES default=0
+      - ultimo_acesso: timestamp with time zone YES default=None
+      - srs_nativo: text YES default=None
+      - srs_declarado: text YES default=None
+      - bbox_nativo: USER-DEFINED YES default=None
+      - bbox_lat_lon: USER-DEFINED YES default=None
+      - validacao_geometrica: boolean YES default=None
+      - validacao_metadados: boolean YES default=None
+      - validacao_servicos: boolean YES default=None
+      - erros_validacao: ARRAY YES default=None
+      - sincronizado_com_fonte: boolean YES default=true
+      - ultima_sincronizacao: timestamp with time zone YES default=None
+      - hash_fonte: text YES default=None
+      - configuracao_avancada: jsonb YES default='{}'::jsonb
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'arquivo_id', 'ref_schema': 'dicionario', 'ref_table': 'arquivo', 'ref_column': 'id'}, {'column': 'versao_id', 'ref_schema': 'dicionario', 'ref_table': 'versao_arquivo', 'ref_column': 'id'}]
+    Indexes: 2
+  Table: versao_arquivo
+    Columns (34):
+      - id: uuid NO default=gen_random_uuid()
+      - arquivo_id: uuid NO default=None
+      - numero_versao: integer NO default=None
+      - versao_semantica: text YES default=None
+      - eh_versao_atual: boolean YES default=false
+      - eh_versao_publicada: boolean YES default=false
+      - data_criacao: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - criado_por: text NO default=None
+      - motivo_versao: text YES default=None
+      - changelog: text YES default=None
+      - tags_versao: ARRAY YES default=None
+      - status_versao: text YES default='DRAFT'::text
+      - aprovado_por: text YES default=None
+      - data_aprovacao: timestamp with time zone YES default=None
+      - data_publicacao: timestamp with time zone YES default=None
+      - data_deprecacao: timestamp with time zone YES default=None
+      - dados_estrutura: jsonb YES default=None
+      - dados_conteudo: jsonb YES default=None
+      - produtor_snapshot: jsonb YES default=None
+      - extensoes_snapshot: jsonb YES default=None
+      - diferenca_versao_anterior: jsonb YES default=None
+      - campos_adicionados: ARRAY YES default=None
+      - campos_removidos: ARRAY YES default=None
+      - campos_modificados: ARRAY YES default=None
+      - tamanho_dados_bytes: integer YES default=None
+      - complexidade_alteracao: text YES default=None
+      - impacto_estimado: text YES default=None
+      - downloads_count: integer YES default=0
+      - views_count: integer YES default=0
+      - ultima_visualizacao: timestamp with time zone YES default=None
+      - checksum_md5: text YES default=None
+      - checksum_sha256: text YES default=None
+      - compressao_aplicada: boolean YES default=false
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'arquivo_id', 'ref_schema': 'dicionario', 'ref_table': 'arquivo', 'ref_column': 'id'}]
+    Indexes: 2
+  Table: workflow_aprovacao
+    Columns (29):
+      - id: uuid NO default=gen_random_uuid()
+      - arquivo_id: uuid NO default=None
+      - versao_id: uuid YES default=None
+      - tipo_workflow: text NO default=None
+      - status_workflow: text YES default='INICIADO'::text
+      - etapa_atual: text NO default=None
+      - etapas_concluidas: ARRAY YES default='{}'::text[]
+      - proximas_etapas: ARRAY YES default='{}'::text[]
+      - iniciado_por: text NO default=None
+      - data_inicio: timestamp with time zone YES default=CURRENT_TIMESTAMP
+      - aprovadores_necessarios: ARRAY YES default=None
+      - aprovadores_atuais: ARRAY YES default='{}'::text[]
+      - revisores_atribuidos: ARRAY YES default=None
+      - aprovacoes_obtidas: integer YES default=0
+      - aprovacoes_necessarias: integer NO default=None
+      - rejeitado_por: ARRAY YES default=None
+      - data_conclusao: timestamp with time zone YES default=None
+      - descricao_solicitacao: text YES default=None
+      - justificativa: text YES default=None
+      - prioridade: text YES default='NORMAL'::text
+      - prazo_limite: timestamp with time zone YES default=None
+      - historico_acoes: jsonb YES default='[]'::jsonb
+      - comentarios_aprovadores: jsonb YES default='{}'::jsonb
+      - notificacoes_enviadas: ARRAY YES default='{}'::text[]
+      - lembretes_enviados: integer YES default=0
+      - resultado_final: text YES default=None
+      - motivo_resultado: text YES default=None
+      - configuracao_workflow: jsonb YES default=None
+      - extras: jsonb YES default='{}'::jsonb
+    PK: ['id']
+    FKs: [{'column': 'arquivo_id', 'ref_schema': 'dicionario', 'ref_table': 'arquivo', 'ref_column': 'id'}, {'column': 'versao_id', 'ref_schema': 'dicionario', 'ref_table': 'versao_arquivo', 'ref_column': 'id'}]
+    Indexes: 1
+
+Schema: public
+  Table: spatial_ref_sys
+    Columns (5):
+      - srid: integer NO default=None
+      - auth_name: character varying YES default=None
+      - auth_srid: integer YES default=None
+      - srtext: character varying YES default=None
+      - proj4text: character varying YES default=None
+    PK: ['srid']
+    FKs: []
+    Indexes: 1
+  Table: teste_sigma
+    Columns (4):
+      - id: integer NO default=nextval('teste_sigma_id_seq'::regclass)
+      - nome: character varying YES default=None
+      - coordenada: USER-DEFINED YES default=None
+      - created_at: timestamp without time zone YES default=now()
+    PK: ['id']
+    FKs: []
+    Indexes: 1
+

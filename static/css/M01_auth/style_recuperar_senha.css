@@ -1,0 +1,67 @@
+/* CSS minimal para a página recuperar-senha (skeleton) */
+:root {
+  --pli-primary: #0d6efd;
+}
+.recuperar-senha__recovery-container--div {
+  padding: 40px 0;
+}
+.recuperar-senha__recovery-card--div {
+  border-radius: 8px;
+  overflow: visible;
+}
+.recuperar-senha__step-indicator--div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+.recuperar-senha__step--div {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9ecef;
+}
+.recuperar-senha__active--div {
+  background: var(--pli-primary);
+  color: #fff;
+}
+.card-step .card-body {
+  min-height: 320px;
+}
+.input-group-password {
+  position: relative;
+}
+.recuperar-senha__toggle-password--span {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+  color: #6c757d;
+}
+.recuperar-senha__password-checklist--ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 12px 0;
+}
+.recuperar-senha__password-checklist--ul li {
+  margin: 6px 0;
+  font-size: 0.9rem;
+}
+.recuperar-senha__hidden--i {
+  display: none;
+}
+
+/* Small responsive tweak */
+@media (max-width: 768px) {
+  .card-step .card-body {
+    min-height: unset;
+  }
+}
+/* CSS skeleton for recuperar senha */
+.auth-recuperar {
+  max-width: 480px;
+  margin: 2rem auto;
+}

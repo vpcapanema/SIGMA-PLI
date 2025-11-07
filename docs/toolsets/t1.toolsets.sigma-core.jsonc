@@ -1,0 +1,16 @@
+// Toolset SIGMA-Core (uso diário)
+{
+  "toolsets": [
+    {
+      "id": "sigma-core",
+      "name": "SIGMA-Core",
+      "description": "Uso diário: FS, Shell, Git, HTTP, JSON, CSV, DBs, Docker",
+      "tools": [
+        "filesystem", "path-utils", "powershell", "git",
+        "http-client", "curl", "json", "yaml", "csv", "xlsx", "regex",
+        "postgresql", "neo4j",
+        "docker", "docker-compose", "zip", "tar", "hash"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+/* Estilos para Cadastro de Usuário */
+.cadastro-usuario__p-cadastro-usuario--body {
+  font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial;
+}
+
+.pli-form-page .form-section {
+  margin-bottom: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.form-section-header {
+  font-weight: 600;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  border-radius: 8px 8px 0 0;
+}
+
+.form-section-body {
+  padding: 16px;
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Indicador de força da senha */
+.password-strength {
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.password-strength-bar {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 4px;
+}
+
+.password-strength-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Campos obrigatórios */
+.cadastro-usuario__required-field--label::after {
+  content: " *";
+  color: #dc3545;
+}
+
+/* Input group buttons */
+.input-group .btn-outline-secondary {
+  border-color: #ced4da;
+}
+
+.input-group .btn-outline-secondary:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+/* Toast container */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}

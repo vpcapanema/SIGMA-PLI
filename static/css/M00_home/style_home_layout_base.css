@@ -1,0 +1,102 @@
+/* SIGMA-PLI - M00: Home - Layout Base */
+/* Arquivo: style_home_layout_base.css
+   NOTE: estilos de navegação (desktop + mobile) foram centralizados em
+   `style_home_navigation.css`. Manter apenas estilos de layout gerais aqui.
+*/
+
+/* Seções */
+section {
+  padding: var(--spacing-2xl) 0;
+}
+
+.hero-section {
+  /* Permitimos que o background global do dashboard seja visível.
+     Tornamos a seção transparente para expor o gradiente radial/linear do body. */
+  background: transparent;
+  color: white;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+}
+
+.features-section {
+  /* Remover cor branca para deixar o background global aparecer */
+  background-color: transparent;
+}
+
+.status-section {
+  background-color: transparent;
+}
+
+.sigma-footer {
+  background-color: var(--sigma-gray-800);
+  color: white;
+  padding: var(--spacing-2xl) 0 var(--spacing-lg);
+}
+
+/* Footer */
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.footer-section h5 {
+  color: var(--sigma-gray-200);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.footer-section p,
+.footer-section li {
+  color: var(--sigma-gray-400);
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section a {
+  color: var(--sigma-gray-400);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--sigma-gray-700);
+  padding-top: var(--spacing-lg);
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: var(--sigma-gray-500);
+  font-size: var(--font-size-sm);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  /* Mobile-specific layout for the navigation is centralized in
+     `style_home_navigation.css`. Keep only a neutral fallback here. */
+  .nav-menu {
+    margin-top: var(--spacing-md);
+  }
+
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  /* Em telas pequenas não aplicamos padding-top global. */
+}

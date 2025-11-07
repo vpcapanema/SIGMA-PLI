@@ -1,0 +1,34 @@
+/* SIGMA visual base — solicitacoes-cadastro (M01_auth)
+   Minimal visual rules to fit SIGMA pattern; do not change DOM or IDs.
+*/
+:root {
+  --sigma-primary: #0d6efd;
+  --sigma-bg: #f8f9fa;
+  --sigma-text: #1f2937;
+  --sigma-card-radius: 8px;
+  --sigma-font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+body.has-fixed-header {
+  font-family: var(--sigma-font);
+  color: var(--sigma-text);
+  background: var(--sigma-bg);
+}
+.pli-card {
+  border-radius: var(--sigma-card-radius);
+}
+
+.container.solicitacoes-cadastro {
+  padding: 1rem 0;
+}
+
+#solicitacoesTable {
+  min-width: 720px;
+}
+
+.solicitacoes-cadastro .card-header {
+  background: transparent;
+}
+
+/* End solicitacoes-cadastro styles */

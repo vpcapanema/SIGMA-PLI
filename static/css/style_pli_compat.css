@@ -1,0 +1,211 @@
+/* Compatibilização de classes do PLI-CADASTRO para o SIGMA
+   Objetivo: definir no padrão visual do SIGMA (variáveis CSS) as classes usadas
+   pelo base.html/base.ejs do PLI quando não existem no CSS global.
+   Não sobrescreve resets; usa as variáveis definidas em style_global_reset_base.css
+*/
+
+:root {
+  --pli-header-gradient: linear-gradient(
+    135deg,
+    #0e3600 0%,
+    #449244 33.36%,
+    #bfe5b2 50%,
+    #244b72 66.68%,
+    #0f203e 83.34%,
+    #171e31 100%
+  );
+}
+
+/* Layout helpers */
+.l-main {
+  flex: 1 0 auto;
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+}
+
+.l-header {
+  position: relative;
+  z-index: 1030;
+  background: var(--pli-header-gradient);
+  color: #ffffff;
+  min-height: var(--header-height);
+  padding: 8px 0;
+  box-shadow: var(--shadow-md);
+}
+
+.l-footer {
+  margin-top: auto;
+  padding: 1rem 0;
+  background: var(--pli-header-gradient);
+  color: #f1f3f5;
+}
+
+/* Navbar components (PLI naming) */
+.pli-navbar {
+  font-family: var(--font-family);
+}
+
+.pli-navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  width: 100%;
+}
+
+.pli-navbar__brand {
+  color: #fff;
+  font-weight: 600;
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  text-decoration: none;
+}
+
+.pli-navbar__toggle {
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 6px 10px;
+  border-radius: var(--border-radius-sm);
+  color: #fff;
+}
+
+.pli-navbar__nav {
+  display: flex;
+  list-style: none;
+  gap: 16px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.pli-navbar__link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.12s ease, color 0.12s ease,
+    transform 0.08s ease;
+}
+
+.pli-navbar__link--active {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pli-navbar__dropdown {
+  position: relative;
+}
+
+.pli-navbar__dropdown-menu,
+.dropdown-menu {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+  min-width: 200px;
+  padding: 6px 0;
+}
+
+.pli-navbar__dropdown-link,
+.dropdown-item {
+  padding: 8px 14px;
+  color: var(--sigma-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.pli-navbar__dropdown-link:hover,
+.dropdown-item:hover {
+  background: #bfe5b2;
+  color: var(--sigma-primary);
+}
+
+.pli-navbar__profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pli-navbar__profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+
+.pli-navbar__profile-name {
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Footer specific */
+.pli-footer {
+  color: #f1f3f5;
+  padding: 10px 0;
+}
+
+.pli-footer__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  justify-content: center;
+}
+
+.pli-footer__logo {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.pli-footer__links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pli-footer__link {
+  color: #bfe5b2;
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.pli-footer__link:hover {
+  color: #e3eefd;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pli-footer__status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--sigma-success);
+  margin-right: 6px;
+}
+
+.pli-footer__status-indicator--warning {
+  background: var(--sigma-warning);
+}
+.pli-footer__status-indicator--error {
+  background: var(--sigma-error);
+}
+
+/* Small helpers used in base templates */
+.has-fixed-header {
+  padding-top: calc(var(--header-height) + 8px);
+}
+
+@media (max-width: 768px) {
+  .pli-navbar__profile-name {
+    display: none;
+  }
+}

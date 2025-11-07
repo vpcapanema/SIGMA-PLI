@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SIGMA-PLI - Email Verificado com Sucesso">
+  <meta name="author" content="VPC-GEOSER">
+  <title>Email Verificado | SIGMA-PLI</title>
+  
+  <!-- Bootstrap 5.3.2 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts - Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0b1729 0%, #162a48 100%);
+      color: #e0e6ed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .success-container {
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .success-icon {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, #28a745, #1e7e34);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px rgba(40, 167, 69, 0.4);
+      animation: checkPop 0.8s ease-out 0.3s;
+      animation-fill-mode: backwards;
+    }
+    
+    @keyframes checkPop {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    .success-icon i {
+      font-size: 4rem;
+      color: white;
+    }
+    
+    .success-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    
+    .success-subtitle {
+      font-size: 1.25rem;
+      color: #28a745;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .success-message {
+      background: rgba(22, 42, 72, 0.6);
+      border: 1px solid rgba(40, 167, 69, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    
+    .success-message h6 {
+      color: #28a745;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+    
+    .success-message p {
+      color: #b8c5d6;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    .success-message p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .success-message strong {
+      color: #ffffff;
+    }
+    
+    .next-steps {
+      background: rgba(77, 166, 255, 0.1);
+      border: 1px solid rgba(77, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    
+    .next-steps h6 {
+      color: #4da6ff;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .next-steps ol {
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+    
+    .next-steps li {
+      color: #b8c5d6;
+      padding: 0.5rem 0;
+      line-height: 1.5;
+    }
+    
+    .countdown {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #8b98a5;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .countdown i {
+      color: #4da6ff;
+    }
+    
+    .countdown-timer {
+      font-weight: 600;
+      color: #4da6ff;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #28a745, #1e7e34);
+      border: none;
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+      color: white;
+    }
+    
+    .btn-secondary {
+      background: rgba(77, 166, 255, 0.1);
+      border: 1px solid rgba(77, 166, 255, 0.3);
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      color: #4da6ff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(77, 166, 255, 0.2);
+      border-color: rgba(77, 166, 255, 0.5);
+      transform: translateY(-2px);
+      color: #4da6ff;
+    }
+    
+    @media (max-width: 768px) {
+      .success-title {
+        font-size: 1.75rem;
+      }
+      
+      .success-icon {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .success-icon i {
+        font-size: 3rem;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="success-container">
+    <!-- Ícone de Sucesso -->
+    <div class="success-icon">
+      <i class="fas fa-check"></i>
+    </div>
+    
+    <!-- Título -->
+    <h1 class="success-title">Email Verificado!</h1>
+    
+    <!-- Subtítulo -->
+    <p class="success-subtitle">
+      <i class="fas fa-badge-check"></i>
+      Verificação Concluída com Sucesso
+    </p>
+    
+    <!-- Mensagem de Sucesso -->
+    <div class="success-message">
+      <h6>
+        <i class="fas fa-check-circle me-2"></i>
+        Parabéns!
+      </h6>
+      <p>
+        Seu endereço de <strong>e-mail foi verificado com sucesso</strong>. Sua conta está agora ativada e pronta para uso no <strong>SIGMA-PLI</strong>.
+      </p>
+      <p>
+        Você já pode fazer login no sistema e começar a utilizar todos os recursos disponíveis para o seu perfil de acesso.
+      </p>
+    </div>
+    
+    <!-- Próximos Passos -->
+    <div class="next-steps">
+      <h6>
+        <i class="fas fa-list-check"></i>
+        Próximos Passos:
+      </h6>
+      <ol>
+        <li>Clique no botão "Fazer Login" abaixo</li>
+        <li>Digite suas credenciais de acesso</li>
+        <li>Complete seu perfil com informações adicionais (se necessário)</li>
+        <li>Explore as funcionalidades do sistema</li>
+      </ol>
+    </div>
+    
+    <!-- Contagem Regressiva -->
+    <div class="countdown">
+      <i class="fas fa-clock"></i>
+      Você será redirecionado automaticamente em
+      <span class="countdown-timer" id="countdown">10</span>
+      segundos...
+    </div>
+    
+    <!-- Ações -->
+    <div class="action-buttons">
+      <a href="/auth/login" class="btn-primary" id="btnLogin">
+        <i class="fas fa-sign-in-alt"></i>
+        Fazer Login Agora
+      </a>
+      <a href="/" class="btn-secondary">
+        <i class="fas fa-home"></i>
+        Voltar ao Início
+      </a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Contagem regressiva e redirecionamento automático
+    let countdown = 10;
+    const countdownElement = document.getElementById('countdown');
+    
+    const interval = setInterval(() => {
+      countdown--;
+      countdownElement.textContent = countdown;
+      
+      if (countdown <= 0) {
+        clearInterval(interval);
+        window.location.href = '/auth/login';
+      }
+    }, 1000);
+    
+    // Cancelar countdown se clicar no botão
+    document.getElementById('btnLogin').addEventListener('click', function() {
+      clearInterval(interval);
+    });
+  </script>
+
+</body>
+</html>

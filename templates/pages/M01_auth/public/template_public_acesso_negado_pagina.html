@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SIGMA-PLI - Acesso Negado">
+  <meta name="author" content="VPC-GEOSER">
+  <title>Acesso Negado | SIGMA-PLI</title>
+  
+  <!-- Bootstrap 5.3.2 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts - Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0b1729 0%, #162a48 100%);
+      color: #e0e6ed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .error-container {
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+    
+    .error-icon {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, #dc3545, #c82333);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px rgba(220, 53, 69, 0.4);
+      animation: pulse 2s infinite;
+    }
+    
+    .error-icon i {
+      font-size: 4rem;
+      color: white;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 20px 60px rgba(220, 53, 69, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 25px 70px rgba(220, 53, 69, 0.6);
+      }
+    }
+    
+    .error-code {
+      font-size: 8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #dc3545, #ff6b7a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    
+    .error-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    
+    .error-message {
+      font-size: 1.125rem;
+      color: #8b98a5;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    .error-details {
+      background: rgba(22, 42, 72, 0.6);
+      border: 1px solid rgba(220, 53, 69, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    
+    .error-details h6 {
+      color: #dc3545;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .error-details ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    
+    .error-details li {
+      padding: 0.5rem 0;
+      color: #b8c5d6;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .error-details li i {
+      color: #dc3545;
+      font-size: 0.875rem;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #4da6ff, #0066cc);
+      border: none;
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(77, 166, 255, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(77, 166, 255, 0.4);
+      color: white;
+    }
+    
+    .btn-secondary {
+      background: rgba(77, 166, 255, 0.1);
+      border: 1px solid rgba(77, 166, 255, 0.3);
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      color: #4da6ff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(77, 166, 255, 0.2);
+      border-color: rgba(77, 166, 255, 0.5);
+      transform: translateY(-2px);
+      color: #4da6ff;
+    }
+    
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 5rem;
+      }
+      
+      .error-title {
+        font-size: 1.75rem;
+      }
+      
+      .error-icon {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .error-icon i {
+        font-size: 3rem;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-container">
+    <!-- Ícone de Erro -->
+    <div class="error-icon">
+      <i class="fas fa-ban"></i>
+    </div>
+    
+    <!-- Código do Erro -->
+    <div class="error-code">403</div>
+    
+    <!-- Título -->
+    <h1 class="error-title">Acesso Negado</h1>
+    
+    <!-- Mensagem -->
+    <p class="error-message">
+      Você não tem permissão para acessar este recurso. Suas credenciais não possuem as autorizações necessárias.
+    </p>
+    
+    <!-- Detalhes do Erro -->
+    <div class="error-details">
+      <h6>
+        <i class="fas fa-info-circle"></i>
+        Possíveis motivos:
+      </h6>
+      <ul>
+        <li>
+          <i class="fas fa-circle"></i>
+          Você não está autenticado no sistema
+        </li>
+        <li>
+          <i class="fas fa-circle"></i>
+          Seu perfil de usuário não tem permissão para esta área
+        </li>
+        <li>
+          <i class="fas fa-circle"></i>
+          A página requer privilégios administrativos
+        </li>
+        <li>
+          <i class="fas fa-circle"></i>
+          Sua sessão pode ter expirado
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Ações -->
+    <div class="action-buttons">
+      <a href="/auth/login" class="btn-primary">
+        <i class="fas fa-sign-in-alt"></i>
+        Fazer Login
+      </a>
+      <a href="/" class="btn-secondary">
+        <i class="fas fa-home"></i>
+        Voltar ao Início
+      </a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+/* SIGMA-PLI - M01_auth: Index - Estilos visuais aplicando paleta SIGMA */
+/* Mantém 100% da estrutura HTML/IDs do PLI original, apenas ajusta cores/fontes/tamanhos */
+
+/* Compensar header fixo */
+body.dashboard-body {
+  padding-top: 88px;
+  background: linear-gradient(135deg, #0b1729 0%, #162a48 100%);
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: var(--dashboard-text, #e9f1ff);
+  min-height: 100vh;
+}
+
+/* Container principal */
+.pli-main-content {
+  padding: var(--spacing-xl, 2rem) 0;
+}
+
+/* Hero Section */
+.hero-section {
+  margin-bottom: var(--spacing-xl, 2rem);
+}
+
+.index__hero-card--div {
+  background: rgba(22, 42, 72, 0.8);
+  border: 1px solid rgba(233, 241, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: var(--border-radius-lg, 12px);
+}
+
+.index__hero-card--div .card-body {
+  color: var(--dashboard-text, #e9f1ff);
+}
+
+.index__hero-card--div h1 {
+  color: var(--dashboard-accent, #4da6ff);
+  font-size: var(--font-size-3xl, 2rem);
+  font-weight: 700;
+}
+
+.index__hero-card--div p.lead {
+  color: var(--dashboard-muted, #b0c4de);
+  font-size: var(--font-size-lg, 1.125rem);
+  line-height: 1.6;
+}
+
+/* Botões Hero */
+.btn-pli {
+  background: var(--dashboard-accent, #4da6ff);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-md, 8px);
+  transition: all 0.3s ease;
+  border: 2px solid var(--dashboard-accent, #4da6ff);
+}
+
+.btn-pli:hover {
+  background: var(--sigma-primary-dark, #3d96ef);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 166, 255, 0.4);
+  color: white;
+}
+
+.btn-outline-light {
+  color: var(--dashboard-text, #e9f1ff);
+  border-color: rgba(233, 241, 255, 0.3);
+}
+
+.btn-outline-light:hover {
+  background: rgba(233, 241, 255, 0.1);
+  border-color: var(--dashboard-accent, #4da6ff);
+  color: var(--dashboard-accent, #4da6ff);
+}
+
+/* Cards de Estatísticas */
+.index__stat-card--div {
+  background: rgba(11, 23, 41, 0.6);
+  border: 1px solid rgba(233, 241, 255, 0.08);
+  border-radius: var(--border-radius-md, 8px);
+  transition: all 0.3s ease;
+}
+
+.index__stat-card--div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border-color: rgba(77, 166, 255, 0.3);
+}
+
+.index__stat-icon--div i {
+  font-size: 2rem;
+}
+
+.index__stat-number--div {
+  font-size: var(--font-size-2xl, 1.5rem);
+  font-weight: 700;
+}
+
+.index__stat-label--div {
+  color: var(--dashboard-muted, #b0c4de);
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* Recursos Section */
+.index__recursos-card--div {
+  background: rgba(22, 42, 72, 0.8);
+  border: 1px solid rgba(233, 241, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: var(--border-radius-lg, 12px);
+}
+
+.index__recursos-card--div .card-body {
+  color: var(--dashboard-text, #e9f1ff);
+}
+
+.index__display-5--h2 {
+  color: var(--dashboard-accent, #4da6ff);
+  font-size: var(--font-size-2xl, 1.75rem);
+  font-weight: 700;
+}
+
+.index__feature-cards--div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg, 1.5rem);
+}
+
+.index__feature-card--div {
+  background: rgba(11, 23, 41, 0.6);
+  padding: var(--spacing-xl, 2rem);
+  border-radius: var(--border-radius-md, 8px);
+  border: 1px solid rgba(233, 241, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.index__feature-card--div:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border-color: rgba(77, 166, 255, 0.3);
+}
+
+.index__feature-card-icon--div i {
+  font-size: 2.5rem;
+  color: var(--dashboard-accent, #4da6ff);
+}
+
+.index__feature-card-title--h5 {
+  color: var(--dashboard-text, #e9f1ff);
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: 600;
+}
+
+.index__feature-card-desc--p {
+  color: var(--dashboard-muted, #b0c4de);
+  font-size: var(--font-size-base, 1rem);
+  line-height: 1.6;
+}
+
+/* Sobre Section */
+.index__sobre-card--div {
+  background: rgba(22, 42, 72, 0.8);
+  border: 1px solid rgba(233, 241, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: var(--border-radius-lg, 12px);
+}
+
+.index__sobre-card--div .card-body {
+  color: var(--dashboard-text, #e9f1ff);
+}
+
+.index__stats-icon--i {
+  font-size: 8rem;
+  color: var(--dashboard-accent, #4da6ff);
+  opacity: 0.3;
+}
+
+/* Ajustes de texto */
+.text-justify {
+  text-align: justify;
+}
+
+.text-muted {
+  color: var(--dashboard-muted, #b0c4de) !important;
+}
+
+.text-primary {
+  color: var(--dashboard-accent, #4da6ff) !important;
+}
+
+.text-success {
+  color: var(--sigma-success, #28a745) !important;
+}
+
+.text-info {
+  color: var(--sigma-info, #17a2b8) !important;
+}
+
+.text-warning {
+  color: var(--sigma-warning, #ffc107) !important;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  body.dashboard-body {
+    padding-top: 88px;
+  }
+
+  .index__feature-cards--div {
+    grid-template-columns: 1fr;
+  }
+
+  .index__display-5--h2 {
+    font-size: var(--font-size-xl, 1.25rem);
+  }
+
+  .index__hero-card--div h1 {
+    font-size: var(--font-size-2xl, 1.5rem);
+  }
+}

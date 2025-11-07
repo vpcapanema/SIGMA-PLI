@@ -1,0 +1,12 @@
+openpyxl
+neo4j
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+asyncpg
+python-multipart
+jinja2
+python-jose[cryptography]
+passlib[bcrypt]
+aiofiles

@@ -1,0 +1,41 @@
+/* Skeleton CSS para Meus Dados */
+.meus-dados__p-meus-dados--body {
+  font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.avatar-preview .pli-icon-circle-80 {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9ecef;
+}
+.btn-pli-secondary {
+  border: 1px solid #ced4da;
+  background: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+.btn-pli-warning {
+  background: #ffc107;
+  color: #212529;
+}
+.btn-pli-confirm {
+  background: #0d6efd;
+  color: #fff;
+}
+.btn-pli-cancel {
+  background: #6c757d;
+  color: #fff;
+}
+/* CSS skeleton for meus-dados */
+.meus-dados {
+  padding: 1rem;
+}

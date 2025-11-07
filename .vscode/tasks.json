@@ -1,0 +1,103 @@
+{
+  "version": "2.0.0",
+  // ============================================================================
+  // ⚠️ IMPORTANTE: Para iniciar ou reiniciar a aplicação, use APENAS:
+  //    - Pressione Ctrl+Shift+B
+  //    OU
+  //    - Terminal → Run Task → "▶️ INICIAR APLICAÇÃO COMPLETA"
+  //
+  // NÃO execute manualmente "uvicorn" ou "python app.main:app"
+  // A tarefa principal gerencia todo o ciclo: matar processos, iniciar servidor,
+  // verificar conexões e abrir navegador automaticamente.
+  // ============================================================================
+  "tasks": [
+    {
+      "label": "▶️ INICIAR APLICAÇÃO COMPLETA",
+      "detail": "🚀 Inicia a aplicação de forma completa e segura: libera porta 8010, sobe FastAPI, verifica PostgreSQL e Neo4j, abre navegador. USE SEMPRE ESTA TAREFA! (Ctrl+Shift+B)",
+      "type": "shell",
+      "command": "Write-Host '🔄 [1/5] Liberando porta 8010...' -F Cyan; $p=Get-NetTCPConnection -LocalPort 8010 -EA SilentlyContinue; if($p){$p|%{Stop-Process -Id $_.OwningProcess -Force -EA SilentlyContinue}; Write-Host '✅ Porta 8010 liberada' -F Green}else{Write-Host '✅ Porta 8010 já estava livre' -F Yellow}; Write-Host '🚀 [2/5] Iniciando FastAPI...' -F Cyan; Start-Process -FilePath '${workspaceFolder}/.venv/Scripts/python.exe' -ArgumentList '-m','uvicorn','app.main:app','--host','127.0.0.1','--port','8010','--reload' -WindowStyle Hidden; Write-Host '⏳ [3/5] Aguardando servidor iniciar...' -F Cyan; Start-Sleep -Seconds 5; Write-Host '🔍 [4/5] Verificando conexões...' -F Cyan; try{$health=Invoke-RestMethod -Uri 'http://127.0.0.1:8010/health' -TimeoutSec 5; Write-Host ('✅ PostgreSQL: ' + $health.postgres) -F Green; Write-Host ('✅ Neo4j: ' + $health.neo4j) -F Green}catch{Write-Host '⚠️ Servidor ainda inicializando...' -F Yellow}; Write-Host '🌐 [5/5] Abrindo navegador...' -F Cyan; Start-Process 'http://127.0.0.1:8010/'; Write-Host '✅ Aplicação iniciada com sucesso!' -F Green",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Instalar dependências",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pip", "install", "-r", "requirements.txt"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Executar testes",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pytest", "tests/", "-v"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Testar Neo4j",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["test_neo4j_connection.py"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Formatar código",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "black", "."],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Lint código",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "flake8", "."],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

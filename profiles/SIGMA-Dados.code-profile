@@ -1,0 +1,22 @@
+{
+  "name": "SIGMA-Dados",
+  "settings": {
+    "editor.formatOnSave": true,
+    "notebook.output.textLineLimit": 5000
+  },
+  "extensions": {
+    "enabled": [
+      "github.copilot",
+      "github.copilot-chat",
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "ms-toolsai.jupyter",
+      "ms-toolsai.datawrangler",
+      "ms-azuretools.vscode-docker",
+      "mtxr.sqltools",
+      "mtxr.sqltools-driver-pg",
+      "neo4j.neo4j-vscode"
+    ],
+    "disabled": []
+  }
+}

@@ -1,0 +1,48 @@
+// Template de perfis de ferramentas (MCP) para o Copilot
+// Ajuste os IDs conforme as ferramentas disponíveis no seu Copilot.
+// Dica: mantenha sempre bem abaixo de 128 ferramentas ativas.
+{
+  "toolsets": [
+    {
+      "id": "sigma-core",
+      "name": "SIGMA-Core",
+      "description": "Uso diário: FS, Shell, Git, HTTP, JSON, CSV, DBs, Docker",
+      "tools": [
+        // Utilitários base
+        "filesystem", "path-utils", "powershell", "git",
+        // HTTP e formatos
+        "http-client", "curl", "json", "yaml", "csv", "xlsx", "regex",
+        // Bancos de dados
+        "postgresql", "neo4j",
+        // Dev e utilidades
+        "docker", "docker-compose", "zip", "tar", "hash"
+      ]
+    },
+    {
+      "id": "sigma-dados",
+      "name": "SIGMA-Dados",
+      "description": "ETL/integrações: inclui Core + APIs, storage e conversores",
+      "extends": ["sigma-core"],
+      "tools": [
+        "openapi-client", "api-explorer",
+        // Storage (ative apenas se usar)
+        "aws-s3", "azure-blob",
+        // Jobs/agendador e conversores
+        "scheduler", "parquet-tools", "geojson-tools", "bulk-import"
+      ]
+    },
+    {
+      "id": "sigma-devops",
+      "name": "SIGMA-DevOps",
+      "description": "Colaboração/release: GitHub e 1 cloud (não todas)",
+      "tools": [
+        // GitHub
+        "github-issues", "github-pull-requests", "github-actions", "github-releases", "github-notifications",
+        // Escolha UMA cloud que usa
+        "oci-cli", // ou "azure-cli" (remova a outra)
+        // Segurança/qualidade (opcional)
+        "api-lint", "security-scan"
+      ]
+    }
+  ]
+}

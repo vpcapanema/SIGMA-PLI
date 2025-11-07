@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SIGMA-PLI - Recursos e Funcionalidades do Sistema">
+  <meta name="author" content="VPC-GEOSER">
+  <title>Recursos | SIGMA-PLI</title>
+  
+  <!-- Bootstrap 5.3.2 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4.0 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts - Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0b1729 0%, #162a48 100%);
+      color: #e0e6ed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* Header */
+    .page-header {
+      background: rgba(22, 42, 72, 0.6);
+      border-bottom: 2px solid rgba(77, 166, 255, 0.3);
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+      animation: fadeInDown 0.6s ease-out;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-header p {
+      font-size: 1.125rem;
+      color: #8b98a5;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      padding: 3rem 0;
+      text-align: center;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, #4da6ff, #0066cc);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      box-shadow: 0 10px 40px rgba(77, 166, 255, 0.3);
+    }
+    
+    .hero-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-section p {
+      font-size: 1.125rem;
+      color: #8b98a5;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    /* Features Grid */
+    .features-section {
+      padding: 3rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .section-title h3 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    
+    .section-title p {
+      color: #8b98a5;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .feature-card {
+      background: rgba(22, 42, 72, 0.6);
+      border: 2px solid rgba(77, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4da6ff, #0066cc);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #4da6ff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #4da6ff, #0066cc);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-card h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card p {
+      color: #b8c5d6;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .feature-list li {
+      padding: 0.5rem 0;
+      color: #8b98a5;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .feature-list li i {
+      color: #4da6ff;
+      font-size: 0.875rem;
+    }
+    
+    /* Modules Section */
+    .modules-section {
+      padding: 3rem 0;
+      background: rgba(22, 42, 72, 0.3);
+    }
+    
+    .module-item {
+      background: rgba(22, 42, 72, 0.6);
+      border: 1px solid rgba(77, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: start;
+      gap: 1.5rem;
+      transition: all 0.3s;
+    }
+    
+    .module-item:hover {
+      border-color: #4da6ff;
+      transform: translateX(5px);
+    }
+    
+    .module-number {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #4da6ff, #0066cc);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    
+    .module-content h5 {
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .module-content p {
+      color: #8b98a5;
+      margin: 0;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    .cta-card {
+      background: linear-gradient(135deg, rgba(77, 166, 255, 0.1), rgba(0, 102, 204, 0.1));
+      border: 2px solid rgba(77, 166, 255, 0.3);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cta-card h3 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-card p {
+      color: #8b98a5;
+      margin-bottom: 2rem;
+    }
+    
+    .btn-cta {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.125rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 0.5rem;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #4da6ff, #0066cc);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(77, 166, 255, 0.4);
+      color: white;
+    }
+    
+    .btn-secondary {
+      background: rgba(77, 166, 255, 0.1);
+      border: 1px solid rgba(77, 166, 255, 0.3);
+      color: #4da6ff;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(77, 166, 255, 0.2);
+      border-color: #4da6ff;
+      color: #4da6ff;
+    }
+    
+    /* Footer */
+    .page-footer {
+      background: rgba(22, 42, 72, 0.6);
+      border-top: 2px solid rgba(77, 166, 255, 0.3);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+      color: #8b98a5;
+    }
+    
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 1.875rem;
+      }
+      
+      .hero-section h2 {
+        font-size: 1.5rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .module-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .btn-cta {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1><i class="fas fa-rocket me-2"></i> Recursos do SIGMA-PLI</h1>
+      <p>Conheça todas as funcionalidades e módulos do sistema</p>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="container">
+      <div class="hero-icon">
+        <i class="fas fa-layer-group"></i>
+      </div>
+      <h2>Sistema Integrado de Gestão</h2>
+      <p>
+        O SIGMA-PLI é uma plataforma completa para gestão de cadastros, 
+        processos e informações estratégicas. Desenvolvido com tecnologia de ponta 
+        para atender às necessidades do setor público.
+      </p>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features-section">
+    <div class="container">
+      <div class="section-title">
+        <h3>Funcionalidades Principais</h3>
+        <p>Recursos que fazem do SIGMA-PLI uma solução completa</p>
+      </div>
+      
+      <div class="features-grid">
+        
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h4>Gestão de Cadastros</h4>
+          <p>Controle completo de pessoas físicas e jurídicas com validação automática.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Validação de CPF/CNPJ</li>
+            <li><i class="fas fa-check-circle"></i> Documentação digital</li>
+            <li><i class="fas fa-check-circle"></i> Histórico completo</li>
+            <li><i class="fas fa-check-circle"></i> Importação em lote</li>
+          </ul>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h4>Segurança Avançada</h4>
+          <p>Proteção de dados e controle de acesso multinível.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Autenticação 2FA</li>
+            <li><i class="fas fa-check-circle"></i> Controle de permissões</li>
+            <li><i class="fas fa-check-circle"></i> Auditoria completa</li>
+            <li><i class="fas fa-check-circle"></i> Criptografia de dados</li>
+          </ul>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h4>Relatórios e Dashboards</h4>
+          <p>Visualização de dados em tempo real com gráficos interativos.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Dashboards personalizáveis</li>
+            <li><i class="fas fa-check-circle"></i> Exportação de dados</li>
+            <li><i class="fas fa-check-circle"></i> Análise preditiva</li>
+            <li><i class="fas fa-check-circle"></i> Indicadores KPI</li>
+          </ul>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h4>Workflow Inteligente</h4>
+          <p>Automação de processos e aprovações com regras configuráveis.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Fluxos personalizáveis</li>
+            <li><i class="fas fa-check-circle"></i> Notificações automáticas</li>
+            <li><i class="fas fa-check-circle"></i> Rastreamento de status</li>
+            <li><i class="fas fa-check-circle"></i> SLA configurável</li>
+          </ul>
+        </div>
+        
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h4>Dicionário de Dados</h4>
+          <p>Estrutura de dados padronizada com grafo de relacionamentos.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Schema PostgreSQL</li>
+            <li><i class="fas fa-check-circle"></i> Grafo Neo4j</li>
+            <li><i class="fas fa-check-circle"></i> Documentação automática</li>
+            <li><i class="fas fa-check-circle"></i> Versionamento</li>
+          </ul>
+        </div>
+        
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h4>Interface Responsiva</h4>
+          <p>Acesse de qualquer dispositivo com design adaptativo.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Mobile-first</li>
+            <li><i class="fas fa-check-circle"></i> PWA habilitado</li>
+            <li><i class="fas fa-check-circle"></i> Modo offline</li>
+            <li><i class="fas fa-check-circle"></i> Performance otimizada</li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Modules Section -->
+  <div class="modules-section">
+    <div class="container">
+      <div class="section-title">
+        <h3>Módulos do Sistema</h3>
+        <p>Estrutura modular para máxima flexibilidade</p>
+      </div>
+      
+      <div class="module-item">
+        <div class="module-number">M00</div>
+        <div class="module-content">
+          <h5>Módulo Home</h5>
+          <p>Portal de entrada com status do sistema, estatísticas e navegação principal.</p>
+        </div>
+      </div>
+      
+      <div class="module-item">
+        <div class="module-number">M01</div>
+        <div class="module-content">
+          <h5>Módulo Autenticação</h5>
+          <p>Login, registro, recuperação de senha e gestão de perfis de acesso.</p>
+        </div>
+      </div>
+      
+      <div class="module-item">
+        <div class="module-number">M02</div>
+        <div class="module-content">
+          <h5>Módulo Cadastros</h5>
+          <p>Gestão completa de pessoas físicas, jurídicas e documentação associada.</p>
+        </div>
+      </div>
+      
+      <div class="module-item">
+        <div class="module-number">M03</div>
+        <div class="module-content">
+          <h5>Módulo Dicionário de Dados</h5>
+          <p>Documentação técnica, schemas e relacionamentos entre entidades.</p>
+        </div>
+      </div>
+      
+      <div class="module-item">
+        <div class="module-number">M04</div>
+        <div class="module-content">
+          <h5>Módulo Administração</h5>
+          <p>Gestão de usuários, permissões, auditoria e configurações do sistema.</p>
+        </div>
+      </div>
+      
+      <div class="module-item">
+        <div class="module-number">M05</div>
+        <div class="module-content">
+          <h5>Módulo Relatórios</h5>
+          <p>Geração de relatórios, dashboards interativos e exportação de dados.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h3>Pronto para começar?</h3>
+        <p>Faça login ou crie sua conta para acessar todas as funcionalidades do SIGMA-PLI.</p>
+        <div>
+          <a href="/auth/login" class="btn-cta btn-primary">
+            <i class="fas fa-sign-in-alt"></i>
+            Fazer Login
+          </a>
+          <a href="/auth/cadastro-usuario" class="btn-cta btn-secondary">
+            <i class="fas fa-user-plus"></i>
+            Criar Conta
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <div class="container">
+      <p>&copy; 2024 SIGMA-PLI | Sistema desenvolvido por VPC-GEOSER</p>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

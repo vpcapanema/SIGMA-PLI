@@ -1,0 +1,37 @@
+/* SIGMA visual base — pessoa-juridica (M01_auth)
+   Preserva marcação e IDs; aplica variáveis e pequenos ajustes visuais.
+*/
+:root {
+  --sigma-primary: #0d6efd;
+  --sigma-bg: #f8f9fa;
+  --sigma-text: #1f2937;
+  --sigma-card-radius: 8px;
+  --sigma-font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+body.has-fixed-header,
+body.pessoa-juridica__body {
+  font-family: var(--sigma-font);
+  color: var(--sigma-text);
+  background: var(--sigma-bg);
+}
+
+.pli-card {
+  border-radius: var(--sigma-card-radius);
+  box-shadow: 0 1px 2px rgba(31, 41, 55, 0.04);
+}
+
+#pessoaJuridicaTable {
+  min-width: 640px;
+}
+
+.modal .form-label {
+  font-weight: 600;
+}
+
+.pessoa-juridica {
+  padding: 1rem;
+}
+
+/* End pessoa-juridica */

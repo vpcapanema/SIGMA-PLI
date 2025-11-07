@@ -1,0 +1,16 @@
+// Toolset SIGMA-Dados (ETL/integrações)
+{
+  "toolsets": [
+    {
+      "id": "sigma-dados",
+      "name": "SIGMA-Dados",
+      "description": "ETL/integrações: inclui Core + APIs, storage e conversores",
+      "extends": ["sigma-core"],
+      "tools": [
+        "openapi-client", "api-explorer",
+        "aws-s3", "azure-blob",
+        "scheduler", "parquet-tools", "geojson-tools", "bulk-import"
+      ]
+    }
+  ]
+}

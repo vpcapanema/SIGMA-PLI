@@ -1,0 +1,93 @@
+{
+  // ============================================================================
+  // ⚠️ IMPORTANTE - INICIAR APLICAÇÃO:
+  // Use APENAS Ctrl+Shift+B ou Task "▶️ INICIAR APLICAÇÃO COMPLETA"
+  // NÃO execute manualmente comandos uvicorn ou python app.main:app
+  // ============================================================================
+  "objectExplorer": {
+    "groupBySchemas": false
+  },
+  "connections": [
+    {
+      "server": "sigma-pli-postgresql-db.cwlmgwc4igdh.us-east-1.rds.amazonaws.com",
+      "port": 5432,
+      "database": "sigma_pli",
+      "user": "sigma_admin",
+      "password": "Malditas131533*",
+      "ssl": true,
+      "sslmode": "require",
+      "name": "SIGMA-PLI RDS",
+      "group": "Servers"
+    }
+  ],
+  "neo4j.connections": [
+    {
+      "name": "SIGMA PLI - Neo4j Aura (NOVA INSTÂNCIA AUREA)",
+      "host": "6b7fc90e.databases.neo4j.io",
+      "port": 7687,
+      "username": "neo4j",
+      "password": "RWpV06f_yQ9CAo2NbsP76jhNbInaZgE0kOxOBSdQDRs",
+      "database": "neo4j",
+      "scheme": "neo4j+s",
+      "default": true
+    },
+    {
+      "name": "SIGMA PLI - Local (Backup)",
+      "host": "localhost",
+      "port": 7687,
+      "username": "neo4j",
+      "password": "sigma123456",
+      "database": "neo4j",
+      "scheme": "bolt",
+      "default": false
+    }
+  ],
+  "neo4j.autoComplete": true,
+  "neo4j.linting": true,
+  "neo4j.connect": true,
+  "neo4j.resultView": "graph",
+  "files.associations": {
+    "*.cypher": "cypher",
+    "*.cql": "cypher"
+  },
+  "python.defaultInterpreterPath": "./.venv/Scripts/python.exe",
+  "python.terminal.activateEnvironment": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "black",
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": ["tests"],
+  "emmet.includeLanguages": {
+    "jinja-html": "html"
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.venv": true,
+    "**/node_modules": false
+  },
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.venv": true,
+    "**/node_modules": false
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[sql]": {
+    "editor.defaultFormatter": "ms-mssql.mssql"
+  },
+  "window.title": "${dirty}${activeEditorShort}${separator}SIGMA-PLI [Ctrl+Shift+B = Iniciar]${separator}${rootName}",
+  "task.problemMatchers.neverPrompt": false,
+  "task.quickOpen.showAll": true
+}

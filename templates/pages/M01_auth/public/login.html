@@ -1,0 +1,100 @@
+{% extends 'pages/M01_auth/template_base_auth.html' %}
+
+{% block title %}Login | SIGMA-PLI{% endblock %}
+
+{% block extra_head %}
+<!-- Bootstrap & Font Awesome (usados pelas classes do template original) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<!-- Página específica (mantemos o skeleton; migrar regras para style_login.css) -->
+<link href="/static/css/M01_auth/style_login.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<header class="login__l-header--header">
+  {% include 'pages/M01_auth/components/navbar.html' %}
+</header>
+
+<main class="login__l-main--main container">
+  <div class="login__pli-auth-wrapper--div">
+    <div class="login__pli-auth-card--div card mx-auto login-card">
+      <div class="card-body">
+        <div class="login__pli-auth-header--div text-center mb-3">
+          <div
+            class="login__glass-icon-bg--div d-flex align-items-center justify-content-center mx-auto rounded-4 bg-primary text-white login-icon">
+            <i class="fas fa-user-circle fa-2x"></i>
+          </div>
+          <h1 class="login__pli-auth-title--h1">Bem-vindo</h1>
+          <p class="login__pli-auth-subtitle--p">Acesse sua conta no SIGMA-PLI</p>
+        </div>
+
+        <form id="login-form">
+          <div class="mb-3">
+            <label class="form-label">Usuário <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+              <input id="username" name="username" type="text" class="form-control"
+                placeholder="Email ou nome de usuário" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Senha <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+              <input id="password" name="password" type="password" class="form-control" placeholder="Sua senha"
+                required>
+              <button type="button" class="btn btn-outline-secondary btn-password-toggle"
+                aria-label="Mostrar ou ocultar senha"><i class="fas fa-eye"></i></button>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Tipo de Usuário <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+              <select class="form-select" id="tipo-usuario" name="tipo_usuario" aria-label="Tipo de usuário" required>
+                <option value="">Selecione o tipo</option>
+                <option value="USUARIO">Usuário</option>
+                <option value="GESTOR">Gestor</option>
+                <option value="ADMIN">Administrador</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <input type="checkbox" id="remember" name="remember" class="form-check-input me-2"><label for="remember"
+                class="form-check-label">Lembrar-me</label>
+            </div>
+            <a href="/auth/recuperar-senha" class="link-secondary">Esqueceu a senha?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 mb-3"><i
+              class="fas fa-sign-in-alt me-2"></i>Entrar</button>
+        </form>
+
+        <div class="text-center mt-3">
+          <a href="/admin-login" class="me-3"><i class="fas fa-shield-alt"></i> Login Admin</a>
+          <a href="/index" class="me-3"><i class="fas fa-home"></i> Página Inicial</a>
+          <a href="/sobre"><i class="fas fa-info-circle"></i> Sobre</a>
+        </div>
+
+        <div class="login__pli-auth-footer--div text-center mt-3 text-muted small">
+          <p>Protegido por reCAPTCHA e sujeito à Política de Privacidade e Termos de Serviço.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="mt-4">
+  {% include 'pages/M01_auth/components/footer.html' %}
+</footer>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/M01_auth/script_login.js"></script>
+{% endblock %}

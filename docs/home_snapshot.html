@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGMA-PLI - Sistema de Gestão de Metadados</title>
+    <meta name="description" content="Sistema integrado para gestão de metadados, catálogo interativo e repositório de dados geoespaciais">
+    <link rel="stylesheet" href="/static/css/style_global_reset_base.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_layout_base.css">
+    <!-- Importa estilos de espaçamento e paleta do dashboard para aplicar ao home -->
+    <link rel="stylesheet" href="/static/css/M02_dashboard/style_dashboard_layout_base.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_hero_banner.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_theory.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_cards.css?v=3">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_navigation.css">
+    <link rel="stylesheet" href="/static/css/M00_home/style_home_contact_forms.css">
+</head>
+<body class="dashboard-body">
+    <!-- Header/Navigation (estilo dashboard aplicado) -->
+    <header class="dashboard-header">
+        <nav class="sigma-nav">
+            <div class="header-brand">
+                <span class="brand-title">SIGMA-PLI</span>
+                <span class="brand-subtitle">Sistema de Integrado de Gestão, Monitoramento e Apoio técnico ao PLI/SP</span>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/auth" class="nav-link">Entrar</a>
+                <a href="/dicionario" class="nav-link">Dicionário</a>
+                <a href="/institucional" class="nav-link">Sobre</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="card-main">
+            <div class="container">
+                <div class="hero-content">
+                <h2 class="hero-title">SIGMA-PLI — Sistema Integrado de Gestão, Monitoramento e Apoio Técnico</h2>
+                <p class="hero-description">
+                    O SIGMA-PLI é uma plataforma digital construída com tecnologias 100% open source, voltada
+                    para a consolidação do memorial de conhecimento do PLI e para a gestão e o monitoramento de
+                    suas atividades. O objetivo é organizar, publicar e dar rastreabilidade a dados, documentos e
+                    camadas geoespaciais. Integra repositório interativo com versionamento e dicionário de dados
+                    padronizado; centraliza agenda, tarefas e avisos; disponibiliza consultas e painéis dinâmicos
+                    aplicados a diferentes bases de dados, acelerando diagnósticos e decisões. Os módulos são
+                    independentes e modulares, executados conforme a necessidade, garantindo flexibilidade,
+                    transparência e eficiência.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/auth" class="btn btn-primary">Acessar Sistema</a>
+                    <a href="/dicionario" class="btn btn-secondary">Explorar Catálogo</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-stats">
+                    <div class="stat-item animate-on-scroll">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Perfis de Dados</span>
+                    </div>
+                    <div class="stat-item animate-on-scroll">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Extensões Suportadas</span>
+                    </div>
+                    <div class="stat-item animate-on-scroll">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Arquivos Indexados</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arcabouço teórico-conceitual -->
+    <section class="theory-section">
+        <div class="card-main">
+            <div class="container">
+                <h3>Arcabouço teórico-conceitual</h3>
+
+                <p class="justified">
+                O SIGMA-PLI foi concebido com fundamentos que alinham inovação tecnológica a boas práticas de
+                gestão pública e ciência aplicada: governança digital, ciência aberta, transparência de dados,
+                reprodutibilidade científica e análise orientada a banco de dados. Esses princípios asseguram
+                processos auditáveis, confiáveis e replicáveis entre instituições.
+            </p>
+
+            <p class="justified">
+                A arquitetura é moderna e totalmente open source (FastAPI, PostgreSQL/PostGIS, GeoServer,
+                Leaflet, Neo4j, entre outras). A abordagem open source utiliza código aberto, licenças públicas
+                e padrões interoperáveis, permitindo auditoria independente e evolução colaborativa do software.
+                Dentre as principais vantagens dessa abordagem, destacam-se a independência tecnológica e de
+                fornecedor (sem lock-in), a redução de custos, a segurança auditável, a interoperabilidade entre
+                sistemas e a flexibilidade para adaptar e escalar a solução conforme a necessidade, com melhorias
+                contínuas sustentadas por uma comunidade ativa, sem bloqueios proprietários.
+            </p>
+
+            <p class="justified">
+                Ao integrar essas tecnologias de forma modular e interoperável, o SIGMA-PLI consolida um
+                ambiente robusto para organizar, publicar e rastrear o acervo técnico do PLI e democratizar o
+                acesso à informação de modo estruturado, seguro e eficiente. A transparência se amplia porque
+                métodos e rotinas de análise ficam acessíveis ao público, com base em padrões abertos e código
+                disponível. Isso viabiliza verificação independente, reprodução de resultados e auditoria quando
+                aplicável. Como resultado, há melhoria da prestação de contas e do controle social sobre recursos
+                públicos, em alinhamento com o compromisso da equipe técnica de manter processos auditáveis,
+                promover mais transparência e elevar a eficiência.
+            </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="card-main">
+            <div class="container">
+                <h3>Módulos do Sistema</h3>
+                <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📚</div>
+                    <h4>Dicionário de Dados</h4>
+                    <p>Catálogo completo de metadados com busca facetada e filtros avançados.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📤</div>
+                    <h4>Upload Curado</h4>
+                    <p>Envio de arquivos com extração automática de metadados e validação.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🗺️</div>
+                    <h4>GeoServer Integrado</h4>
+                    <p>Publicação automática de camadas geoespaciais e visualização interativa.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📊</div>
+                    <h4>Dashboard Pessoal</h4>
+                    <p>Área personalizada com tarefas, agenda e indicadores de performance.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🔍</div>
+                    <h4>Auditoria Completa</h4>
+                    <p>Rastreamento de todas as operações com logs detalhados e relatórios.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🤖</div>
+                    <h4>Neo4j Graph</h4>
+                    <p>Relações semânticas entre entidades para consultas complexas.</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status Section -->
+    <section class="status-section" id="status">
+        <div class="card-main">
+            <div class="container">
+                <h3>Status do Sistema</h3>
+                <div class="status-grid" id="system-status">
+                    <!-- Fallback estático: cards restaurados para exibição imediata.
+                         O JavaScript irá sobrescrever estes cards quando o /api/status responder. -->
+                    <div class="status-card unknown">
+                        <h5>M00_HOME</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>M01_AUTH</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>M02_DASHBOARD</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>M03_DICIONARIO</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>M04_MINHA_AREA</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>M05_CALENDARIO</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>M06_INSTITUCIONAL</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>M07_FERRAMENTAS</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>M08_ADMIN</h5>
+                        <p>⏳ Aguardando atualização</p>
+                    </div>
+
+                    <!-- Databases -->
+                    <div class="status-card unknown">
+                        <h5>POSTGRESQL</h5>
+                        <p>— Carregando...</p>
+                    </div>
+                    <div class="status-card unknown">
+                        <h5>NEO4J</h5>
+                        <p>— Carregando...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="card-main">
+            <div class="container">
+                <h3>Entre em Contato</h3>
+                <div class="contact-content">
+                    <div class="contact-info">
+                    <div class="info-item">
+                        <h4>📧 E-mail</h4>
+                        <p>suporte@sigma-pli.sp.gov.br</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>📞 Telefone</h4>
+                        <p>(11) 1234-5678</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🏢 Endereço</h4>
+                        <p>Secretaria de Meio Ambiente, Infraestrutura e Logística<br>
+                        São Paulo, SP - Brasil</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group has-icon user">
+                            <label for="name">Nome *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group has-icon email">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Digite sua mensagem aqui..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h5>SIGMA-PLI v1.0</h5>
+                    <p>Sistema desenvolvido para gestão integrada de dados públicos.</p>
+                </div>
+                <div class="footer-section">
+                    <h5>Links Úteis</h5>
+                    <ul>
+                        <li><a href="/institucional">Sobre o PLI</a></li>
+                        <li><a href="/dicionario">Dicionário de Dados</a></li>
+                        <li><a href="/api/docs">Documentação API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>Contato</h5>
+                    <p>Secretaria de Meio Ambiente, Infraestrutura e Logística</p>
+                    <p>São Paulo, SP - Brasil</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SIGMA-PLI. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/static/js/M00_home/script_home_state_management.js"></script>
+    <script src="/static/js/M00_home/script_home_status_loader.js"></script>
+    <script src="/static/js/M00_home/script_home_navigation.js"></script>
+    <script src="/static/js/M00_home/script_home_animations.js?v=3"></script>
+    <script src="/static/js/M00_home/script_home_form_validation.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+/* SIGMA-PLI - M00: Home - Navigation */
+/* Arquivo: style_home_navigation.css */
+
+/* Overview:
+   Este ficheiro controla a aparência e o comportamento do menu de navegação,
+   incluindo estados hover, underline animado e estilos mobile (toggle).
+   Todas as regras relacionadas ao navbar (desktop + mobile) estão centralizadas
+   aqui. Não duplique regras de nav em outros arquivos CSS do M00.
+ */
+
+/* Navbar - mobile & desktop (migrado de style_home_layout_base.css)
+   - .sigma-header: container fixo no topo
+   - .sigma-nav: layout flex do nav
+   - .nav-brand / .header-brand: marca e subtítulo
+   - .nav-menu: container dos links (desktop flex, mobile absoluto)
+*/
+.sigma-header,
+.dashboard-header {
+  /* Header fixo no topo. Alias .dashboard-header adicionado porque
+     templates do projeto usam `dashboard-header` em vez de `sigma-header`. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 88px; /* folga vertical maior para marca */
+  background: linear-gradient(135deg, #0f203e, #244b72) !important;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+}
+
+.sigma-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--spacing-xl);
+  width: 100%; /* garante ocupar largura inteira, facilitando push do menu */
+}
+
+.nav-brand h1 {
+  color: white;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+}
+
+.nav-subtitle {
+  color: var(--sigma-gray-300);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+}
+
+.nav-menu {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-left: auto; /* empurra o menu para a direita */
+  justify-content: flex-end; /* garante itens alinhados à direita dentro do container */
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--sigma-gray-100);
+}
+
+.nav-brand {
+  padding: var(--spacing-md) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Evita que a marca cresça e empurre o menu para fora */
+.nav-brand {
+  flex: 0 0 auto;
+}
+
+.header-brand {
+  padding: var(--spacing-md) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav-link {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--dashboard-accent);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Menu mobile */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+}
+
+.nav-menu.mobile-hidden {
+  display: none;
+}
+
+/* Features section */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.feature-card {
+  background: rgba(22, 42, 72, 0.6); /* dashboard-like */
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(233, 241, 255, 0.04);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-md);
+  display: block;
+}
+
+.feature-card h4 {
+  color: var(--dashboard-accent);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-xl);
+}
+
+.feature-card p {
+  color: var(--dashboard-muted);
+  line-height: 1.6;
+}
+
+/* Status section */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.status-card {
+  background: rgba(11, 23, 41, 0.55);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-left: 4px solid var(--dashboard-accent);
+}
+
+.status-card.success {
+  border-left-color: var(--sigma-success);
+}
+
+.status-card.warning {
+  border-left-color: var(--sigma-warning);
+}
+
+.status-card.error {
+  border-left-color: var(--sigma-error);
+}
+
+/* Estado neutro/fallback quando o status exato não estiver disponível */
+.status-card.unknown {
+  border-left-color: rgba(233, 241, 255, 0.04);
+}
+
+.status-card h5 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--dashboard-text);
+}
+
+.status-card p {
+  color: var(--dashboard-muted);
+  font-size: var(--font-size-sm);
+}
+
+.status-loading {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--sigma-gray-500);
+  font-style: italic;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Tornar o container relativo para que o menu absoluto posicionado
+     abaixo (.nav-menu { position: absolute }) funcione corretamente
+     sem depender de regras em outros arquivos CSS. */
+  .sigma-nav {
+    position: relative;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(11, 23, 41, 0.95); /* manter paleta escura no mobile */
+    flex-direction: column;
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nav-menu.mobile-hidden {
+    display: none !important;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+}

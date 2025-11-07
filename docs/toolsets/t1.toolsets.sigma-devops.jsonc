@@ -1,0 +1,15 @@
+// Toolset SIGMA-DevOps (colaboração e release)
+{
+  "toolsets": [
+    {
+      "id": "sigma-devops",
+      "name": "SIGMA-DevOps",
+      "description": "Colaboração/release: GitHub e 1 cloud (não todas)",
+      "tools": [
+        "github-issues", "github-pull-requests", "github-actions", "github-releases", "github-notifications",
+        "oci-cli", // ou "azure-cli" (remova a outra)
+        "api-lint", "security-scan"
+      ]
+    }
+  ]
+}

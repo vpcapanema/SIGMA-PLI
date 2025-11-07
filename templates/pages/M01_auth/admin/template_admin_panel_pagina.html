@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="SIGMA/PLI - Painel Administrativo" name="description">
+  <meta content="VPC-GEOSER" name="author">
+  <title>Painel Administrativo | SIGMA-PLI</title>
+  <!-- Favicon -->
+  <link href="/favicon.ico" rel="icon" type="image/x-icon">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts - Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- SIGMA Base Styles -->
+  <link rel="stylesheet" href="/static/css/style_global_reset_base.css">
+  <link rel="stylesheet" href="/static/css/M02_dashboard/style_dashboard_layout_base.css">
+  <!-- Admin Panel Styles -->
+  <link href="/static/css/M01_auth/style_admin_panel.css" rel="stylesheet">
+</head>
+
+<body class="admin-body dashboard-body">
+  <!-- HEADER - ADMIN NAVBAR -->
+  <header class="admin-header">
+    <nav class="admin-nav">
+      <div class="header-brand">
+        <i class="fas fa-shield-alt me-2"></i>
+        <span class="brand-title">SIGMA-PLI</span>
+        <span class="admin-badge-header">ADMIN</span>
+      </div>
+      <div class="nav-menu">
+        <a href="/admin/panel" class="nav-link active">
+          <i class="fas fa-tachometer-alt me-1"></i>
+          Painel
+        </a>
+        <a href="/usuarios" class="nav-link">
+          <i class="fas fa-users me-1"></i>
+          Usuários
+        </a>
+        <a href="/solicitacoes-cadastro" class="nav-link">
+          <i class="fas fa-user-check me-1"></i>
+          Solicitações
+        </a>
+        <a href="/sessions-manager" class="nav-link">
+          <i class="fas fa-history me-1"></i>
+          Sessões
+        </a>
+        <a href="/dashboard" class="nav-link">
+          <i class="fas fa-arrow-left me-1"></i>
+          Voltar ao Dashboard
+        </a>
+        <a href="/api/v1/auth/logout" class="nav-link text-danger">
+          <i class="fas fa-sign-out-alt me-1"></i>
+          Sair
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="admin-main-content">
+    <div class="container-fluid py-4">
+      <!-- Cabeçalho -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h1 class="h2 section-title">
+                <i class="fas fa-shield-alt text-danger"></i>
+                Painel Administrativo
+              </h1>
+              <p class="text-muted mb-0">Gerenciamento e configurações do sistema</p>
+            </div>
+            <div class="admin-badge">
+              <i class="fas fa-crown me-1"></i>
+              ADMIN
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Métricas Rápidas -->
+      <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3">
+          <div class="card border-primary">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted mb-1">Total de Usuários</h6>
+                  <h3 class="mb-0" id="totalUsers">-</h3>
+                </div>
+                <div class="metric-icon bg-primary">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+          <div class="card border-success">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted mb-1">Usuários Ativos</h6>
+                  <h3 class="mb-0" id="activeUsers">-</h3>
+                </div>
+                <div class="metric-icon bg-success">
+                  <i class="fas fa-user-check"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+          <div class="card border-warning">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted mb-1">Solicitações Pendentes</h6>
+                  <h3 class="mb-0" id="pendingRequests">-</h3>
+                </div>
+                <div class="metric-icon bg-warning">
+                  <i class="fas fa-clock"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+          <div class="card border-info">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted mb-1">Sessões Ativas</h6>
+                  <h3 class="mb-0" id="activeSessions">-</h3>
+                </div>
+                <div class="metric-icon bg-info">
+                  <i class="fas fa-network-wired"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ações Administrativas -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card shadow-sm">
+            <div class="card-header bg-danger text-white">
+              <h5 class="mb-0">
+                <i class="fas fa-tools"></i>
+                Ações Administrativas
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="row g-3">
+                <!-- Gerenciar Usuários -->
+                <div class="col-md-4">
+                  <div class="admin-action-card">
+                    <div class="action-icon">
+                      <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h6>Gerenciar Usuários</h6>
+                    <p class="text-muted small">Visualizar, editar e desativar usuários do sistema</p>
+                    <a href="/usuarios" class="btn btn-outline-primary btn-sm w-100">
+                      <i class="fas fa-arrow-right me-1"></i>
+                      Acessar
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Aprovar Solicitações -->
+                <div class="col-md-4">
+                  <div class="admin-action-card">
+                    <div class="action-icon">
+                      <i class="fas fa-user-check"></i>
+                    </div>
+                    <h6>Aprovar Solicitações</h6>
+                    <p class="text-muted small">Revisar e aprovar cadastros pendentes</p>
+                    <a href="/solicitacoes-cadastro" class="btn btn-outline-warning btn-sm w-100">
+                      <i class="fas fa-arrow-right me-1"></i>
+                      Acessar
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Gerenciar Sessões -->
+                <div class="col-md-4">
+                  <div class="admin-action-card">
+                    <div class="action-icon">
+                      <i class="fas fa-history"></i>
+                    </div>
+                    <h6>Gerenciar Sessões</h6>
+                    <p class="text-muted small">Monitorar e encerrar sessões ativas</p>
+                    <a href="/sessions-manager" class="btn btn-outline-info btn-sm w-100">
+                      <i class="fas fa-arrow-right me-1"></i>
+                      Acessar
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Logs do Sistema -->
+                <div class="col-md-4">
+                  <div class="admin-action-card">
+                    <div class="action-icon">
+                      <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h6>Logs do Sistema</h6>
+                    <p class="text-muted small">Visualizar registros de atividades</p>
+                    <button class="btn btn-outline-secondary btn-sm w-100" id="btnViewLogs">
+                      <i class="fas fa-arrow-right me-1"></i>
+                      Acessar
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Configurações -->
+                <div class="col-md-4">
+                  <div class="admin-action-card">
+                    <div class="action-icon">
+                      <i class="fas fa-cog"></i>
+                    </div>
+                    <h6>Configurações</h6>
+                    <p class="text-muted small">Ajustar parâmetros do sistema</p>
+                    <button class="btn btn-outline-secondary btn-sm w-100" id="btnSettings">
+                      <i class="fas fa-arrow-right me-1"></i>
+                      Acessar
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Backup e Restauração -->
+                <div class="col-md-4">
+                  <div class="admin-action-card">
+                    <div class="action-icon">
+                      <i class="fas fa-database"></i>
+                    </div>
+                    <h6>Backup e Restauração</h6>
+                    <p class="text-muted small">Gerenciar backups do banco de dados</p>
+                    <button class="btn btn-outline-secondary btn-sm w-100" id="btnBackup">
+                      <i class="fas fa-arrow-right me-1"></i>
+                      Acessar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Atividades Recentes -->
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">
+                <i class="fas fa-list"></i>
+                Atividades Recentes
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover" id="recentActivities">
+                  <thead>
+                    <tr>
+                      <th>Data/Hora</th>
+                      <th>Usuário</th>
+                      <th>Ação</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="text-center text-muted">
+                        <i class="fas fa-spinner fa-spin me-2"></i>
+                        Carregando atividades...
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alertas e Notificações -->
+        <div class="col-lg-4 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-header bg-warning text-dark">
+              <h5 class="mb-0">
+                <i class="fas fa-exclamation-triangle"></i>
+                Alertas
+              </h5>
+            </div>
+            <div class="card-body">
+              <div id="adminAlerts">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                  <strong>Sistema Operacional</strong>
+                  <p class="small mb-0">Todos os serviços estão funcionando normalmente.</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status do Sistema -->
+          <div class="card shadow-sm mt-3">
+            <div class="card-header bg-success text-white">
+              <h5 class="mb-0">
+                <i class="fas fa-server"></i>
+                Status do Sistema
+              </h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  <strong>API:</strong> <span class="badge bg-success">Online</span>
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  <strong>Database:</strong> <span class="badge bg-success">Conectado</span>
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-info-circle text-info me-2"></i>
+                  <strong>Versão:</strong> <span class="badge bg-info">1.0.0</span>
+                </li>
+                <li>
+                  <i class="fas fa-clock text-muted me-2"></i>
+                  <strong>Uptime:</strong> <span id="systemUptime">-</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER ADMIN -->
+  <footer class="admin-footer">
+    <div class="container-fluid">
+      <div class="footer-content">
+        <div class="footer-left">
+          <i class="fas fa-shield-alt me-2"></i>
+          <strong>SIGMA-PLI</strong> - Painel Administrativo
+        </div>
+        <div class="footer-center">
+          <a href="/auth/sobre" class="footer-link">Sobre</a>
+          <span class="footer-sep">•</span>
+          <a href="/contato" class="footer-link">Contato</a>
+          <span class="footer-sep">•</span>
+          <span class="text-muted">Desenvolvido por: VPC-GEOSER</span>
+        </div>
+        <div class="footer-right">
+          © 2025 SIGMA-PLI • Admin Panel
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/services/api.js"></script>
+  <script src="/static/js/M01_auth/script_admin_panel.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,31 @@
+# Alternativa: Neo4j local com Docker
+# Use isto enquanto resolve o problema de rede
+
+version: '3.8'
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: sigma_pli_neo4j_local
+    ports:
+      - "7474:7474"  # Neo4j Browser
+      - "7687:7687"  # Bolt
+    environment:
+      - NEO4J_AUTH=neo4j/sigma123456
+      - NEO4J_dbms_memory_heap_initial__size=512m
+      - NEO4J_dbms_memory_heap_max__size=1G
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_import:/var/lib/neo4j/import
+      - neo4j_plugins:/plugins
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_import:
+  neo4j_plugins:
+
+# Para usar:
+# docker-compose up -d
+# Acesse: http://localhost:7474
+# User: neo4j, Password: sigma123456

@@ -1,0 +1,48 @@
+/* Styles for Arcabouço teórico-conceitual section (home) */
+/* NOTE: mantém tipografia e cores do card teórico; mobile overrides também estão aqui. */
+.theory-section {
+  background-color: transparent; /* permitir background do dashboard */
+  padding: var(--spacing-2xl) 0;
+}
+
+.theory-section .container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.theory-section h3 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-lg);
+  color: white; /* título do card em branco */
+}
+
+.justified {
+  text-align: justify;
+  color: white; /* texto do card em branco conforme solicitado */
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .theory-section h3 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--dashboard-text);
+  }
+  .justified {
+    text-align: justify;
+    color: white; /* mobile: também branco */
+    font-size: var(--font-size-lg); /* igual ao hero */
+    line-height: 1.6; /* igual ao hero */
+    margin-bottom: var(--spacing-md);
+    font-family: inherit;
+  }
+
+  /* Aplicar também aos parágrafos comuns dentro do card para consistência */
+  .theory-section p {
+    color: white;
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+  }
+}

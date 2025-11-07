@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/style_global_reset_base.css">
+    <link rel="stylesheet" href="/static/css/M02_dashboard/style_dashboard_layout_base.css">
+</head>
+<body class="dashboard-body">
+    <header class="dashboard-header">
+        <div class="header-brand">
+            <span class="brand-title">SIGMA-PLI</span>
+            <span class="brand-subtitle">Painel Integrado de Licenciamento</span>
+        </div>
+        <div class="header-user">
+            <div class="user-info">
+                <span class="user-name">{{ user.name }}</span>
+                <span class="user-identifier">{{ user.username }}</span>
+            </div>
+            <button id="logout-button" class="btn-secondary" type="button">Sair</button>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <section class="overview-panel">
+            <header>
+                <h1>Bem-vindo(a), {{ user.name }}!</h1>
+                <p>Este é o painel inicial do módulo SIGMA-PLI. Em breve você visualizará indicadores e atalhos para os cadastros.</p>
+            </header>
+            <article class="session-card" id="session-card">
+                <h2>Sessão atual</h2>
+                <dl>
+                    <div>
+                        <dt>ID</dt>
+                        <dd id="session-id">Carregando...</dd>
+                    </div>
+                    <div>
+                        <dt>Expira em</dt>
+                        <dd id="session-expires">Carregando...</dd>
+                    </div>
+                </dl>
+            </article>
+        </section>
+
+        <section class="modules-panel">
+            <h2>Atalhos rápidos</h2>
+            <div class="module-grid">
+                <article class="module-card disabled">
+                    <h3>Cadastros</h3>
+                    <p>Em desenvolvimento para integrar cadastros de unidades e empreendimentos.</p>
+                </article>
+                <article class="module-card disabled">
+                    <h3>Relatórios</h3>
+                    <p>Visualize indicadores e extraia relatórios customizados (breve).</p>
+                </article>
+                <article class="module-card disabled">
+                    <h3>Integrações</h3>
+                    <p>Sincronização com sistemas corporativos e bancos públicos (breve).</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="dashboard-footer">
+        <small>&copy; {{ year }} Secretaria de Meio Ambiente, Infraestrutura e Logística</small>
+    </footer>
+
+    <script type="module" src="/static/js/M02_dashboard/script_dashboard_session_loader.js"></script>
+</body>
+</html>
