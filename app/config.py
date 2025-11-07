@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     port: int = 8000
 
     # PostgreSQL
+    database_url: str = Field(default="")  # Connection string completa (prioritária)
     postgres_host: str = Field(default="localhost")
     postgres_port: int = Field(default=5432)
     postgres_database: str = Field(default="sigma_pli")
@@ -97,7 +98,7 @@ class Settings(BaseSettings):
 
     # Feature flags de bancos (permitem subir a API sem bancos)
     enable_postgres: bool = True
-    enable_neo4j: bool = True  # habilitado - Neo4j local funcionando
+    enable_neo4j: bool = False
 
     # Configurações de Email (SMTP)
     smtp_host: str = Field(default="smtp.gmail.com")

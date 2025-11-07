@@ -18,25 +18,31 @@ async def init_postgres():
         print("ℹ️ PostgreSQL desabilitado por configuração (enable_postgres=False)")
         return
     try:
-        # asyncpg expects an SSLContext or bool for `ssl` - the settings value is
-        # a string like 'prefer' coming from psql-style sslmodes. For local
-        # development pass None (no SSL). If you need SSL in production, set
-        # up an appropriate SSLContext and adjust this code.
-        postgres_pool = await asyncpg.create_pool(
-            host=settings.postgres_host,
-            port=settings.postgres_port,
-            database=settings.postgres_database,
-            user=settings.postgres_user,
-            password=(
-                settings.postgres_password.get_secret_value()
-                if hasattr(settings.postgres_password, "get_secret_value")
-                else settings.postgres_password
-            ),
-            ssl=None,
-            min_size=5,
-            max_size=20,
-            command_timeout=60,
-        )
+        # Se tiver DATABASE_URL, usa ela (prioritário para deploys)
+        if settings.database_url:
+            postgres_pool = await asyncpg.create_pool(
+                dsn=settings.database_url,
+                min_size=2,
+                max_size=10,
+                command_timeout=60,
+            )
+        else:
+            # Senão, usa as credenciais individuais
+            postgres_pool = await asyncpg.create_pool(
+                host=settings.postgres_host,
+                port=settings.postgres_port,
+                database=settings.postgres_database,
+                user=settings.postgres_user,
+                password=(
+                    settings.postgres_password.get_secret_value()
+                    if hasattr(settings.postgres_password, "get_secret_value")
+                    else settings.postgres_password
+                ),
+                ssl="require" if settings.postgres_sslmode == "require" else None,
+                min_size=2,
+                max_size=10,
+                command_timeout=60,
+            )
         print("✅ PostgreSQL conectado com sucesso")
     except Exception as e:
         print(f"❌ Erro ao conectar PostgreSQL: {e}")
