@@ -1,32 +1,36 @@
 /* SIGMA-PLI - M00: Home - Contact & Forms */
 
-/* Contact Section
-   Padronizamos a cor de fundo dos cards internos para usar o mesmo tom
-   translúcido aplicado nos demais cards da home para consistência visual. */
+/* Contact Section - Padronizado com o resto do sistema */
 .contact-section {
-  padding: 4rem 0;
-  background-color: transparent; /* permite que o background do body apareça */
+  padding: var(--spacing-sm) 0;
+  background-color: transparent;
 }
 
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 2fr; /* coluna de info e coluna do formulário */
-  gap: 3rem;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-xl);
   align-items: start;
 }
 
 .contact-info {
-  /* Mesma base visual dos cards principais para consistência */
-  background: rgba(11, 23, 41, 0.6);
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  /* Mesmo estilo dos feature-cards para total consistência */
+  background: rgba(22, 42, 72, 0.6);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border: 1px solid var(--dashboard-border);
   color: var(--dashboard-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-info:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .info-item {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .info-item:last-child {
@@ -35,15 +39,15 @@
 
 .info-item h4 {
   color: var(--dashboard-accent);
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-lg);
   display: flex;
   align-items: center;
 }
 
 .info-item h4 svg {
   color: var(--dashboard-accent);
-  margin-right: 8px;
+  margin-right: var(--spacing-sm);
   vertical-align: middle;
   width: 20px;
   height: 20px;
@@ -55,13 +59,19 @@
 }
 
 .contact-form {
-  /* Mesmo estilo do bloco de informações para padronização */
-  background: rgba(11, 23, 41, 0.6);
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  /* Mesmo estilo da contact-info para padronização total */
+  background: rgba(22, 42, 72, 0.6);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border: 1px solid var(--dashboard-border);
   color: var(--dashboard-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .contact-form .form-group textarea {
@@ -75,9 +85,9 @@
 }
 
 .form-group label {
-  color: #495057;
+  color: var(--dashboard-text);
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-sm);
   display: block;
 }
 
@@ -87,13 +97,16 @@
   transition: all 0.3s ease;
   background-color: rgba(11, 23, 41, 0.85);
   color: var(--dashboard-text);
-  border: 1px solid rgba(233, 241, 255, 0.06);
+  border: 1px solid var(--dashboard-border);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  width: 100%;
 }
 
 .form-group input:hover,
 .form-group textarea:hover,
 .form-group select:hover {
-  border-color: #adb5bd;
+  border-color: var(--dashboard-accent);
 }
 
 .form-group input:focus,

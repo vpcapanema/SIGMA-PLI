@@ -3,13 +3,13 @@
 
 /* Card principal que envolve todo o conteúdo das seções (exceto header/footer).
    Alteração: padronizamos espaçamento vertical entre cards usando
-   `var(--spacing-2xl)` para margem-top/margin-bottom, mantendo gutters laterais
-   de 5vw. Isso cria uma distância visual uniforme entre todas as seções. */
+   `var(--spacing-md)` para margem-top/margin-bottom, mantendo gutters laterais
+   de 5vw. Isso cria uma distância visual uniforme e compacta entre todas as seções. */
 .card-main {
   /* largura baseada no viewport para manter os gutters fixos em 5vw */
   width: 90vw; /* 90% do viewport */
   /* margem vertical padronizada e gutters laterais fixos */
-  margin: var(--spacing-2xl) 5vw; /* top/bottom: spacing-2xl, left/right: 5vw */
+  margin: var(--spacing-md) 5vw; /* top/bottom: spacing-md (16px), left/right: 5vw */
   box-sizing: border-box; /* inclui padding dentro da largura */
 
   /* fundo, borda e radius consistentes com a paleta do dashboard */
@@ -22,15 +22,13 @@
   overflow: visible;
 }
 
-/* Para seções que já têm fundo escuro (hero), aplicamos uma versão translúcida
-   para manter legibilidade e não romper o contraste visual. */
+/* Para seções que já têm fundo escuro (hero), aplicamos a mesma versão translúcida
+   dos outros cards para padronização total. */
 .hero-section .card-main {
-  /* Ajustes específicos para o card do hero: menos sombra e pequeno offset à direita
-     para compor visualmente com imagens/visualizações ao lado. */
-  background-color: rgba(11, 23, 41, 0.55);
+  /* Mesmo estilo dos outros cards - sem tratamento especial */
+  background-color: rgba(11, 23, 41, 0.6);
   color: var(--dashboard-text);
-  box-shadow: none;
-  margin-right: calc(5vw + var(--spacing-md));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Títulos dos cards principais: reduzir margem esquerda para alinhamento mais

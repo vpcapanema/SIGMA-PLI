@@ -7,23 +7,26 @@
      comportamento de layout em outros ficheiros.
  */
 
-.hero-content {
-  flex: 1;
-  padding: 0 var(--spacing-lg);
-  max-width: 720px;
+/* Hero Section - Título padronizado com os demais */
+.hero-section h3 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--dashboard-accent);
+  font-size: var(--font-size-2xl);
 }
 
-.hero-content h2 {
-  font-size: var(--font-size-4xl);
-  font-weight: 700;
-  margin-bottom: var(--spacing-lg);
-  line-height: 1.2;
+.hero-content {
+  padding: 0 var(--spacing-lg);
+  max-width: 100%;
 }
 
 .hero-description {
   font-size: var(--font-size-lg);
   line-height: 1.6;
   margin-bottom: var(--spacing-xl);
+  margin-top: var(--spacing-md);
+  color: var(--dashboard-text);
+  text-align: justify;
 }
 
 .hero-actions {
@@ -40,22 +43,12 @@
   justify-content: center;
 }
 
-/* Container grid for hero - keep in hero css to avoid global duplication */
+/* Container grid for hero - layout simplificado */
 .hero-section .container {
-  display: grid;
-  grid-template-columns: 1fr 360px;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-xl);
   align-items: center;
-}
-
-.hero-title {
-  font-size: var(--font-size-3xl);
-  line-height: 1.15;
-}
-
-.hero-description {
-  margin-top: var(--spacing-md);
-  color: var(--dashboard-text);
 }
 
 .hero-stats {
@@ -102,14 +95,14 @@
   }
 }
 
-.hero-content h2,
+.hero-section h3,
 .hero-description,
 .hero-actions,
 .stat-item {
   animation: fadeInUp 0.6s ease-out;
 }
 
-.hero-content h2 {
+.hero-section h3 {
   animation-delay: 0.1s;
 }
 
@@ -137,11 +130,10 @@
 @media (max-width: 768px) {
   .hero-content {
     padding: 0 var(--spacing-md);
-    order: 2;
   }
 
-  .hero-content h2 {
-    font-size: var(--font-size-3xl);
+  .hero-section h3 {
+    font-size: var(--font-size-xl);
   }
 
   .hero-description {
@@ -154,7 +146,6 @@
 
   .hero-visual {
     padding: var(--spacing-xl) var(--spacing-md);
-    order: 1;
   }
 
   .hero-stats {
