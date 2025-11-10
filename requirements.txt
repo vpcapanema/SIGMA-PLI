@@ -2,7 +2,7 @@ openpyxl
 neo4j
 fastapi
 uvicorn[standard]
-pydantic
+pydantic[email]
 pydantic-settings
 asyncpg
 python-multipart
@@ -10,3 +10,4 @@ jinja2
 python-jose[cryptography]
 passlib[bcrypt]
 aiofiles
+email-validator
