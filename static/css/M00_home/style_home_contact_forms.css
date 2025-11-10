@@ -14,8 +14,8 @@
 }
 
 .contact-info {
-  /* Mesmo estilo dos feature-cards para total consistência */
-  background: rgba(22, 42, 72, 0.6);
+  /* Mesmo estilo dos feature-cards para total consistência - fundo opaco para evitar mistura com gradient do body */
+  background: rgba(22, 42, 72, 0.95);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -59,8 +59,8 @@
 }
 
 .contact-form {
-  /* Mesmo estilo da contact-info para padronização total */
-  background: rgba(22, 42, 72, 0.6);
+  /* Mesmo estilo da contact-info para padronização total - fundo opaco para evitar mistura com gradient do body */
+  background: rgba(22, 42, 72, 0.95);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);

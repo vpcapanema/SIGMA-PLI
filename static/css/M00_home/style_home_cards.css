@@ -4,7 +4,8 @@
 /* Card principal que envolve todo o conteúdo das seções (exceto header/footer).
    Alteração: padronizamos espaçamento vertical entre cards usando
    `var(--spacing-md)` para margem-top/margin-bottom, mantendo gutters laterais
-   de 5vw. Isso cria uma distância visual uniforme e compacta entre todas as seções. */
+   de 5vw. Isso cria uma distância visual uniforme e compacta entre todas as seções.
+   Background opaco (0.95) para evitar mistura com o gradient radial do body. */
 .card-main {
   /* largura baseada no viewport para manter os gutters fixos em 5vw */
   width: 90vw; /* 90% do viewport */
@@ -12,8 +13,8 @@
   margin: var(--spacing-md) 5vw; /* top/bottom: spacing-md (16px), left/right: 5vw */
   box-sizing: border-box; /* inclui padding dentro da largura */
 
-  /* fundo, borda e radius consistentes com a paleta do dashboard */
-  background-color: rgba(11, 23, 41, 0.6);
+  /* fundo, borda e radius consistentes com a paleta do dashboard - opaco para evitar mistura com gradient */
+  background-color: rgba(11, 23, 41, 0.95);
   border: 1px solid var(--dashboard-border);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-lg);
@@ -22,11 +23,11 @@
   overflow: visible;
 }
 
-/* Para seções que já têm fundo escuro (hero), aplicamos a mesma versão translúcida
+/* Para seções que já têm fundo escuro (hero), aplicamos a mesma versão opaca
    dos outros cards para padronização total. */
 .hero-section .card-main {
-  /* Mesmo estilo dos outros cards - sem tratamento especial */
-  background-color: rgba(11, 23, 41, 0.6);
+  /* Mesmo estilo dos outros cards - sem tratamento especial - fundo opaco */
+  background-color: rgba(11, 23, 41, 0.95);
   color: var(--dashboard-text);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
