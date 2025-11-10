@@ -33,11 +33,14 @@ app.add_middleware(
 
 # Legacy PLI assets (images) - mount the original PLI-CADASTRO assets so templates
 # that reference /static/assets/* continue to work without copying binaries.
-app.mount(
-    "/static/assets",
-    StaticFiles(directory=r"d:/SIGMA-PLI-IMPLEMENTACAO/PLI-CADASTRO/static/assets"),
-    name="pli_assets",
-)
+# Legacy PLI assets (images) - mount the original PLI-CADASTRO assets so templates
+# that reference /static/assets/* continue to work without copying binaries.
+# DESABILITADO: caminho hardcoded do Windows não funciona em Docker/Render
+# app.mount(
+#     "/static/assets",
+#     StaticFiles(directory=r"d:/SIGMA-PLI-IMPLEMENTACAO/PLI-CADASTRO/static/assets"),
+#     name="pli_assets",
+# )
 
 # Static (principais)
 app.mount("/static", StaticFiles(directory="static"), name="static")
