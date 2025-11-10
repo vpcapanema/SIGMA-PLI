@@ -2,70 +2,81 @@
 /* Arquivo: style_home_hero_banner.css */
 
 /* Observações:
-   - Este ficheiro isola a grelha e tipografia do hero, incluindo animações
-     e ajustes responsivos. Mantemos regras aqui para evitar espalhar
-     comportamento de layout em outros ficheiros.
+   - Layout reestruturado em 3 partes: títulos centralizados, grid texto+stats, grid botões
  */
 
-/* Hero Section - Título padronizado com os demais */
-.hero-section h3 {
+/* ============================================
+   TÍTULOS CENTRALIZADOS
+   ============================================ */
+.hero-titles {
   text-align: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.hero-titles h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
   color: var(--dashboard-accent);
-  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
 }
 
-.hero-content {
-  padding: 0 var(--spacing-lg);
-  max-width: 100%;
-}
-
-.hero-description {
-  font-size: var(--font-size-lg);
-  line-height: 1.6;
-  margin-bottom: var(--spacing-xl);
-  margin-top: var(--spacing-md);
+.hero-titles h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 400;
   color: var(--dashboard-text);
-  text-align: justify;
+  line-height: 1.4;
+  margin-bottom: 0;
 }
 
-.hero-actions {
-  display: flex;
-  gap: var(--spacing-md);
-  flex-wrap: wrap;
-}
-
-.hero-visual {
-  flex: 1;
-  padding: 0 var(--spacing-lg);
-  display: flex;
+/* ============================================
+   GRID PRINCIPAL: Texto (col 1) + Stats (col 2)
+   ============================================ */
+.hero-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-2xl);
   align-items: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-/* Container grid for hero - layout simplificado */
-.hero-section .container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xl);
-  align-items: center;
+.hero-description {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--dashboard-text);
+  text-align: justify;
+  margin: 0;
 }
 
+/* Stats responsivos no grid */
 .hero-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-lg);
-  max-width: 400px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--spacing-md);
+  width: 100%;
 }
 
 .stat-item {
   text-align: center;
   padding: var(--spacing-lg);
-  background: rgba(11, 23, 41, 0.6); /* dashboard-like */
-  border-radius: var(--border-radius-lg);
+  background: rgba(11, 23, 41, 0.6);
+  border-radius: var(--border-radius-md);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   border: 1px solid var(--dashboard-border);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(44, 143, 255, 0.3);
+  border-color: var(--dashboard-accent);
 }
 
 .stat-number {
@@ -79,81 +90,64 @@
 .stat-label {
   font-size: var(--font-size-sm);
   opacity: 0.8;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: var(--dashboard-muted);
 }
 
-/* Animações */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ============================================
+   GRID BOTÕES: 2 colunas, botões centralizados
+   ============================================ */
+.hero-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
 }
 
-.hero-section h3,
-.hero-description,
-.hero-actions,
-.stat-item {
-  animation: fadeInUp 0.6s ease-out;
+.action-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero-section h3 {
-  animation-delay: 0.1s;
+.action-col .btn {
+  min-width: 200px;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
 }
 
-.hero-description {
-  animation-delay: 0.3s;
-}
-
-.hero-actions {
-  animation-delay: 0.5s;
-}
-
-.stat-item:nth-child(1) {
-  animation-delay: 0.2s;
-}
-
-.stat-item:nth-child(2) {
-  animation-delay: 0.4s;
-}
-
-.stat-item:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-/* Responsividade */
+/* ============================================
+   RESPONSIVO - Mobile
+   ============================================ */
 @media (max-width: 768px) {
-  .hero-content {
-    padding: 0 var(--spacing-md);
+  .hero-titles h2 {
+    font-size: var(--font-size-2xl);
   }
 
-  .hero-section h3 {
-    font-size: var(--font-size-xl);
-  }
-
-  .hero-description {
+  .hero-titles h3 {
     font-size: var(--font-size-base);
   }
 
-  .hero-actions {
-    justify-content: center;
+  /* Grid principal vira 1 coluna */
+  .hero-main-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
   }
 
-  .hero-visual {
-    padding: var(--spacing-xl) var(--spacing-md);
-  }
-
+  /* Stats em 1 coluna também */
   .hero-stats {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
   }
 
-  .stat-item {
-    padding: var(--spacing-md);
+  /* Grid de botões vira 1 coluna */
+  .hero-actions-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .action-col .btn {
+    width: 100%;
+    min-width: auto;
   }
 }
