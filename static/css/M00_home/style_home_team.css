@@ -43,7 +43,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-2xl);
   margin: var(--spacing-lg) 0;
   position: relative;
   padding: 0 var(--spacing-sm);
@@ -219,8 +219,8 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 5%;
-  right: 5%;
+  left: calc(50% - 520px);
+  right: calc(50% - 520px);
   height: 3px;
   background: var(--dashboard-accent);
   z-index: 10;
