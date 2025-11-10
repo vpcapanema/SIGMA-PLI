@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/style_global_reset_base.css">
     <link rel="stylesheet" href="/static/css/M02_dashboard/style_dashboard_layout_base.css">
 </head>
+
 <body class="dashboard-body">
     <header class="dashboard-header">
         <div class="header-brand">
@@ -26,7 +28,8 @@
         <section class="overview-panel">
             <header>
                 <h1>Bem-vindo(a), {{ user.name }}!</h1>
-                <p>Este é o painel inicial do módulo SIGMA-PLI. Em breve você visualizará indicadores e atalhos para os cadastros.</p>
+                <p>Este é o painel inicial do módulo SIGMA-PLI. Em breve você visualizará indicadores e atalhos para os
+                    cadastros.</p>
             </header>
             <article class="session-card" id="session-card">
                 <h2>Sessão atual</h2>
@@ -64,8 +67,10 @@
 
     <footer class="dashboard-footer">
         <small>&copy; {{ year }} Secretaria de Meio Ambiente, Infraestrutura e Logística</small>
+        <small>Desenvolvido e implementado por VPC-GEOSER</small>
     </footer>
 
     <script type="module" src="/static/js/M02_dashboard/script_dashboard_session_loader.js"></script>
 </body>
+
 </html>
