@@ -138,16 +138,6 @@
   color: var(--dashboard-muted) !important;
 }
 
-/* Contact form and info boxes */
-.contact-content .contact-info,
-.contact-form {
-  background: rgba(11, 23, 41, 0.6);
-  border: 1px solid var(--dashboard-border);
-  padding: var(--spacing-md);
-  border-radius: 10px;
-  color: var(--dashboard-text);
-}
-
 /* Status grid placeholder */
 .status-grid .status-loading {
   color: var(--dashboard-muted);
