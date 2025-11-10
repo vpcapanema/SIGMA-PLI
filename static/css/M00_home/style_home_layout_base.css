@@ -18,7 +18,9 @@ section {
   min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
-  padding-top: calc(88px + var(--spacing-md)); /* header height + espaçamento padrão */
+  padding-top: calc(
+    88px + var(--spacing-md)
+  ); /* header height + espaçamento padrão */
   padding-bottom: var(--spacing-md);
 }
 
