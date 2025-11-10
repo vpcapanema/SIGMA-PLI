@@ -2,11 +2,13 @@
 /* Arquivo: style_home_layout_base.css
    NOTE: estilos de navegação (desktop + mobile) foram centralizados em
    `style_home_navigation.css`. Manter apenas estilos de layout gerais aqui.
+   ESPAÇAMENTO VERTICAL PADRONIZADO: Todas as seções têm padding 0 para não conflitar
+   com o margin var(--spacing-lg) dos .card-main
 */
 
-/* Seções - Espaçamento padronizado e compacto */
+/* Seções - SEM padding vertical (espaçamento controlado pelo .card-main) */
 section {
-  padding: var(--spacing-sm) 0;
+  padding: 0;
   margin: 0;
 }
 
@@ -18,37 +20,34 @@ section {
   min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
-  padding-top: calc(
-    88px + var(--spacing-sm)
-  ); /* header height + espaçamento padrão */
-  padding-bottom: var(--spacing-sm);
+  padding-top: calc(88px); /* apenas header height */
+  padding-bottom: 0;
 }
 
 .theory-section {
-  padding: var(--spacing-sm) 0;
+  padding: 0;
   margin: 0;
 }
 
 .quick-links-section {
-  padding: var(--spacing-sm) 0;
+  padding: 0;
   margin: 0;
 }
 
 .features-section {
-  /* Remover cor branca para deixar o background global aparecer */
   background-color: transparent;
-  padding: var(--spacing-sm) 0;
+  padding: 0;
   margin: 0;
 }
 
 .status-section {
   background-color: transparent;
-  padding: var(--spacing-sm) 0;
+  padding: 0;
   margin: 0;
 }
 
 .contact-section {
-  padding: var(--spacing-sm) 0;
+  padding: 0;
   margin: 0;
 }
 
@@ -56,8 +55,9 @@ section {
 .dashboard-footer {
   background-color: var(--sigma-gray-800);
   color: white;
-  padding: var(--spacing-sm) 0;
+  padding: var(--spacing-lg) 0; /* footer pode ter padding */
   margin: 0;
+  margin-top: var(--spacing-lg); /* espaço antes do footer */
 }
 
 /* Footer */

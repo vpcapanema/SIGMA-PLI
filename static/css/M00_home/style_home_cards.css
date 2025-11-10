@@ -2,15 +2,15 @@
 /* Arquivo: style_home_cards.css */
 
 /* Card principal que envolve todo o conteúdo das seções (exceto header/footer).
-   Alteração: padronizamos espaçamento vertical entre cards usando
-   `var(--spacing-md)` para margem-top/margin-bottom, mantendo gutters laterais
-   de 5vw. Isso cria uma distância visual uniforme e compacta entre todas as seções.
+   ESPAÇAMENTO VERTICAL PADRONIZADO: var(--spacing-lg) = 24px entre TODOS os cards.
+   Largura reduzida de 90vw para 85vw para cards mais compactos.
    Background opaco (0.95) para evitar mistura com o gradient radial do body. */
 .card-main {
-  /* largura baseada no viewport para manter os gutters fixos em 5vw */
-  width: 90vw; /* 90% do viewport */
-  /* margem vertical padronizada e gutters laterais fixos */
-  margin: var(--spacing-md) 5vw; /* top/bottom: spacing-md (16px), left/right: 5vw */
+  /* largura reduzida para 85vw (cards mais estreitos) */
+  width: 85vw; /* 85% do viewport */
+  max-width: 1400px; /* limite máximo em telas grandes */
+  /* ESPAÇAMENTO VERTICAL PADRONIZADO: var(--spacing-lg) = 24px */
+  margin: var(--spacing-lg) auto; /* 24px top/bottom, centralizado horizontalmente */
   box-sizing: border-box; /* inclui padding dentro da largura */
 
   /* fundo, borda e radius consistentes com a paleta do dashboard - opaco para evitar mistura com gradient */
