@@ -4,9 +4,9 @@
    `style_home_navigation.css`. Manter apenas estilos de layout gerais aqui.
 */
 
-/* Seções */
+/* Seções - Espaçamento padronizado e reduzido */
 section {
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-md) 0;
   margin: 0;
 }
 
@@ -18,22 +18,44 @@ section {
   min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
-  padding-top: calc(88px + var(--spacing-lg)); /* header height + espaçamento padrão */
+  padding-top: calc(88px + var(--spacing-md)); /* header height + espaçamento padrão */
+  padding-bottom: var(--spacing-md);
+}
+
+.theory-section {
+  padding: var(--spacing-md) 0;
+  margin: 0;
+}
+
+.quick-links-section {
+  padding: var(--spacing-md) 0;
+  margin: 0;
 }
 
 .features-section {
   /* Remover cor branca para deixar o background global aparecer */
   background-color: transparent;
+  padding: var(--spacing-md) 0;
+  margin: 0;
 }
 
 .status-section {
   background-color: transparent;
+  padding: var(--spacing-md) 0;
+  margin: 0;
 }
 
-.sigma-footer {
+.contact-section {
+  padding: var(--spacing-md) 0;
+  margin: 0;
+}
+
+.sigma-footer,
+.dashboard-footer {
   background-color: var(--sigma-gray-800);
   color: white;
-  padding: var(--spacing-2xl) 0 var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+  margin: 0;
 }
 
 /* Footer */
