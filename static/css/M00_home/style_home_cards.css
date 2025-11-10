@@ -69,6 +69,12 @@
   margin-bottom: var(--spacing-sm);
 }
 
+.feature-icon svg {
+  color: var(--dashboard-accent);
+  width: 48px;
+  height: 48px;
+}
+
 /* Hero stats / estatísticas */
 .stat-item {
   /* Blocos de estatísticas do hero: fundo escuro translúcido e borda leve */
@@ -91,6 +97,40 @@
   display: block;
   font-size: 0.8rem;
   color: rgba(233, 241, 255, 0.8);
+}
+
+/* Features Section */
+.features-section {
+  background-color: transparent;
+}
+
+.features-section h3 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--dashboard-accent);
+  font-size: var(--font-size-2xl);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* Status Section */
+.status-section h3 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--dashboard-accent);
+  font-size: var(--font-size-2xl);
+}
+
+/* Contact Section */
+.contact-section h3 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--dashboard-accent);
+  font-size: var(--font-size-2xl);
 }
 
 /* Module / feature grid (status/module cards) */

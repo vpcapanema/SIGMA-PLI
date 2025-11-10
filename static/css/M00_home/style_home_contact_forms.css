@@ -37,6 +37,16 @@
   color: var(--dashboard-accent);
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.info-item h4 svg {
+  color: var(--dashboard-accent);
+  margin-right: 8px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
 }
 
 .info-item p {

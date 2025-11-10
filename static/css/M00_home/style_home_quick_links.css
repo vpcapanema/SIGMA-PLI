@@ -55,6 +55,12 @@
   transition: all 0.3s ease;
 }
 
+.quick-link-card .quick-icon svg {
+  color: white;
+  width: 32px;
+  height: 32px;
+}
+
 .quick-link-card:hover .quick-icon {
   transform: scale(1.1) rotate(5deg);
   box-shadow: 0 8px 20px rgba(44, 143, 255, 0.4);
