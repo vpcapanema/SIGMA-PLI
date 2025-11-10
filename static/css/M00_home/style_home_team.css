@@ -39,11 +39,11 @@
 .org-level {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--spacing-md);
   margin: var(--spacing-xl) 0;
   position: relative;
-  max-width: 100%;
+  overflow-x: auto;
   padding: 0 var(--spacing-md);
 }
 
@@ -51,13 +51,15 @@
   background: rgba(22, 42, 72, 0.7);
   border: 2px solid var(--dashboard-border);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-md);
-  min-width: 180px;
-  max-width: 200px;
+  padding: var(--spacing-lg);
+  min-width: 200px;
+  max-width: 220px;
   text-align: center;
   position: relative;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .org-card:hover {
@@ -74,13 +76,13 @@
   );
   border-color: var(--dashboard-accent);
   border-width: 3px;
-  min-width: 280px;
-  max-width: 300px;
+  min-width: 300px;
+  max-width: 320px;
 }
 
 .org-card .icon {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--dashboard-accent), #1e5fa8);
   display: flex;
@@ -91,11 +93,23 @@
   border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
+.org-card .icon svg {
+  color: white;
+  stroke: white;
+  width: 28px;
+  height: 28px;
+}
+
 .org-card.coordinator .icon {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   font-size: 2rem;
   border-width: 4px;
+}
+
+.org-card.coordinator .icon svg {
+  width: 48px;
+  height: 48px;
 }
 
 .org-card .name {
