@@ -43,7 +43,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: var(--spacing-2xl);
+  gap: 70px;
   margin: var(--spacing-lg) 0;
   position: relative;
   padding: 0 var(--spacing-sm);
@@ -54,9 +54,9 @@
   border: 2px solid var(--dashboard-border);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-md);
-  min-width: 200px;
-  max-width: 200px;
-  min-height: 200px;
+  min-width: 240px;
+  max-width: 240px;
+  min-height: 240px;
   text-align: center;
   position: relative;
   transition: all 0.3s ease;
@@ -219,8 +219,8 @@
   content: "";
   position: absolute;
   top: 0;
-  left: calc(50% - 520px);
-  right: calc(50% - 520px);
+  left: calc(50% - 720px);
+  right: calc(50% - 720px);
   height: 3px;
   background: var(--dashboard-accent);
   z-index: 10;
