@@ -1,0 +1,98 @@
+/* SIGMA-PLI - M00: Home - Typography Standards */
+/* Padronização COMPLETA de tipografia da página inicial */
+
+/* ============================================
+   TÍTULOS PRINCIPAIS (H3) - Títulos de Seções
+   ============================================ */
+.hero-section h3,
+.theory-section h3,
+.quick-links-section h3,
+.contact-section h3,
+.card-main h3 {
+  color: var(--dashboard-accent) !important;
+  font-size: var(--font-size-2xl) !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: var(--spacing-xl) !important;
+  line-height: 1.3 !important;
+}
+
+/* ============================================
+   SUBTÍTULOS (H4) - Títulos dentro de Cards
+   ============================================ */
+.quick-link-card h4,
+.info-item h4,
+.contact-form h4,
+.feature-card h4 {
+  color: var(--dashboard-text) !important;
+  font-size: var(--font-size-lg) !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+}
+
+/* ============================================
+   TEXTO NORMAL (P, DIV)
+   ============================================ */
+.hero-description,
+.theory-section p,
+.theory-section .justified,
+.quick-link-card p,
+.info-item p,
+.contact-form p,
+.feature-card p {
+  color: var(--dashboard-text) !important;
+  font-size: var(--font-size-base) !important;
+  line-height: 1.7 !important;
+}
+
+/* ============================================
+   TEXTO SECUNDÁRIO/MUTED
+   ============================================ */
+.quick-link-card p,
+.stat-label {
+  color: var(--dashboard-muted) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+/* ============================================
+   NÚMEROS E ESTATÍSTICAS
+   ============================================ */
+.stat-number {
+  color: var(--dashboard-accent) !important;
+  font-size: var(--font-size-3xl) !important;
+  font-weight: 700 !important;
+}
+
+/* ============================================
+   ÍCONES
+   ============================================ */
+.quick-icon svg,
+.feature-icon svg,
+.info-item h4 svg {
+  color: var(--dashboard-accent) !important;
+}
+
+/* ============================================
+   RESPONSIVO - Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-section h3,
+  .theory-section h3,
+  .quick-links-section h3,
+  .contact-section h3,
+  .card-main h3 {
+    font-size: var(--font-size-xl) !important;
+    margin-bottom: var(--spacing-lg) !important;
+  }
+
+  .quick-link-card h4,
+  .info-item h4 {
+    font-size: var(--font-size-base) !important;
+  }
+
+  .hero-description,
+  .theory-section p,
+  .theory-section .justified {
+    font-size: var(--font-size-sm) !important;
+  }
+}
