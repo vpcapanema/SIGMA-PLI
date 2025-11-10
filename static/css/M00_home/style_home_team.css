@@ -235,3 +235,55 @@
   display: inline-block;
   font-weight: 600;
 }
+
+/* ============================================
+   SEÇÃO DE EQUIPE NA HOME
+   ============================================ */
+.team-section {
+  background-color: transparent;
+}
+
+.team-section h3 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--dashboard-accent);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+}
+
+.team-section p.justified {
+  text-align: justify;
+  line-height: 1.7;
+  color: var(--dashboard-text);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+
+.team-action {
+  text-align: center;
+  margin-top: var(--spacing-2xl);
+}
+
+.team-action .btn {
+  min-width: 250px;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+/* Responsividade para seção home */
+@media (max-width: 768px) {
+  .team-section h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .team-section p.justified {
+    font-size: var(--font-size-sm);
+    text-align: left;
+  }
+
+  .team-action .btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
