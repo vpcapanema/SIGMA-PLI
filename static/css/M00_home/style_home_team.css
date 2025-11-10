@@ -43,8 +43,8 @@
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: var(--spacing-lg);
-  margin: var(--spacing-lg) 0;
+  gap: var(--spacing-xl);
+  margin: var(--spacing-xl) 0;
   position: relative;
   padding: 0 var(--spacing-sm);
 }
@@ -203,7 +203,7 @@
 
 /* Informações adicionais e contato */
 .team-info {
-  margin-top: var(--spacing-2xl);
+  margin-top: var(--spacing-xl);
   padding: var(--spacing-xl);
   background: rgba(22, 42, 72, 0.4);
   border-radius: var(--border-radius-md);
@@ -224,7 +224,7 @@
 }
 
 .team-contact {
-  margin-top: var(--spacing-2xl);
+  margin-top: var(--spacing-xl);
   text-align: center;
   padding: var(--spacing-xl);
   background: linear-gradient(

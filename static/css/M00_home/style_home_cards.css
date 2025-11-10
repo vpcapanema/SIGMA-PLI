@@ -21,6 +21,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   color: var(--dashboard-text);
   overflow: visible;
+  /* altura dinâmica baseada no conteúdo - sem min-height fixo */
 }
 
 /* Para seções que já têm fundo escuro (hero), aplicamos a mesma versão opaca
