@@ -120,6 +120,19 @@
   height: 42px;
 }
 
+/* Foto de perfil quadrada com bordas arredondadas */
+.org-card .profile-photo {
+  width: 100%;
+  max-width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--border-radius-lg);
+  margin: 0 auto var(--spacing-sm);
+  display: block;
+  border: 3px solid var(--dashboard-accent);
+  box-shadow: 0 4px 15px rgba(44, 143, 255, 0.3);
+}
+
 .org-card .name {
   font-size: var(--font-size-base);
   font-weight: 700;
