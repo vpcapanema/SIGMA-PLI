@@ -16,7 +16,7 @@
 .hero-titles h2 {
   font-size: var(--font-size-4xl);
   font-weight: 700;
-  color: var(--dashboard-accent);
+  color: var(--dashboard-accent) !important;
   margin-bottom: var(--spacing-sm);
   line-height: 1.2;
 }
