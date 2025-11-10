@@ -1,8 +1,51 @@
 /* M07 Ferramentas - Hub de Aplicações */
 
 .ferramentas-main {
-  padding: var(--spacing-2xl) 0;
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
+  margin-top: var(--spacing-xl);
   min-height: calc(100vh - var(--header-height) - 100px);
+}
+
+/* Estilos para ícones SVG */
+.hero-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: var(--spacing-sm);
+  color: var(--dashboard-accent);
+}
+
+.section-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: var(--spacing-sm);
+  color: var(--dashboard-accent);
+}
+
+.btn-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: var(--spacing-xs);
+}
+
+.btn-icon-inline {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: var(--spacing-xs);
+}
+
+.ferramentas-hero h1 svg {
+  color: var(--dashboard-accent);
+}
+
+.quick-icon svg {
+  color: white !important;
+  position: relative;
+  z-index: 10;
+}
+
+.app-icon svg {
+  color: var(--dashboard-accent);
 }
 
 /* Hero Section */
@@ -196,6 +239,12 @@
   border-radius: 50%;
   border: 3px solid rgba(44, 143, 255, 0.3);
   transition: all 0.4s ease;
+}
+
+.app-icon svg {
+  color: var(--dashboard-accent);
+  width: 48px;
+  height: 48px;
 }
 
 .app-card:hover .app-icon {
