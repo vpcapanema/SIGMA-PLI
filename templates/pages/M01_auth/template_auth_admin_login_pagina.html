@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -26,18 +27,22 @@
     .login__glass-icon-bg--div {
       background: linear-gradient(135deg, #dc3545, #c82333) !important;
     }
+
     .login__pli-auth-title--h1 {
       color: #dc3545 !important;
       font-size: 1.75rem !important;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, #dc3545, #c82333) !important;
       border-color: #dc3545 !important;
     }
+
     .btn-primary:hover {
       background: linear-gradient(135deg, #c82333, #bd2130) !important;
       border-color: #bd2130 !important;
     }
+
     .admin-badge {
       display: inline-block;
       background: #dc3545;
@@ -78,7 +83,8 @@
               <i class="fas fa-shield-alt text-white"></i>
             </div>
             <h1 class="login__pli-auth-title--h1">
-              Acesso Administrativo
+              Acesso<br>
+              Administrativo<br>
               <span class="admin-badge">Admin</span>
             </h1>
             <p class="login__pli-auth-subtitle--p">Área restrita - Somente para administradores</p>
@@ -93,7 +99,8 @@
                 <span class="input-group-text">
                   <i class="fas fa-user-shield"></i>
                 </span>
-                <input type="text" id="identifier" name="identifier" class="form-control" placeholder="Email ou nome de usuário" required autofocus>
+                <input type="text" id="identifier" name="identifier" class="form-control"
+                  placeholder="Email ou nome de usuário" required autofocus>
               </div>
             </div>
 
@@ -105,7 +112,8 @@
                 <span class="input-group-text">
                   <i class="fas fa-lock"></i>
                 </span>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Sua senha" required>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Sua senha"
+                  required>
                 <button type="button" class="btn btn-password-toggle" aria-label="Mostrar ou ocultar senha">
                   <i class="fas fa-eye"></i>
                 </button>
@@ -120,7 +128,8 @@
                 <span class="input-group-text">
                   <i class="fas fa-mobile-alt"></i>
                 </span>
-                <input type="text" id="codigo-2fa" name="codigo_2fa" class="form-control" placeholder="000000" maxlength="6">
+                <input type="text" id="codigo-2fa" name="codigo_2fa" class="form-control" placeholder="000000"
+                  maxlength="6">
               </div>
               <small class="text-muted">Deixe em branco se não tiver 2FA habilitado</small>
             </div>
@@ -232,30 +241,30 @@
     });
 
     // Admin login form submission
-    document.getElementById('admin-login-form').addEventListener('submit', async function(e) {
+    document.getElementById('admin-login-form').addEventListener('submit', async function (e) {
       e.preventDefault();
-      
+
       const feedback = document.getElementById('login-feedback');
       const submitBtn = this.querySelector('button[type="submit"]');
-      
+
       // Disable submit button
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Autenticando...';
-      
+
       try {
         const formData = new FormData(this);
         const response = await fetch(this.action, {
           method: 'POST',
           body: formData
         });
-        
+
         const data = await response.json();
-        
+
         if (response.ok) {
           feedback.className = 'auth-feedback alert alert-success';
           feedback.textContent = 'Login realizado com sucesso! Redirecionando...';
           feedback.hidden = false;
-          
+
           // Redirect to admin panel
           setTimeout(() => {
             window.location.href = '/admin/panel';
@@ -264,7 +273,7 @@
           feedback.className = 'auth-feedback alert alert-danger';
           feedback.textContent = data.detail || 'Erro ao realizar login. Verifique suas credenciais.';
           feedback.hidden = false;
-          
+
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fas fa-shield-alt me-2"></i>Acessar Painel Admin';
         }
@@ -272,11 +281,12 @@
         feedback.className = 'auth-feedback alert alert-danger';
         feedback.textContent = 'Erro de conexão. Tente novamente.';
         feedback.hidden = false;
-        
+
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-shield-alt me-2"></i>Acessar Painel Admin';
       }
     });
   </script>
 </body>
+
 </html>
