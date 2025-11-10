@@ -3,6 +3,7 @@
 /* Espaçamento principal da página de equipe */
 .team-main {
   padding: var(--spacing-2xl) 0;
+  margin-top: var(--spacing-2xl);
 }
 
 .team-hero {
@@ -42,7 +43,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   margin: var(--spacing-lg) 0;
   position: relative;
   padding: 0 var(--spacing-sm);
