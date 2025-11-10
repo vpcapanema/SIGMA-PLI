@@ -8,7 +8,7 @@
 .card-main {
   /* largura reduzida para 85vw (cards mais estreitos) */
   width: 85vw; /* 85% do viewport */
-  max-width: 1400px; /* limite máximo em telas grandes */
+  max-width: 1600px; /* limite máximo em telas grandes - aumentado para equipe */
   /* ESPAÇAMENTO VERTICAL PADRONIZADO: var(--spacing-lg) = 24px */
   margin: var(--spacing-lg) auto; /* 24px top/bottom, centralizado horizontalmente */
   box-sizing: border-box; /* inclui padding dentro da largura */
