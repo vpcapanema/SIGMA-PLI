@@ -6,6 +6,7 @@ Backend FastAPI - Aplicação Principal (apenas composição e bootstrap)
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 import uvicorn
 
 from app.database import init_db
@@ -44,6 +45,12 @@ app.add_middleware(
 
 # Static (principais)
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+# Favicon
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse("static/favicon.ico")
 
 
 # Routers (modular)
