@@ -460,6 +460,20 @@ body.recuperar-senha__p-recuperar-senha--body {
   text-decoration: underline;
 }
 
+/* === Utility Classes - Removendo estilos inline === */
+.text-muted-small {
+  font-size: 0.9rem;
+}
+
+.text-muted-xsmall {
+  font-size: 0.85rem;
+}
+
+.token-input-style {
+  letter-spacing: 0.4rem;
+  font-size: 1.4rem;
+}
+
 /* === Responsive === */
 @media (max-width: 991px) {
   .pli-main-content {

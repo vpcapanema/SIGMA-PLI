@@ -105,6 +105,57 @@ section {
   font-size: var(--font-size-sm);
 }
 
+/* Utility Classes - Removendo estilos inline */
+.main-content-padding {
+  padding: var(--spacing-2xl) 0;
+}
+
+.paragraph-spacing-top {
+  margin-top: var(--spacing-sm);
+}
+
+.social-section {
+  margin-top: var(--spacing-2xl);
+  text-align: center;
+}
+
+.social-section-title {
+  color: var(--dashboard-text);
+  margin-bottom: var(--spacing-md);
+}
+
+.btn-contact-primary {
+  background: var(--dashboard-accent);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-2xl);
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+}
+
+.btn-submit-full {
+  width: 100%;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  background: var(--dashboard-accent);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.privacy-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--dashboard-muted);
+  font-size: var(--font-size-sm);
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   /* Mobile-specific layout for the navigation is centralized in
