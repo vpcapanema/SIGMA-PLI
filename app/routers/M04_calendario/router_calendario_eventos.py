@@ -394,34 +394,6 @@ async def get_feriados_ano(ano: int):
 
 
 @router.get("/api/v1/calendario/feriados/{ano}/{mes}", tags=["Calendário", "Feriados"])
-async def get_feriados_ano(ano: int):
-    """
-    Retorna todos os feriados de um ano específico.
-
-    Inclui:
-    - Feriados nacionais
-    - Feriados estaduais (São Paulo)
-    - Feriados municipais (São Paulo)
-    """
-    feriados = FeriadoService.obter_todos_feriados(ano)
-
-    # Formata para JSON
-    return {
-        "ano": ano,
-        "total": len(feriados),
-        "feriados": [
-            {
-                "data": f["data"].isoformat(),
-                "nome": f["nome"],
-                "tipo": f["tipo"],
-                "tipo_feriado": f["tipo_feriado"],
-            }
-            for f in feriados
-        ],
-    }
-
-
-@router.get("/api/v1/calendario/feriados/{ano}/{mes}", tags=["Calendário", "Feriados"])
 async def get_feriados_mes(ano: int, mes: int):
     """
     Retorna feriados de um mês específico.
