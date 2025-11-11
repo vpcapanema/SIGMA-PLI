@@ -12,4 +12,5 @@ passlib[bcrypt]
 aiofiles
 email-validator
 aiohttp
+httpx
 sqlalchemy

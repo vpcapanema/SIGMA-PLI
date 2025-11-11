@@ -105,6 +105,23 @@ async def health_check_root():
     return {"status": "healthy", "service": "SIGMA-PLI Backend", "version": "1.0.0"}
 
 
+@router.get("/api/v1/keepalive/stats")
+async def keepalive_stats():
+    """Retorna estatísticas do serviço Keep-Alive"""
+    from app.services.service_keepalive import get_keepalive_service
+
+    keepalive = get_keepalive_service()
+
+    if not keepalive:
+        return {
+            "status": "disabled",
+            "message": "Serviço Keep-Alive não está ativo (desenvolvimento local)",
+        }
+
+    stats = keepalive.get_stats()
+    return {"status": "active", "stats": stats}
+
+
 @router.post("/api/v1/contact")
 async def submit_contact_form(contact: ContactForm, background_tasks: BackgroundTasks):
     """Processa formulário de contato"""

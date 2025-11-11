@@ -11,6 +11,8 @@ import uvicorn
 
 from app.database import init_db
 from app.routers import router
+from app.config import settings
+from app.services.service_keepalive import init_keepalive_service, get_keepalive_service
 
 
 app = FastAPI(
@@ -64,6 +66,25 @@ async def startup_event():
     except Exception as e:
         print(f"⚠️ Aviso: Falha na inicialização do banco de dados: {e}")
         print("Continuando sem conexões de banco para desenvolvimento...")
+
+    # Inicializar Keep-Alive se habilitado
+    if settings.enable_keepalive and settings.keepalive_url:
+        print(f"🔄 Inicializando Keep-Alive Service...")
+        keepalive = init_keepalive_service(
+            base_url=settings.keepalive_url,
+            interval_minutes=settings.keepalive_interval_minutes,
+        )
+        keepalive.start()
+        print(f"✅ Keep-Alive ativo - URL: {settings.keepalive_url}")
+    else:
+        print(f"ℹ️ Keep-Alive desabilitado (desenvolvimento local)")
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    keepalive = get_keepalive_service()
+    if keepalive:
+        await keepalive.stop()
 
 
 if __name__ == "__main__":

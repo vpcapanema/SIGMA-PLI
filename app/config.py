@@ -109,6 +109,13 @@ class Settings(BaseSettings):
     email_admin: str = Field(default="admin@sigma-pli.gov.br")
     frontend_url: str = Field(default="http://127.0.0.1:8010")
 
+    # Keep-Alive (Render)
+    enable_keepalive: bool = Field(default=False)  # Ativar em produção
+    keepalive_url: str = Field(
+        default=""
+    )  # URL do próprio servidor (ex: https://sigma-pli.onrender.com)
+    keepalive_interval_minutes: int = Field(default=10)  # Intervalo entre pings
+
     class Config:
         env_file = ".env"
         case_sensitive = False
