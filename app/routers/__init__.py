@@ -54,6 +54,11 @@ from app.routers.M07_ferramentas.router_ferramentas_geoserver_etl import (
     router as ferramentas_router,
 )
 
+# M04 - Calendário
+from app.routers.M04_calendario.router_calendario_eventos import (
+    router as calendario_router,
+)
+
 router = APIRouter()
 
 # Home define a rota "/" e também "/api/v1/..." específicas do módulo
@@ -81,6 +86,9 @@ router.include_router(restrito_user_pages_router)
 router.include_router(
     ferramentas_router, prefix="/ferramentas", tags=["M07 - Ferramentas"]
 )
+
+# M04 - Calendário
+router.include_router(calendario_router, tags=["M04 - Calendário"])
 
 # TODO: Incluir outros módulos quando implementados
 # router.include_router(

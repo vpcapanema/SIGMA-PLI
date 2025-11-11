@@ -44,9 +44,9 @@
 
     /* Tipografia (PLI) */
     --font-family: 'Montserrat', sans-serif;
-    --font-size-xs: 0.7rem;
-    --font-size-sm: 0.9rem;
-    --font-size-base: 1rem;
+    --font-size-xs: 1.2rem;
+    --font-size-sm: 1.5rem;
+    --font-size-base: 1.5rem;
     --font-size-lg: 1.2rem;
     --font-size-xl: 1.5rem;
     --font-size-2xl: 2rem;

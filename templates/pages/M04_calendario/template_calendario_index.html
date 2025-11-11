@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário PLI | SIGMA-PLI</title>
+
+    <!-- Reset e base global -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style_global_reset_base.css') }}">
+
+    <!-- CSS do dashboard (navbar e footer padrão ESCURO como na equipe) -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/M02_dashboard/style_dashboard_layout_base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/M00_home/style_home_layout_base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/M00_home/style_home_cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/M00_home/style_home_navigation.css') }}">
+
+    <!-- CSS do módulo calendário -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/M04_calendario/style_calendario_base.css') }}">
+
+    <!-- Meta tags -->
+    <meta name="description" content="Sistema de gerenciamento de calendário e eventos do PLI-SP 2050">
+    <meta name="author" content="SIGMA-PLI Team">
+</head>
+
+<body class="dashboard-body">
+    <!-- Header/Navigation (padrão SIGMA-PLI igual página equipe) -->
+    <header class="dashboard-header">
+        <nav class="sigma-nav">
+            <div class="header-brand">
+                <span class="brand-title">SIGMA-PLI</span>
+                <span class="brand-subtitle">Sistema Integrado de Gestão, Monitoramento e Apoio técnico ao PLI/SP</span>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/sobre" class="nav-link">Sobre o PLI</a>
+                <a href="/equipe" class="nav-link">Equipe</a>
+                <a href="/calendario" class="nav-link active">Calendário</a>
+                <a href="/auth" class="nav-link">Entrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content (igual estrutura da página equipe) -->
+    <main class="team-main">
+        <section>
+            <div class="card-main">
+                <div class="container">
+                    <div class="calendario-layout">
+
+                        <!-- Header com navegação e ações -->
+                        <header class="calendario-header">
+                            <div class="calendario-header-title">
+                                <h1>
+                                    <span class="icon-calendar"></span> Calendário PLI
+                                </h1>
+                            </div>
+
+                            <div class="calendar-nav">
+                                <button id="btn-prev-month" class="calendario-btn">
+                                    ← Anterior
+                                </button>
+                                <button id="btn-today" class="calendario-btn calendario-btn-primary">
+                                    Hoje
+                                </button>
+                                <button id="btn-next-month" class="calendario-btn">
+                                    Próximo →
+                                </button>
+                            </div>
+
+                            <div class="calendario-header-actions">
+                                <button id="btn-novo-evento" class="calendario-btn calendario-btn-success">
+                                    <span class="icon-plus"></span> Novo Evento
+                                </button>
+                                <button id="btn-exportar" class="calendario-btn">
+                                    <span class="icon-download"></span> Exportar
+                                </button>
+                                <button id="btn-sincronizar" class="calendario-btn">
+                                    <span class="icon-refresh"></span> Sincronizar
+                                </button>
+                            </div>
+                        </header>
+
+                        <!-- Layout principal: filtros | calendário | eventos -->
+                        <div class="calendario-main">
+
+                            <!-- Sidebar esquerda: Filtros e Legenda -->
+                            <aside class="calendario-sidebar-left">
+
+                                <!-- Card de Filtros -->
+                                <div class="calendario-card">
+                                    <h2><span class="icon-search"></span> Busca e Filtros</h2>
+
+                                    <div class="calendario-filters">
+                                        <!-- Campo de busca -->
+                                        <div class="filter-group">
+                                            <label for="filter-search">Buscar eventos</label>
+                                            <input type="text" id="filter-search"
+                                                placeholder="Digite título, descrição..." />
+                                        </div>
+
+                                        <div class="filter-group">
+                                            <label for="filter-type">Tipo de Evento</label>
+                                            <select id="filter-type">
+                                                <option value="all">Todos</option>
+                                                <option value="entrega">Entregas</option>
+                                                <option value="reuniao">Reuniões</option>
+                                                <option value="homeoffice">Home Office</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="filter-group">
+                                            <label for="filter-user">Responsável</label>
+                                            <input type="text" id="filter-user" placeholder="Nome do responsável..." />
+                                        </div>
+
+                                        <div class="filter-group">
+                                            <label for="filter-module">Módulo</label>
+                                            <select id="filter-module">
+                                                <option value="all">Todos os módulos</option>
+                                                <option value="M00_home">M00 - Home</option>
+                                                <option value="M01_auth">M01 - Autenticação</option>
+                                                <option value="M02_cadastros">M02 - Cadastros</option>
+                                                <option value="M03_dicionario">M03 - Dicionário</option>
+                                                <option value="M04_calendario">M04 - Calendário</option>
+                                                <option value="M05_relatorios">M05 - Relatórios</option>
+                                            </select>
+                                        </div>
+
+                                        <button id="btn-limpar-filtros" class="calendario-btn calendario-btn-full">
+                                            Limpar Filtros
+                                        </button>
+
+                                        <!-- Contador de resultados -->
+                                        <div id="filter-results" class="filter-results">
+                                            <!-- Preenchido via JS -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card de Estatísticas -->
+                                <div class="calendario-card calendario-card-spacing">
+                                    <h2><span class="icon-chart"></span> Estatísticas</h2>
+
+                                    <div class="calendar-stats" id="calendar-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total</span>
+                                            <span class="stat-value" id="stat-total">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Este Mês</span>
+                                            <span class="stat-value" id="stat-this-month">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Entregas</span>
+                                            <span class="stat-value stat-entrega" id="stat-entregas">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Reuniões</span>
+                                            <span class="stat-value stat-reuniao" id="stat-reunioes">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Badge de notificações -->
+                                <div id="notification-badge"
+                                    class="calendario-card calendario-card-spacing calendario-notification-warning">
+                                    <h3 class="calendario-warning-title"><span class="icon-warning"></span> Próximos
+                                        Eventos</h3>
+                                    <p id="notification-text" class="calendario-hint"></p>
+                                </div>
+
+                            </aside>
+
+                            <!-- Conteúdo central: Grid do calendário -->
+                            <main class="calendario-content">
+                                <div class="calendario-card">
+                                    <!-- Mês e Ano no topo centralizado -->
+                                    <div class="calendario-month-year-display">
+                                        <h2 id="monthYearLabel">
+                                            <!-- Preenchido via JS: "Janeiro 2025" -->
+                                        </h2>
+                                    </div>
+
+                                    <!-- Grid do calendário -->
+                                    <div class="calendar-grid" id="calendarGrid">
+                                        <!-- Cabeçalhos dos dias da semana -->
+                                        <div class="calendar-day-header">Dom</div>
+                                        <div class="calendar-day-header">Seg</div>
+                                        <div class="calendar-day-header">Ter</div>
+                                        <div class="calendar-day-header">Qua</div>
+                                        <div class="calendar-day-header">Qui</div>
+                                        <div class="calendar-day-header">Sex</div>
+                                        <div class="calendar-day-header">Sáb</div>
+
+                                        <!-- Células dos dias (preenchidas via JS) -->
+                                    </div>
+
+                                    <!-- Legenda no final do card -->
+                                    <div class="calendario-legend-bottom">
+                                        <div class="legend-item">
+                                            <span class="dot dot-entrega"></span>
+                                            <span>Entregas</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="dot dot-reuniao"></span>
+                                            <span>Reuniões</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="dot dot-homeoffice"></span>
+                                            <span>Home Office</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+
+                            <!-- Sidebar direita: Lista de eventos -->
+                            <aside class="calendario-sidebar-right">
+                                <div class="calendario-card">
+                                    <h2><span class="icon-list"></span> Eventos do Dia</h2>
+
+                                    <div id="selected-date-label" class="calendario-selected-date">
+                                        Selecione um dia no calendário
+                                    </div>
+
+                                    <div id="eventos-list-container" class="calendario-eventos-container">
+                                        <!-- Lista de eventos preenchida via JS -->
+                                        <div class="calendario-empty">
+                                            Nenhum evento para esta data
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card de atalhos -->
+                                <div class="calendario-card calendario-card-spacing">
+                                    <h2><span class="icon-bolt"></span> Atalhos</h2>
+
+                                    <div class="calendario-atalhos-container">
+                                        <button class="calendario-btn calendario-btn-full"
+                                            onclick="CalendarioIntegrations.addToGoogleCalendar()">
+                                            <span class="icon-calendar"></span> Adicionar a Google Calendar
+                                        </button>
+                                        <button class="calendario-btn calendario-btn-full"
+                                            onclick="CalendarioIntegrations.addToOutlook()">
+                                            <span class="icon-email"></span> Adicionar a Outlook
+                                        </button>
+                                        <button class="calendario-btn calendario-btn-full"
+                                            onclick="CalendarioExport.exportICS()">
+                                            <span class="icon-save"></span> Baixar .ics (iCalendar)
+                                        </button>
+                                    </div>
+                                </div>
+                            </aside>
+
+                        </div>
+
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <!-- Footer (igual página equipe) -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 SIGMA-PLI. Desenvolvido e implementado por VPC-GEOSER</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para criar/editar evento -->
+    <div id="modal-evento" class="calendario-modal">
+        <div class="calendario-modal-overlay"></div>
+        <div class="calendario-modal-content">
+            <div class="calendario-modal-header">
+                <h2 id="modal-title">Novo Evento</h2>
+                <button class="calendario-modal-close" id="btn-close-modal">&times;</button>
+            </div>
+
+            <form id="form-evento" class="calendario-modal-body">
+                <input type="hidden" id="evento-id" name="id">
+
+                <div class="form-group">
+                    <label for="evento-titulo">Título *</label>
+                    <input type="text" id="evento-titulo" name="titulo" required
+                        placeholder="Ex: Reunião de Planejamento">
+                </div>
+
+                <div class="form-group">
+                    <label for="evento-descricao">Descrição</label>
+                    <textarea id="evento-descricao" name="descricao" rows="3"
+                        placeholder="Descreva os detalhes do evento..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="evento-data-inicio">Data Início *</label>
+                        <input type="date" id="evento-data-inicio" name="data_inicio" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evento-hora-inicio">Hora Início</label>
+                        <input type="time" id="evento-hora-inicio" name="hora_inicio" value="09:00">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="evento-data-fim">Data Fim</label>
+                        <input type="date" id="evento-data-fim" name="data_fim">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evento-hora-fim">Hora Fim</label>
+                        <input type="time" id="evento-hora-fim" name="hora_fim" value="10:00">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="evento-tipo">Tipo de Evento *</label>
+                        <select id="evento-tipo" name="tipo" required>
+                            <option value="">Selecione...</option>
+                            <option value="entrega">Entrega</option>
+                            <option value="reuniao">Reunião</option>
+                            <option value="homeoffice">Home Office</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evento-modulo">Módulo</label>
+                        <select id="evento-modulo" name="modulo">
+                            <option value="">Selecione...</option>
+                            <option value="M00_home">M00 - Home</option>
+                            <option value="M01_auth">M01 - Autenticação</option>
+                            <option value="M02_cadastros">M02 - Cadastros</option>
+                            <option value="M03_dicionario">M03 - Dicionário</option>
+                            <option value="M04_calendario">M04 - Calendário</option>
+                            <option value="M05_relatorios">M05 - Relatórios</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="evento-responsavel">Responsável</label>
+                    <input type="text" id="evento-responsavel" name="responsavel" placeholder="Nome do responsável">
+                </div>
+
+                <div class="form-group">
+                    <label for="evento-localizacao">Localização</label>
+                    <input type="text" id="evento-localizacao" name="localizacao"
+                        placeholder="Ex: Sala de Reuniões, Online, etc.">
+                </div>
+
+                <div class="calendario-modal-footer">
+                    <button type="button" class="calendario-btn" id="btn-cancel-modal">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="calendario-btn calendario-btn-success">
+                        <span class="icon-save"></span> Salvar Evento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div> <!-- Scripts do módulo calendário (ordem importante) -->
+    <script src="{{ url_for('static', path='/js/M04_calendario/script_calendario_main.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/M04_calendario/script_calendario_api.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/M04_calendario/script_calendario_integrations.js') }}"></script>
+
+    <!-- Inicialização -->
+    <script>
+        // Garante que o calendário seja inicializado após o DOM estar pronto
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log('📅 Inicializando módulo calendário...');
+                initCalendario();
+                CalendarioSync.sync();
+            });
+        } else {
+            console.log('📅 Inicializando módulo calendário...');
+            initCalendario();
+            CalendarioSync.sync();
+        }
+
+        // Event listeners para botões do header
+        document.addEventListener('DOMContentLoaded', function () {
+            // Navegação
+            document.getElementById('btn-prev-month')?.addEventListener('click', CalendarioNavigation.prevMonth);
+            document.getElementById('btn-next-month')?.addEventListener('click', CalendarioNavigation.nextMonth);
+            document.getElementById('btn-today')?.addEventListener('click', CalendarioNavigation.goToday);
+
+            // Ações
+            document.getElementById('btn-novo-evento')?.addEventListener('click', function () {
+                CalendarioModal.open();
+            });
+
+            document.getElementById('btn-exportar')?.addEventListener('click', function () {
+                CalendarioExport.showExportMenu();
+            });
+
+            document.getElementById('btn-sincronizar')?.addEventListener('click', function () {
+                CalendarioSync.sync();
+                alert('✅ Sincronização iniciada!');
+            });
+
+            document.getElementById('btn-limpar-filtros')?.addEventListener('click', function () {
+                document.getElementById('filter-search').value = '';
+                document.getElementById('filter-type').value = 'all';
+                document.getElementById('filter-user').value = '';
+                document.getElementById('filter-module').value = 'all';
+                CalendarioFilters.updateFilters();
+            });
+        });
+    </script>
+</body>
+
+</html>
