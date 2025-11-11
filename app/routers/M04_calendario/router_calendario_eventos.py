@@ -305,11 +305,95 @@ async def generate_share_link(evento_id: str):
 
 
 # ========================================
-# ENDPOINTS DE FERIADOS
+# ENDPOINTS DE FERIADOS (ordem importante!)
 # ========================================
 
 
+@router.get("/api/v1/calendario/feriados/proximo", tags=["Calendário", "Feriados"])
+async def get_proximo_feriado():
+    """
+    Retorna o próximo feriado a partir da data atual.
+    """
+    feriado = FeriadoService.obter_proximo_feriado()
+
+    if not feriado:
+        return {"proximo_feriado": None}
+
+    hoje = date.today()
+    dias_ate = (feriado["data"] - hoje).days
+
+    return {
+        "proximo_feriado": {
+            "data": feriado["data"].isoformat(),
+            "nome": feriado["nome"],
+            "tipo": feriado["tipo"],
+            "tipo_feriado": feriado["tipo_feriado"],
+            "dias_ate": dias_ate,
+        }
+    }
+
+
+@router.get(
+    "/api/v1/calendario/feriados/verificar/{data}", tags=["Calendário", "Feriados"]
+)
+async def verificar_feriado(data: str):
+    """
+    Verifica se uma data específica é feriado.
+    Formato da data: YYYY-MM-DD
+    """
+    try:
+        data_obj = datetime.strptime(data, "%Y-%m-%d").date()
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Formato de data inválido. Use YYYY-MM-DD",
+        )
+
+    feriado_info = FeriadoService.eh_feriado(data_obj)
+
+    if feriado_info:
+        return {
+            "eh_feriado": True,
+            "data": data,
+            "feriado": {
+                "nome": feriado_info["nome"],
+                "tipo": feriado_info["tipo"],
+                "tipo_feriado": feriado_info["tipo_feriado"],
+            },
+        }
+
+    return {"eh_feriado": False, "data": data}
+
+
 @router.get("/api/v1/calendario/feriados/{ano}", tags=["Calendário", "Feriados"])
+async def get_feriados_ano(ano: int):
+    """
+    Retorna todos os feriados de um ano específico.
+
+    Inclui:
+    - Feriados nacionais
+    - Feriados estaduais (São Paulo)
+    - Feriados municipais (São Paulo)
+    """
+    feriados = FeriadoService.obter_todos_feriados(ano)
+
+    # Formata para JSON
+    return {
+        "ano": ano,
+        "total": len(feriados),
+        "feriados": [
+            {
+                "data": f["data"].isoformat(),
+                "nome": f["nome"],
+                "tipo": f["tipo"],
+                "tipo_feriado": f["tipo_feriado"],
+            }
+            for f in feriados
+        ],
+    }
+
+
+@router.get("/api/v1/calendario/feriados/{ano}/{mes}", tags=["Calendário", "Feriados"])
 async def get_feriados_ano(ano: int):
     """
     Retorna todos os feriados de um ano específico.
@@ -364,60 +448,3 @@ async def get_feriados_mes(ano: int, mes: int):
             for f in feriados
         ],
     }
-
-
-@router.get("/api/v1/calendario/feriados/proximo", tags=["Calendário", "Feriados"])
-async def get_proximo_feriado():
-    """
-    Retorna o próximo feriado a partir da data atual.
-    """
-    feriado = FeriadoService.obter_proximo_feriado()
-
-    if not feriado:
-        return {"proximo_feriado": None}
-
-    hoje = date.today()
-    dias_ate = (feriado["data"] - hoje).days
-
-    return {
-        "proximo_feriado": {
-            "data": feriado["data"].isoformat(),
-            "nome": feriado["nome"],
-            "tipo": feriado["tipo"],
-            "tipo_feriado": feriado["tipo_feriado"],
-            "dias_ate": dias_ate,
-        }
-    }
-
-
-@router.get(
-    "/api/v1/calendario/feriados/verificar/{data}", tags=["Calendário", "Feriados"]
-)
-async def verificar_feriado(data: str):
-    """
-    Verifica se uma data específica é feriado.
-
-    Formato da data: YYYY-MM-DD
-    """
-    try:
-        data_obj = datetime.strptime(data, "%Y-%m-%d").date()
-    except ValueError:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Formato de data inválido. Use YYYY-MM-DD",
-        )
-
-    feriado = FeriadoService.eh_feriado(data_obj)
-
-    if feriado:
-        return {
-            "eh_feriado": True,
-            "data": data,
-            "feriado": {
-                "nome": feriado["nome"],
-                "tipo": feriado["tipo"],
-                "tipo_feriado": feriado["tipo_feriado"],
-            },
-        }
-
-    return {"eh_feriado": False, "data": data}

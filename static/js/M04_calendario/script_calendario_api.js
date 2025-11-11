@@ -52,9 +52,7 @@ const CalendarioEventos = {
 
             // Atualizar interface
             CalendarioRenderer.renderCalendar();
-            if (typeof CalendarioEventsList !== 'undefined') {
-                CalendarioEventsList.render();
-            }
+            // Nota: CalendarioEventsList.renderForDate é chamado quando um dia é selecionado
             CalendarioNotifications.checkUpcomingEvents();
 
             console.log(`✅ ${events.length} eventos carregados`);
