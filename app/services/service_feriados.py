@@ -3,7 +3,7 @@ SIGMA-PLI - Serviço de Feriados
 Feriados Nacionais, Estaduais (SP) e Municipais (São Paulo)
 """
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from typing import List, Dict, Optional
 from dateutil.easter import easter
 
@@ -17,10 +17,10 @@ class FeriadoService:
         pascoa = easter(ano)
 
         return {
-            "carnaval": date(pascoa.year, pascoa.month, pascoa.day - 47),
-            "sexta_feira_santa": date(pascoa.year, pascoa.month, pascoa.day - 2),
+            "carnaval": pascoa - timedelta(days=47),
+            "sexta_feira_santa": pascoa - timedelta(days=2),
             "pascoa": pascoa,
-            "corpus_christi": date(pascoa.year, pascoa.month, pascoa.day + 60),
+            "corpus_christi": pascoa + timedelta(days=60),
         }
 
     @classmethod
