@@ -14,18 +14,45 @@ class AuthTokenManager {
         this.loadFromStorage();
     }
 
+    // Helper para acesso seguro a localStorage (evita erros quando bloqueado por Tracking Prevention)
+    safeSetItem(key, value) {
+        try {
+            localStorage.setItem(key, value);
+        } catch (e) {
+            // Falha ao acessar localStorage (ex.: Tracking Prevention) -> silencioso
+            console.warn('localStorage inacessível:', e.message);
+        }
+    }
+
+    safeGetItem(key) {
+        try {
+            return localStorage.getItem(key);
+        } catch (e) {
+            console.warn('localStorage inacessível:', e.message);
+            return null;
+        }
+    }
+
+    safeRemoveItem(key) {
+        try {
+            localStorage.removeItem(key);
+        } catch (e) {
+            console.warn('localStorage inacessível:', e.message);
+        }
+    }
+
     /**
      * Salvar tokens no localStorage
      */
     saveToStorage() {
         if (this.sessionToken) {
-            localStorage.setItem('session_token', this.sessionToken);
+            this.safeSetItem('session_token', this.sessionToken);
         }
         if (this.refreshToken) {
-            localStorage.setItem('refresh_token', this.refreshToken);
+            this.safeSetItem('refresh_token', this.refreshToken);
         }
         if (this.user) {
-            localStorage.setItem('user', JSON.stringify(this.user));
+            this.safeSetItem('user', JSON.stringify(this.user));
         }
     }
 
@@ -33,9 +60,9 @@ class AuthTokenManager {
      * Carregar tokens do localStorage
      */
     loadFromStorage() {
-        this.sessionToken = localStorage.getItem('session_token');
-        this.refreshToken = localStorage.getItem('refresh_token');
-        const userStr = localStorage.getItem('user');
+        this.sessionToken = this.safeGetItem('session_token');
+        this.refreshToken = this.safeGetItem('refresh_token');
+        const userStr = this.safeGetItem('user');
         if (userStr) {
             try {
                 this.user = JSON.parse(userStr);
@@ -52,9 +79,9 @@ class AuthTokenManager {
         this.sessionToken = null;
         this.refreshToken = null;
         this.user = null;
-        localStorage.removeItem('session_token');
-        localStorage.removeItem('refresh_token');
-        localStorage.removeItem('user');
+        this.safeRemoveItem('session_token');
+        this.safeRemoveItem('refresh_token');
+        this.safeRemoveItem('user');
         this.stopAutoRefresh();
     }
 

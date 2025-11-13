@@ -136,10 +136,11 @@ docker-compose --profile neo4j up -d
 ```
 
 Para usar Neo4j permanentemente, edite `docker-compose.yml`:
+
 ```yaml
 backend:
   environment:
-    - ENABLE_NEO4J=true  # Altere para true
+    - ENABLE_NEO4J=true # Altere para true
 ```
 
 ---
@@ -158,6 +159,7 @@ volumes:
 **Mudanças no código são refletidas automaticamente!** 🎉
 
 Se não funcionar, adicione `--reload` no Dockerfile:
+
 ```dockerfile
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 ```
@@ -181,12 +183,12 @@ docker system prune -a --volumes
 
 ## 📊 Estrutura de Portas
 
-| Serviço | Porta Host | Porta Container |
-|---------|-----------|-----------------|
-| Backend | 8010 | 8000 |
-| PostgreSQL | 5432 | 5432 |
-| Neo4j Browser | 7474 | 7474 |
-| Neo4j Bolt | 7687 | 7687 |
+| Serviço       | Porta Host | Porta Container |
+| ------------- | ---------- | --------------- |
+| Backend       | 8010       | 8000            |
+| PostgreSQL    | 5432       | 5432            |
+| Neo4j Browser | 7474       | 7474            |
+| Neo4j Bolt    | 7687       | 7687            |
 
 ---
 
@@ -197,6 +199,7 @@ docker system prune -a --volumes
 **Sintoma**: Container para logo após iniciar
 
 **Solução**:
+
 ```bash
 # Ver logs
 docker-compose logs backend
@@ -215,6 +218,7 @@ ports:
 **Sintoma**: `could not connect to server`
 
 **Solução**:
+
 ```bash
 # Verificar se postgres está rodando
 docker-compose ps
@@ -230,6 +234,7 @@ docker-compose up -d backend
 **Sintoma**: Alterações não refletem na aplicação
 
 **Solução**:
+
 ```bash
 # Rebuild
 docker-compose build backend

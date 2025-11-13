@@ -37,7 +37,7 @@ class PessoaService:
         zona_eleitoral: Optional[str] = None,
         secao_eleitoral: Optional[str] = None,
         pis_pasep: Optional[str] = None,
-        telefone_principal: Optional[str] = None,
+        telefone: Optional[str] = None,
         telefone_secundario: Optional[str] = None,
         email_secundario: Optional[str] = None,
         profissao: Optional[str] = None,
@@ -66,7 +66,7 @@ class PessoaService:
             nome_completo=nome_completo,
             cpf=cpf,
             email=email,
-            telefone=telefone_principal or None,
+            telefone=telefone or None,
             cargo=profissao or None,
         )
         return pessoa_id

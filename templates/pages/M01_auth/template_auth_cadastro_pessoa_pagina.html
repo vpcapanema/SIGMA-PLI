@@ -224,16 +224,15 @@
                     <input class="form-control" id="emailSecundario" name="email_secundario" type="email">
                   </div>
                   <div class="col-md-3">
-                    <label class="form-label cadastro-pessoa-fisica__required-field--label" for="telefonePrincipal">
+                    <label class="form-label cadastro-pessoa-fisica__required-field--label" for="telefone">
                       Telefone Principal
                     </label>
-                    <input class="form-control" id="telefonePrincipal" name="telefone_principal" required=""
-                      type="text">
+                    <input class="form-control" id="telefone" name="telefone" required="" type="text">
                     <div class="invalid-feedback">Por favor, informe um telefone válido.</div>
                   </div>
                   <div class="col-md-3">
-                    <label class="form-label" for="telefoneSecundario">Telefone Secundário</label>
-                    <input class="form-control" id="telefoneSecundario" name="telefone_secundario" type="text">
+                    <label class="form-label" for="telefone_secundario">Telefone Secundário</label>
+                    <input class="form-control" id="telefone_secundario" name="telefone_secundario" type="text">
                   </div>
                 </div>
               </div>
@@ -603,7 +602,7 @@
         window.inputMaskManager.setupFields([
           { id: 'cpf', mask: 'cpf' },
           { id: 'rg', mask: 'rg' },
-          { id: 'telefonePrincipal', mask: 'telefone' },
+          { id: 'telefone', mask: 'telefone' },
           { id: 'telefoneSecundario', mask: 'telefone' },
           { id: 'cep', mask: 'cep' },
         ]);

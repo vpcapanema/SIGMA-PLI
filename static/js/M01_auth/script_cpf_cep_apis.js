@@ -331,8 +331,9 @@
     /**
      * Handler com debounce para validação de CPF
      */
-    function setupCPFValidation() {
-        const cpfInput = document.getElementById('documento');
+    function setupCPFValidation(elementId = 'cpf') {
+        // Compatibilidade: aceitar id 'cpf' ou 'documento'
+        const cpfInput = document.getElementById(elementId) || document.getElementById('documento');
         if (!cpfInput) return;
 
         cpfInput.addEventListener('blur', async (e) => {
@@ -354,8 +355,8 @@
     /**
      * Handler com debounce para validação de CNPJ
      */
-    function setupCNPJValidation() {
-        const cnpjInput = document.getElementById('documento_empresa');
+    function setupCNPJValidation(elementId = 'documento_empresa') {
+        const cnpjInput = document.getElementById(elementId);
         if (!cnpjInput) return;
 
         cnpjInput.addEventListener('blur', async (e) => {
@@ -377,8 +378,8 @@
     /**
      * Handler com debounce para consulta de CEP
      */
-    function setupCEPConsultation() {
-        const cepInput = document.getElementById('cep');
+    function setupCEPConsultation(elementId = 'cep') {
+        const cepInput = document.getElementById(elementId) || document.getElementById('cep');
         if (!cepInput) return;
 
         cepInput.addEventListener('blur', async (e) => {
@@ -424,6 +425,17 @@
         consultarCEP,
         preencherEndereco,
         preencherEmpresa
+        ,
+        setupCPFValidation,
+        setupCNPJValidation,
+        setupCEPConsultation,
+        setupCEPAutocomplete: setupCEPConsultation
+        ,
+        // Funções de setup para chamadas por páginas
+        setupCPFValidation,
+        setupCNPJValidation,
+        setupCEPConsultation,
+        setupCEPAutocomplete: setupCEPConsultation,
     };
 
     // Inicializar automaticamente

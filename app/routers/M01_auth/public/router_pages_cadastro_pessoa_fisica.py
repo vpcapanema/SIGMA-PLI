@@ -44,7 +44,7 @@ class PessoaFisicaCreate(BaseModel):
     pis_pasep: Optional[str] = Field(None, max_length=20)
 
     # Contato
-    telefone_principal: Optional[str] = Field(None, max_length=20)
+    telefone: Optional[str] = Field(None, max_length=20)
     telefone_secundario: Optional[str] = Field(None, max_length=20)
     email_secundario: Optional[EmailStr] = None
 
@@ -96,6 +96,14 @@ async def cadastro_pessoa_alias(request: Request):
     )
 
 
+@router.get("/admin/cadastro-mappings")
+async def cadastro_mappings_page(request: Request):
+    return templates.TemplateResponse(
+        "pages/M01_auth/template_auth_cadastro_mappings_pagina.html",
+        {"request": request, "title": "Mapeamento: Form → cadastro.pessoa"},
+    )
+
+
 # API Endpoints
 @router.post("/api/cadastro/pessoa-fisica", response_model=CadastroResponse)
 async def cadastrar_pessoa_fisica(data: PessoaFisicaCreate):
@@ -125,6 +133,16 @@ async def cadastrar_pessoa_fisica(data: PessoaFisicaCreate):
         )
 
     try:
+        # DEBUG: print incoming payload for diagnostics
+        print("[DEBUG] Cadastro PF payload:", data.model_dump())
+        try:
+            import json, os
+
+            os.makedirs("logs", exist_ok=True)
+            with open("logs/payload_debug.log", "a", encoding="utf-8") as f:
+                f.write(json.dumps(data.model_dump()) + "\n")
+        except Exception:
+            pass
         pessoa_id = await PessoaService.create_pessoa_fisica(**data.model_dump())
 
         return CadastroResponse(

@@ -48,7 +48,7 @@ function initCadastroPessoaFisica() {
             // Contato
             email: document.getElementById('email')?.value.trim(),
             email_secundario: document.getElementById('emailSecundario')?.value.trim() || null,
-            telefone_principal: document.getElementById('telefonePrincipal')?.value.trim() || null,
+            telefone: document.getElementById('telefone')?.value.trim() || null,
             telefone_secundario: document.getElementById('telefoneSecundario')?.value.trim() || null,
 
             // Profissionais
@@ -86,21 +86,62 @@ function initCadastroPessoaFisica() {
         }
 
         try {
-            // Gravar no cadastro.pessoa (rota pública de cadastro)
-            const response = await fetch('/api/cadastro/pessoa-fisica', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // Payload mínimo esperado pelo endpoint público
-                body: JSON.stringify({
-                    nome_completo: formData.nome_completo,
-                    cpf: formData.cpf,
-                    email: formData.email,
-                    telefone_principal: formData.telefone_principal || formData.telefone_secundario || null,
-                    profissao: formData.profissao || null
-                }),
-            });
+            // Tenta gravar no endpoint padrão (FastAPI) e, se não disponível, tenta rota compatível (Node)
+            const primaryEndpoint = '/api/cadastro/pessoa-fisica';
+            const fallbackEndpoint = '/api/pessoa-fisica';
+
+            let response;
+            // Primeira tentativa: endpoint primário
+            try {
+                response = await fetch(primaryEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nome_completo: formData.nome_completo,
+                        cpf: formData.cpf,
+                        email: formData.email,
+                        telefone: formData.telefone || formData.telefone_secundario || null,
+                        profissao: formData.profissao || null,
+                    }),
+                });
+            } catch (errPrimary) {
+                console.warn('Falha ao conectar com endpoint primário, tentando fallback:', errPrimary);
+                try {
+                    response = await fetch(fallbackEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            nome_completo: formData.nome_completo,
+                            cpf: formData.cpf,
+                            email: formData.email,
+                            telefone_principal: formData.telefone_principal || formData.telefone_secundario || null,
+                            profissao: formData.profissao || null,
+                        }),
+                    });
+                } catch (errFallback) {
+                    console.error('Falha ao conectar com fallback:', errFallback);
+                    throw new Error('Falha ao conectar com o servidor. Tente novamente mais tarde.');
+                }
+            }
+
+            // Se o endpoint primário respondeu 404/405, tentar fallback também
+            if (!response.ok && (response.status === 404 || response.status === 405)) {
+                try {
+                    response = await fetch(fallbackEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            nome_completo: formData.nome_completo,
+                            cpf: formData.cpf,
+                            email: formData.email,
+                            telefone_principal: formData.telefone_principal || formData.telefone_secundario || null,
+                            profissao: formData.profissao || null,
+                        }),
+                    });
+                } catch (err) {
+                    console.error('Falha ao tentar fallback para rota /api/pessoa-fisica:', err);
+                }
+            }
 
             if (!response.ok) {
                 const error = await response.json();
@@ -119,9 +160,14 @@ function initCadastroPessoaFisica() {
             }
 
             // Redirecionar ou limpar formulário
-            setTimeout(() => {
-                window.location.href = '/auth/cadastro-usuario?pessoa_id=' + data.pessoa_id;
-            }, 2000);
+            // Suporta diferentes formatos de resposta (FastAPI retorna pessoa_id; Node retorna pessoa.id)
+            const pessoaId = data.pessoa_id || (data.pessoa && data.pessoa.id) || data.id || data.pessoaId || null;
+
+            if (pessoaId) {
+                setTimeout(() => {
+                    window.location.href = '/auth/cadastro-usuario?pessoa_id=' + pessoaId;
+                }, 2000);
+            }
         } catch (error) {
             showError(error.message);
         } finally {
@@ -223,9 +269,12 @@ function initCadastroPessoaJuridica() {
                 modal.show();
             }
 
-            setTimeout(() => {
-                window.location.href = '/auth/cadastro-usuario?pessoa_id=' + data.pessoa_id;
-            }, 2000);
+            const pessoaId = data.pessoa_id || (data.pessoa && data.pessoa.id) || data.id || data.pessoaId || null;
+            if (pessoaId) {
+                setTimeout(() => {
+                    window.location.href = '/auth/cadastro-usuario?pessoa_id=' + pessoaId;
+                }, 2000);
+            }
         } catch (error) {
             showError(error.message);
         } finally {
@@ -243,7 +292,7 @@ function initCadastroPessoaJuridica() {
 function initCadastroUsuario() {
     const form = document.getElementById('usuarioPublicForm');
     if (!form) {
-        console.error('Formulário usuarioPublicForm não encontrado');
+        // Formulário não está presente nesta página: apenas sair silenciosamente para evitar logs indesejados
         return;
     }
 

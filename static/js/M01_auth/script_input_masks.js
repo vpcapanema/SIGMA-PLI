@@ -268,6 +268,10 @@ class InputMaskManager {
 // Instância global
 const inputMaskManager = new InputMaskManager();
 
+// Expor globalmente para compatibilidade com código que usa window.inputMaskManager ou window.InputMasks
+window.inputMaskManager = inputMaskManager;
+window.InputMasks = inputMaskManager;
+
 /**
  * EXEMPLO DE USO:
  *
